@@ -9,7 +9,6 @@
     "declarationMap": true,
     "esModuleInterop": true,
     "jsx": "preserve",
-    "lib": ["es2019", "dom", "dom.iterable"],
     "module": "commonjs",
     "moduleResolution": "node",
     "noImplicitAny": true,
@@ -17,8 +16,7 @@
     "noUnusedParameters": true,
     "skipLibCheck": true,
     "sourceMap": true,
-    "strict": true,
-    "target": "es2019"
+    "strict": true
   },
   "include": ["./src/**/*"],
   "exclude": ["node_modules"]

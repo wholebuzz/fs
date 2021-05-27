@@ -1,6 +1,6 @@
 {
   "name": "@wholebuzz/fs",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "File system interface with implementations for GCP and Local filesystem",
   "author": "wholebuzz",
   "license": "Apache-2.0",
