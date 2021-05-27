@@ -1,0 +1,10 @@
+{
+  "entryPoints": ["./src"],
+  "exclude": ["**/generated/*.ts", "**/*+(index|.test).ts"],
+  "excludePrivate": true,
+  "excludeProtected": true,
+  "hideGenerator": "true",
+  "theme": "gitbook",
+  "out": "./docs",
+  "gitRevision": "master"
+}

@@ -1,0 +1,50 @@
+{
+  "name": "@wholebuzz/fs",
+  "version": "0.0.1",
+  "description": "File system interface with implementations for GCP and Local filesystem",
+  "author": "wholebuzz",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wholebuzz/fs.git"
+  },
+  "types": "./lib/index.d.ts",
+  "scripts": {
+    "prepublishOnly": "yarn build",
+    "build": "tsc -b .",
+    "clean": "tsc -b . --clean",
+    "docs": "typedoc --disableOutputCheck && rm -rf docs/README.md && ./scripts/updateReadmeApiReference.sh",
+    "test": "jest --runInBand --ci --passWithNoTests",
+    "test:coverage": "jest --runInBand --ci --passWithNoTests --coverage --no-cache",
+    "lint": "tslint -c tslint.json --project .",
+    "prettify": "yarn lint --fix"
+  },
+  "files": [
+    "lib/**/*"
+  ],
+  "dependencies": {
+    "@google-cloud/storage": "^5.8.1",
+    "fs-ext": "^2.0.0",
+    "sha.js": "^2.4.11",
+    "through2": "^3.0.1",
+    "tree-stream": "^1.0.8",
+    "uuid": "^8.1.0",
+    "zlib": "^1.0.5"
+  },
+  "devDependencies": {
+    "@types/fs-ext": "^2.0.0",
+    "@types/node": "^13.13.5",
+    "@types/sha.js": "^2.4.0",
+    "@types/through2": "^2.0.36",
+    "@types/uuid": "^8.0.0",
+    "typescript": "^4.2.4"
+  },
+  "nyc": {
+    "reporter": [
+      "cobertura",
+      "json",
+      "lcov",
+      "text"
+    ]
+  }
+}
