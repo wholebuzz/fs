@@ -1,6 +1,6 @@
 {
   "name": "@wholebuzz/fs",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "File system interface with implementations for GCP and Local filesystem",
   "author": "wholebuzz",
   "license": "Apache-2.0",
@@ -19,6 +19,7 @@
     "lint": "tslint -c tslint.json --project .",
     "prettify": "yarn lint --fix"
   },
+  "main": "lib/index.js",
   "files": [
     "lib/**/*"
   ],
