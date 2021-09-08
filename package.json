@@ -1,7 +1,7 @@
 {
   "name": "@wholebuzz/fs",
-  "version": "0.0.5",
-  "description": "File system interface with implementations for GCP and Local filesystem",
+  "version": "0.0.6",
+  "description": "File system interface abstraction with implementations for GCP GCS, AWS S3, and Local filesystem",
   "author": "wholebuzz",
   "license": "Apache-2.0",
   "repository": {
@@ -17,7 +17,8 @@
     "test": "jest --runInBand --ci --passWithNoTests",
     "test:coverage": "jest --runInBand --ci --passWithNoTests --coverage --no-cache",
     "lint": "tslint -c tslint.json --project .",
-    "prettify": "yarn lint --fix"
+    "fix": "yarn lint --fix",
+    "format": "yarn run prettier --config .prettierrc.js --write 'src/*.+(ts)'"
   },
   "main": "lib/index.js",
   "files": [
@@ -25,22 +26,26 @@
   ],
   "dependencies": {
     "@google-cloud/storage": "^5.8.1",
+    "@types/s3-upload-stream": "^1.0.2",
+    "aws-sdk": "^2.975.0",
     "fs-ext": "^2.0.0",
+    "s3-upload-stream": "^1.0.7",
     "sha.js": "^2.4.11",
     "through2": "^3.0.1",
     "tree-stream": "^1.0.8",
     "uuid": "^8.1.0",
+    "yargs": "^17.1.1",
     "zlib": "^1.0.5"
   },
   "devDependencies": {
     "@types/fs-ext": "^2.0.0",
+    "@types/jest": "^26.0.22",
     "@types/node": "^13.13.5",
     "@types/sha.js": "^2.4.0",
     "@types/through2": "^2.0.36",
-    "@types/jest": "^26.0.22",
     "@types/uuid": "^8.0.0",
     "jest": "^26.6.3",
-    "prettier": "1.19.1",
+    "prettier": "^2.3.2",
     "ts-jest": "^26.5.4",
     "tslint": "^5.20.0",
     "tslint-config-prettier": "^1.18.0",

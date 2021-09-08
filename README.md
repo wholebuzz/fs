@@ -4,19 +4,26 @@
 
 - `LocalFileSystem` employs content hashing to approximate [GCS Object Versioning](https://cloud.google.com/storage/docs/object-versioning). 
 - `GoogleCloudFileSystem` provides consistent parallel access paterns.
+- `S3FileSystem` provides basic file system primitives.
 
 # Example
 
 ```
-import { AnyFileSystem, GoogleCloudFileSystem, LocalFileSystem } from '@wholebuzz/fs'
+import { AnyFileSystem, GoogleCloudFileSystem, LocalFileSystem, S3FileSystem } from '@wholebuzz/fs'
 
 const fs = new AnyFileSystem([
   { urlPrefix: 'gs://', fs: new GoogleCloudFileSystem() },
+  { urlPrefix: 's3://', fs: new S3FileSystem() },
   { urlPrefix: '', fs: new LocalFileSystem() },
 ])
 
 const localStream = fs.openReadableStream('/etc/hosts')
 const cloudStream = fs.openReadableStream('gs://bucket/file')
+```
+
+```bash
+yarn build
+node lib/cli.js ls .
 ```
 
 ## API Reference
@@ -29,8 +36,11 @@ const cloudStream = fs.openReadableStream('gs://bucket/file')
 
 ### Modules
 
+- [cli](docs/modules/cli.md)
 - [fs](docs/modules/fs.md)
 - [gcp](docs/modules/gcp.md)
+- [json](docs/modules/json.md)
+- [s3](docs/modules/s3.md)
 - [util](docs/modules/util.md)
 
 [@wholebuzz/fs](README.md) / [Exports](docs/modules.md) / [fs](docs/modules/fs.md) / FileSystem
