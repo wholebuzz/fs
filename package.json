@@ -1,6 +1,6 @@
 {
   "name": "@wholebuzz/fs",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "File system interface abstraction with implementations for GCP GCS, AWS S3, and Local filesystem",
   "author": "wholebuzz",
   "license": "Apache-2.0",
@@ -26,14 +26,13 @@
   ],
   "dependencies": {
     "@google-cloud/storage": "^5.8.1",
-    "@types/s3-upload-stream": "^1.0.2",
     "JSONStream": "^1.3.5",
     "aws-sdk": "^2.975.0",
     "fs-ext": "^2.0.0",
     "s3-upload-stream": "^1.0.7",
     "sha.js": "^2.4.11",
     "through2": "^3.0.1",
-    "tree-stream": "^1.0.8",
+    "tree-stream": "^1.0.9",
     "uuid": "^8.1.0",
     "yargs": "^17.1.1",
     "zlib": "^1.0.5"
@@ -42,6 +41,7 @@
     "@types/fs-ext": "^2.0.0",
     "@types/jest": "^26.0.22",
     "@types/node": "^13.13.5",
+    "@types/s3-upload-stream": "^1.0.2",
     "@types/sha.js": "^2.4.0",
     "@types/through2": "^2.0.36",
     "@types/uuid": "^8.0.0",
