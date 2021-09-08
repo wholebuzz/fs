@@ -2,4 +2,3 @@ node_modules/
 lib/
 package-lock.json
 tsconfig.tsbuildinfo
-yarn.lock
