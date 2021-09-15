@@ -1,5 +1,6 @@
 import * as fs from 'fs'
 import { constants as fsConstants, flock, seek } from 'fs-ext'
+import * as path from 'path'
 import { Writable } from 'stream'
 import StreamTree, { ReadableStreamTree, WritableStreamTree } from 'tree-stream'
 import { promisify } from 'util'
@@ -272,8 +273,9 @@ export class AnyFileSystem extends FileSystem {
 export class LocalFileSystem extends FileSystem {
   /** @inheritDoc */
   async readDirectory(urlText: string, prefix?: string) {
-    const files = await fsReaddir(urlText)
-    return files && prefix ? files.filter((x) => x.startsWith(prefix)) : files
+    let files = await fsReaddir(urlText)
+    if (prefix) files = files.filter((x) => x.startsWith(prefix))
+    return files.map((x) => path.join(urlText, x))
   }
 
   /** @inheritDoc */

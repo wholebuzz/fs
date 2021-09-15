@@ -52,7 +52,7 @@ export class S3FileSystem extends FileSystem {
             reject(err)
           } else {
             data.Contents?.forEach((x) => {
-              if (x.Key) ret.push(x.Key)
+              if (x.Key) ret.push(`s3://${url.Bucket}/${x.Key}`)
             })
             resolve(ret)
           }
