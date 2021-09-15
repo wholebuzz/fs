@@ -48,12 +48,12 @@ export class GoogleCloudFileSystem extends FileSystem {
   }
 
   /** @inheritDoc */
-  async readDirectory(urlText: string): Promise<string[]> {
+  async readDirectory(urlText: string, prefix?: string): Promise<string[]> {
     return new Promise((resolve, reject) => {
       const ret: string[] = []
       const bucket = this.getBucket(urlText)
       bucket
-        .getFilesStream()
+        .getFilesStream({ prefix })
         .on('error', reject)
         .on('data', (f: any) => ret.push(`gs://${bucket.name}/${f.name}`))
         .on('end', () => resolve(ret))

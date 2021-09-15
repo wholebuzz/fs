@@ -50,13 +50,13 @@ async function main() {
       }
     )
     .command(
-      'ls <path>',
+      'ls <path> [prefix]',
       'list files',
       () => {
         /* */
       },
       async (args: Record<string, any>) => {
-        const res = await fs.readDirectory(args.path)
+        const res = await fs.readDirectory(args.path, args.prefix)
         console.log(res)
       }
     )

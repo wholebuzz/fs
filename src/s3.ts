@@ -41,12 +41,12 @@ export class S3FileSystem extends FileSystem {
   }
 
   /** @inheritDoc */
-  async readDirectory(urlText: string): Promise<string[]> {
+  async readDirectory(urlText: string, prefix?: string): Promise<string[]> {
     return new Promise((resolve, reject) => {
       const ret: string[] = []
       const url = this.parseUrl(urlText)
-      this.s3.listObjects(
-        { Bucket: url.Bucket },
+      this.s3.listObjectsV2(
+        { Bucket: url.Bucket, Prefix: prefix },
         (err: AWS.AWSError, data: AWS.S3.Types.ListObjectsOutput) => {
           if (err) {
             reject(err)

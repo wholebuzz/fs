@@ -62,7 +62,7 @@ export abstract class FileSystem {
    * Returns the URLs of the files in a directory.
    * @param urlText The URL of the directory to list files in.
    */
-  abstract readDirectory(urlText: string): Promise<string[]>
+  abstract readDirectory(urlText: string, prefix?: string): Promise<string[]>
 
   /**
    * Ensures the directory exists
@@ -185,8 +185,8 @@ export class AnyFileSystem extends FileSystem {
   }
 
   /** @inheritDoc */
-  async readDirectory(urlText: string) {
-    return this.getFs(urlText).readDirectory(urlText)
+  async readDirectory(urlText: string, prefix?: string) {
+    return this.getFs(urlText).readDirectory(urlText, prefix)
   }
 
   /** @inheritDoc */
@@ -271,8 +271,9 @@ export class AnyFileSystem extends FileSystem {
  */
 export class LocalFileSystem extends FileSystem {
   /** @inheritDoc */
-  async readDirectory(urlText: string) {
-    return fsReaddir(urlText)
+  async readDirectory(urlText: string, prefix?: string) {
+    const files = await fsReaddir(urlText)
+    return files && prefix ? files.filter((x) => x.startsWith(prefix)) : files
   }
 
   /** @inheritDoc */
