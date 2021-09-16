@@ -1,17 +1,17 @@
 import * as AWS from 'aws-sdk'
-import s3stream from 's3-upload-stream'
 import { Writable } from 'stream'
 import StreamTree, { WritableStreamTree } from 'tree-stream'
 
 import { AppendOptions, CreateOptions, FileStatus, FileSystem } from './fs'
 import { logger, zlib } from './util'
 
+const UploadStream = require('s3-stream-upload')
+
 /**
- * Amazon Web Services S3 [[FileSystem]] implemented with `aws-sdk` and `s3-upload-stream`.
+ * Amazon Web Services S3 [[FileSystem]] implemented with `aws-sdk` and `s3-stream-upload`.
  */
 export class S3FileSystem extends FileSystem {
   s3: AWS.S3
-  uploader
 
   /**
    * The SDK automatically detects AWS credentials set as variables in your
@@ -24,7 +24,6 @@ export class S3FileSystem extends FileSystem {
   constructor() {
     super()
     this.s3 = new AWS.S3()
-    this.uploader = s3stream(this.s3)
   }
 
   /**
@@ -108,7 +107,7 @@ export class S3FileSystem extends FileSystem {
   /** @inheritDoc */
   async openWritableFile(urlText: string, version?: number | string, _options?: CreateOptions) {
     const url = { ...this.parseUrl(urlText), Version: version }
-    let stream = StreamTree.writable(this.uploader.upload(url))
+    let stream = StreamTree.writable(UploadStream(this.s3, url))
     if (urlText.endsWith('.gz')) {
       stream = stream.pipeFrom(zlib.createGzip())
     }
