@@ -32,6 +32,8 @@ node lib/cli.js --help
 
 ## API Reference
 
+## Table of contents
+
 ### Modules
 
 - [cli](docs/modules/cli.md)
@@ -56,6 +58,8 @@ File system interface for atomic primitives enabling multiple readers and writer
   ↳ [*LocalFileSystem*](docs/classes/fs.localfilesystem.md)
 
   ↳ [*GoogleCloudFileSystem*](docs/classes/gcp.googlecloudfilesystem.md)
+
+  ↳ [*S3FileSystem*](docs/classes/s3.s3filesystem.md)
 
 ## Table of contents
 
@@ -108,7 +112,7 @@ For simple appends, the same paramter can be supplied for both `writeCallback` a
 
 **Returns:** *Promise*<``null`` \| [*FileStatus*](docs/interfaces/fs.filestatus.md)\>
 
-Defined in: [fs.ts:157](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L157)
+Defined in: [fs.ts:158](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L158)
 
 ___
 
@@ -127,13 +131,13 @@ Copies the file.
 
 **Returns:** *Promise*<boolean\>
 
-Defined in: [fs.ts:132](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L132)
+Defined in: [fs.ts:133](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L133)
 
 ___
 
 ### createFile
 
-▸ `Abstract` **createFile**(`urlText`: *string*, `createCallback?`: (`stream`: WritableStreamTree) => *Promise*<boolean\>, `createOptions?`: [*CreateOptions*](../interfaces/fs.createoptions.md)): *Promise*<boolean\>
+▸ `Abstract` **createFile**(`urlText`: *string*, `createCallback?`: (`stream`: WritableStreamTree) => *Promise*<boolean\>, `createOptions?`: [*CreateOptions*](docs/interfaces/fs.createoptions.md)): *Promise*<boolean\>
 
 Creates file, failing if the file already exists.
 
@@ -143,11 +147,11 @@ Creates file, failing if the file already exists.
 | :------ | :------ | :------ |
 | `urlText` | *string* | The URL of the file to create. |
 | `createCallback?` | (`stream`: WritableStreamTree) => *Promise*<boolean\> | Stream callback for initializing the file. |
-| `createOptions?` | [*CreateOptions*](../interfaces/fs.createoptions.md) | Initial metadata. |
+| `createOptions?` | [*CreateOptions*](docs/interfaces/fs.createoptions.md) | Initial metadata. |
 
 **Returns:** *Promise*<boolean\>
 
-Defined in: [fs.ts:109](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L109)
+Defined in: [fs.ts:110](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L110)
 
 ___
 
@@ -166,7 +170,7 @@ Ensures the directory exists
 
 **Returns:** *Promise*<boolean\>
 
-Defined in: [fs.ts:71](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L71)
+Defined in: [fs.ts:72](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L72)
 
 ___
 
@@ -184,13 +188,13 @@ Returns `true` if the file exists.
 
 **Returns:** *Promise*<boolean\>
 
-Defined in: [fs.ts:77](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L77)
+Defined in: [fs.ts:78](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L78)
 
 ___
 
 ### getFileStatus
 
-▸ `Abstract` **getFileStatus**(`urlText`: *string*, `getVersion?`: *boolean*): *Promise*<[*FileStatus*](../interfaces/fs.filestatus.md)\>
+▸ `Abstract` **getFileStatus**(`urlText`: *string*, `getVersion?`: *boolean*): *Promise*<[*FileStatus*](docs/interfaces/fs.filestatus.md)\>
 
 Determines the file status. The file version is used to implement atomic mutations.
 
@@ -201,9 +205,9 @@ Determines the file status. The file version is used to implement atomic mutatio
 | `urlText` | *string* | The URL of the file to retrieve the status for. |
 | `getVersion?` | *boolean* | - |
 
-**Returns:** *Promise*<[*FileStatus*](../interfaces/fs.filestatus.md)\>
+**Returns:** *Promise*<[*FileStatus*](docs/interfaces/fs.filestatus.md)\>
 
-Defined in: [fs.ts:83](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L83)
+Defined in: [fs.ts:84](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L84)
 
 ___
 
@@ -224,13 +228,13 @@ Opens a file for reading.
 
 **Returns:** *Promise*<ReadableStreamTree\>
 
-Defined in: [fs.ts:90](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L90)
+Defined in: [fs.ts:91](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L91)
 
 ___
 
 ### openWritableFile
 
-▸ `Abstract` **openWritableFile**(`url`: *string*, `version?`: *string* \| *number*, `options?`: [*CreateOptions*](../interfaces/fs.createoptions.md)): *Promise*<WritableStreamTree\>
+▸ `Abstract` **openWritableFile**(`url`: *string*, `version?`: *string* \| *number*, `options?`: [*CreateOptions*](docs/interfaces/fs.createoptions.md)): *Promise*<WritableStreamTree\>
 
 Opens a file for writing.
 
@@ -242,11 +246,11 @@ Opens a file for writing.
 | :------ | :------ | :------ |
 | `url` | *string* | The URL of the file to write to. |
 | `version?` | *string* \| *number* | - |
-| `options?` | [*CreateOptions*](../interfaces/fs.createoptions.md) | - |
+| `options?` | [*CreateOptions*](docs/interfaces/fs.createoptions.md) | - |
 
 **Returns:** *Promise*<WritableStreamTree\>
 
-Defined in: [fs.ts:97](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L97)
+Defined in: [fs.ts:98](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L98)
 
 ___
 
@@ -264,13 +268,13 @@ Queues deletion, e.g. after DaysSinceCustomTime.
 
 **Returns:** *Promise*<boolean\>
 
-Defined in: [fs.ts:125](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L125)
+Defined in: [fs.ts:126](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L126)
 
 ___
 
 ### readDirectory
 
-▸ `Abstract` **readDirectory**(`urlText`: *string*): *Promise*<string[]\>
+▸ `Abstract` **readDirectory**(`urlText`: *string*, `prefix?`: *string*): *Promise*<string[]\>
 
 Returns the URLs of the files in a directory.
 
@@ -279,10 +283,11 @@ Returns the URLs of the files in a directory.
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `urlText` | *string* | The URL of the directory to list files in. |
+| `prefix?` | *string* | - |
 
 **Returns:** *Promise*<string[]\>
 
-Defined in: [fs.ts:65](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L65)
+Defined in: [fs.ts:66](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L66)
 
 ___
 
@@ -300,13 +305,13 @@ Deletes the file.
 
 **Returns:** *Promise*<boolean\>
 
-Defined in: [fs.ts:119](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L119)
+Defined in: [fs.ts:120](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L120)
 
 ___
 
 ### replaceFile
 
-▸ `Abstract` **replaceFile**(`urlText`: *string*, `writeCallback`: (`stream`: WritableStreamTree) => *Promise*<boolean\>, `createOptions?`: [*CreateOptions*](../interfaces/fs.createoptions.md), `version?`: *string* \| *number*): *Promise*<boolean\>
+▸ `Abstract` **replaceFile**(`urlText`: *string*, `writeCallback`: (`stream`: WritableStreamTree) => *Promise*<boolean\>, `createOptions?`: [*CreateOptions*](docs/interfaces/fs.createoptions.md), `version?`: *string* \| *number*): *Promise*<boolean\>
 
 Replaces the file, failing if the file version doesn't match.
 
@@ -316,65 +321,40 @@ Replaces the file, failing if the file version doesn't match.
 | :------ | :------ | :------ |
 | `urlText` | *string* | The URL of the file to replace. |
 | `writeCallback` | (`stream`: WritableStreamTree) => *Promise*<boolean\> | Stream callback for replacing the file. |
-| `createOptions?` | [*CreateOptions*](../interfaces/fs.createoptions.md) | Initial metadata for replaced file. |
+| `createOptions?` | [*CreateOptions*](docs/interfaces/fs.createoptions.md) | Initial metadata for replaced file. |
 | `version?` | *string* \| *number* | The version of the file to replace. |
 
 **Returns:** *Promise*<boolean\>
 
-Defined in: [fs.ts:141](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L141)
+Defined in: [fs.ts:142](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L142)
 
 # Module: json
 
 ## Table of contents
 
-### Interfaces
-
-- [Shard](../interfaces/json.shard.md)
-
 ### Functions
 
-- [isShardedFilename](json.md#isshardedfilename)
-- [mapLines](json.md#maplines)
-- [mapLinesWithHeader](json.md#maplineswithheader)
-- [md5](json.md#md5)
-- [parseJSON](json.md#parsejson)
-- [parseLines](json.md#parselines)
-- [readJSON](json.md#readjson)
-- [readJSONHashed](json.md#readjsonhashed)
-- [readLines](json.md#readlines)
-- [readLinesWithHeader](json.md#readlineswithheader)
-- [serializeJSON](json.md#serializejson)
-- [shardIndex](json.md#shardindex)
-- [shardMatchText](json.md#shardmatchtext)
-- [shardedFilename](json.md#shardedfilename)
-- [writeContent](json.md#writecontent)
-- [writeJSON](json.md#writejson)
-- [writeJSONLines](json.md#writejsonlines)
-- [writeShardedJSONLines](json.md#writeshardedjsonlines)
+- [mapLines](docs/modules/json.md#maplines)
+- [mapLinesWithHeader](docs/modules/json.md#maplineswithheader)
+- [parseJSON](docs/modules/json.md#parsejson)
+- [parseLines](docs/modules/json.md#parselines)
+- [readJSON](docs/modules/json.md#readjson)
+- [readJSONHashed](docs/modules/json.md#readjsonhashed)
+- [readLines](docs/modules/json.md#readlines)
+- [readLinesWithHeader](docs/modules/json.md#readlineswithheader)
+- [serializeJSON](docs/modules/json.md#serializejson)
+- [writeContent](docs/modules/json.md#writecontent)
+- [writeJSON](docs/modules/json.md#writejson)
+- [writeJSONLines](docs/modules/json.md#writejsonlines)
+- [writeShardedJSONLines](docs/modules/json.md#writeshardedjsonlines)
 
 ## Functions
-
-### isShardedFilename
-
-▸ `Const` **isShardedFilename**(`name`: *string*): *undefined* \| *number*
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `name` | *string* |
-
-**Returns:** *undefined* \| *number*
-
-Defined in: [json.ts:22](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L22)
-
-___
 
 ### mapLines
 
 ▸ **mapLines**<X\>(`stream`: ReadableStreamTree, `map`: (`x`: *string*) => X): *Promise*<X[]\>
 
-Maps lines from [[stream]].  Used to implement [readLines](json.md#readlines).
+Maps lines from [[stream]].  Used to implement [readLines](docs/modules/json.md#readlines).
 
 #### Type parameters
 
@@ -391,7 +371,7 @@ Maps lines from [[stream]].  Used to implement [readLines](json.md#readlines).
 
 **Returns:** *Promise*<X[]\>
 
-Defined in: [json.ts:180](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L180)
+Defined in: [json.ts:151](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L151)
 
 ___
 
@@ -419,23 +399,7 @@ Parses lines (with header) from [[stream]].  Used to implement [readLinesWithHea
 
 **Returns:** *Promise*<[H \| *undefined*, X[]]\>
 
-Defined in: [json.ts:190](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L190)
-
-___
-
-### md5
-
-▸ `Const` **md5**(`x`: *string*): *string*
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `x` | *string* |
-
-**Returns:** *string*
-
-Defined in: [json.ts:37](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L37)
+Defined in: [json.ts:161](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L161)
 
 ___
 
@@ -453,7 +417,7 @@ Parses JSON object from [[stream]].  Used to implement [readJSON](json.md#readjs
 
 **Returns:** *Promise*<unknown\>
 
-Defined in: [json.ts:218](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L218)
+Defined in: [json.ts:189](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L189)
 
 ___
 
@@ -470,13 +434,13 @@ ___
 
 **Returns:** *Promise*<void\>
 
-Defined in: [json.ts:161](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L161)
+Defined in: [json.ts:132](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L132)
 
 ___
 
 ### readJSON
 
-▸ **readJSON**(`fileSystem`: [*FileSystem*](../classes/fs.filesystem.md), `url`: *string*): *Promise*<unknown\>
+▸ **readJSON**(`fileSystem`: [*FileSystem*](docs/classes/fs.filesystem.md), `url`: *string*): *Promise*<unknown\>
 
 Reads a serialized JSON object or array from a file.
 
@@ -484,18 +448,18 @@ Reads a serialized JSON object or array from a file.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `fileSystem` | [*FileSystem*](../classes/fs.filesystem.md) | - |
+| `fileSystem` | [*FileSystem*](docs/classes/fs.filesystem.md) | - |
 | `url` | *string* | The URL of the file to parse a JSON object or array from. |
 
 **Returns:** *Promise*<unknown\>
 
-Defined in: [json.ts:72](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L72)
+Defined in: [json.ts:43](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L43)
 
 ___
 
 ### readJSONHashed
 
-▸ **readJSONHashed**(`fileSystem`: [*FileSystem*](../classes/fs.filesystem.md), `url`: *string*): *Promise*<[*unknown*, ``null`` \| *string*]\>
+▸ **readJSONHashed**(`fileSystem`: [*FileSystem*](docs/classes/fs.filesystem.md), `url`: *string*): *Promise*<[*unknown*, ``null`` \| *string*]\>
 
 Reads a serialized JSON object from a file, and also hashes the file.
 
@@ -503,18 +467,18 @@ Reads a serialized JSON object from a file, and also hashes the file.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `fileSystem` | [*FileSystem*](../classes/fs.filesystem.md) | - |
+| `fileSystem` | [*FileSystem*](docs/classes/fs.filesystem.md) | - |
 | `url` | *string* | The URL of the file to parse a JSON object from. |
 
 **Returns:** *Promise*<[*unknown*, ``null`` \| *string*]\>
 
-Defined in: [json.ts:80](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L80)
+Defined in: [json.ts:51](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L51)
 
 ___
 
 ### readLines
 
-▸ **readLines**<X\>(`fileSystem`: [*FileSystem*](../classes/fs.filesystem.md), `url`: *string*, `map`: (`x`: *string*) => X): *Promise*<X[]\>
+▸ **readLines**<X\>(`fileSystem`: [*FileSystem*](docs/classes/fs.filesystem.md), `url`: *string*, `map`: (`x`: *string*) => X): *Promise*<X[]\>
 
 Reads every line from a file.
 
@@ -528,19 +492,19 @@ Reads every line from a file.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `fileSystem` | [*FileSystem*](../classes/fs.filesystem.md) | - |
+| `fileSystem` | [*FileSystem*](docs/classes/fs.filesystem.md) | - |
 | `url` | *string* | The URL of the file to read lines from. |
 | `map` | (`x`: *string*) => X | Callback called for each line. |
 
 **Returns:** *Promise*<X[]\>
 
-Defined in: [json.ts:44](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L44)
+Defined in: [json.ts:15](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L15)
 
 ___
 
 ### readLinesWithHeader
 
-▸ **readLinesWithHeader**<X, H\>(`fileSystem`: [*FileSystem*](../classes/fs.filesystem.md), `url`: *string*, `map`: (`x`: *string*) => X, `header?`: (`x`: *string*) => H, `ret?`: X[]): *Promise*<[H \| *undefined*, X[]]\>
+▸ **readLinesWithHeader**<X, H\>(`fileSystem`: [*FileSystem*](docs/classes/fs.filesystem.md), `url`: *string*, `map`: (`x`: *string*) => X, `header?`: (`x`: *string*) => H, `ret?`: X[]): *Promise*<[H \| *undefined*, X[]]\>
 
 Reads every line from a file, treating the first line as a header.
 
@@ -555,7 +519,7 @@ Reads every line from a file, treating the first line as a header.
 
 | Name | Type | Default value | Description |
 | :------ | :------ | :------ | :------ |
-| `fileSystem` | [*FileSystem*](../classes/fs.filesystem.md) | - | - |
+| `fileSystem` | [*FileSystem*](docs/classes/fs.filesystem.md) | - | - |
 | `url` | *string* | - | The URL of the file to read lines from. |
 | `map` | (`x`: *string*) => X | - | Callback called for every line succeeding the header. |
 | `header?` | (`x`: *string*) => H | - | Callback called for the first line. |
@@ -563,7 +527,7 @@ Reads every line from a file, treating the first line as a header.
 
 **Returns:** *Promise*<[H \| *undefined*, X[]]\>
 
-Defined in: [json.ts:58](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L58)
+Defined in: [json.ts:29](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L29)
 
 ___
 
@@ -582,64 +546,13 @@ Serializes JSON object to [[stream]].  Used to implement [writeJSON](json.md#wri
 
 **Returns:** *Promise*<boolean\>
 
-Defined in: [json.ts:239](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L239)
-
-___
-
-### shardIndex
-
-▸ `Const` **shardIndex**(`text`: *string*, `modulus`: *number*): *number*
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `text` | *string* |
-| `modulus` | *number* |
-
-**Returns:** *number*
-
-Defined in: [json.ts:16](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L16)
-
-___
-
-### shardMatchText
-
-▸ `Const` **shardMatchText**(`text`: *string*, `shard`: [*Shard*](../interfaces/json.shard.md)): *boolean*
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `text` | *string* |
-| `shard` | [*Shard*](../interfaces/json.shard.md) |
-
-**Returns:** *boolean*
-
-Defined in: [json.ts:19](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L19)
-
-___
-
-### shardedFilename
-
-▸ `Const` **shardedFilename**(`name`: *string*, `shard`: [*Shard*](../interfaces/json.shard.md)): *string*
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `name` | *string* |
-| `shard` | [*Shard*](../interfaces/json.shard.md) |
-
-**Returns:** *string*
-
-Defined in: [json.ts:24](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L24)
+Defined in: [json.ts:210](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L210)
 
 ___
 
 ### writeContent
 
-▸ **writeContent**(`fileSystem`: [*FileSystem*](../classes/fs.filesystem.md), `url`: *string*, `value`: *string*): *Promise*<void\>
+▸ **writeContent**(`fileSystem`: [*FileSystem*](docs/classes/fs.filesystem.md), `url`: *string*, `value`: *string*): *Promise*<void\>
 
 Writes the string to a file.
 
@@ -647,19 +560,19 @@ Writes the string to a file.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `fileSystem` | [*FileSystem*](../classes/fs.filesystem.md) | - |
+| `fileSystem` | [*FileSystem*](docs/classes/fs.filesystem.md) | - |
 | `url` | *string* | The URL of the file to serialize the string to. |
 | `value` | *string* | The string to serialize. |
 
 **Returns:** *Promise*<void\>
 
-Defined in: [json.ts:91](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L91)
+Defined in: [json.ts:62](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L62)
 
 ___
 
 ### writeJSON
 
-▸ **writeJSON**(`fileSystem`: [*FileSystem*](../classes/fs.filesystem.md), `url`: *string*, `value`: *object* \| *any*[]): *Promise*<boolean\>
+▸ **writeJSON**(`fileSystem`: [*FileSystem*](docs/classes/fs.filesystem.md), `url`: *string*, `value`: *object* \| *any*[]): *Promise*<boolean\>
 
 Serializes object or array to a JSON file.
 
@@ -667,19 +580,19 @@ Serializes object or array to a JSON file.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `fileSystem` | [*FileSystem*](../classes/fs.filesystem.md) | - |
+| `fileSystem` | [*FileSystem*](docs/classes/fs.filesystem.md) | - |
 | `url` | *string* | The URL of the file to serialize a JSON object or array to. |
 | `value` | *object* \| *any*[] | The object or array to serialize. |
 
 **Returns:** *Promise*<boolean\>
 
-Defined in: [json.ts:108](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L108)
+Defined in: [json.ts:79](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L79)
 
 ___
 
 ### writeJSONLines
 
-▸ **writeJSONLines**(`fileSystem`: [*FileSystem*](../classes/fs.filesystem.md), `url`: *string*, `obj`: *object*[]): *Promise*<void\>
+▸ **writeJSONLines**(`fileSystem`: [*FileSystem*](docs/classes/fs.filesystem.md), `url`: *string*, `obj`: *object*[]): *Promise*<void\>
 
 Serializes array to a JSON Lines file.
 
@@ -687,25 +600,25 @@ Serializes array to a JSON Lines file.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `fileSystem` | [*FileSystem*](../classes/fs.filesystem.md) | - |
+| `fileSystem` | [*FileSystem*](docs/classes/fs.filesystem.md) | - |
 | `url` | *string* | The URL of the file to serialize a JSON array to. |
 | `obj` | *object*[] | - |
 
 **Returns:** *Promise*<void\>
 
-Defined in: [json.ts:117](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L117)
+Defined in: [json.ts:88](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L88)
 
 ___
 
 ### writeShardedJSONLines
 
-▸ **writeShardedJSONLines**(`fileSystem`: [*FileSystem*](../classes/fs.filesystem.md), `url`: *string*, `obj`: *object*[], `shards`: *number*, `shardFunction?`: (`x`: *object*, `modulus`: *number*) => *number*): *Promise*<void\>
+▸ **writeShardedJSONLines**(`fileSystem`: [*FileSystem*](docs/classes/fs.filesystem.md), `url`: *string*, `obj`: *object*[], `shards`: *number*, `shardFunction?`: (`x`: *object*, `modulus`: *number*) => *number*): *Promise*<void\>
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `fileSystem` | [*FileSystem*](../classes/fs.filesystem.md) |
+| `fileSystem` | [*FileSystem*](docs/classes/fs.filesystem.md) |
 | `url` | *string* |
 | `obj` | *object*[] |
 | `shards` | *number* |
@@ -713,4 +626,4 @@ ___
 
 **Returns:** *Promise*<void\>
 
-Defined in: [json.ts:137](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L137)
+Defined in: [json.ts:108](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L108)

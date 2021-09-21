@@ -317,7 +317,7 @@ ___
 
 ### readDirectory
 
-▸ **readDirectory**(`urlText`: *string*): *Promise*<string[]\>
+▸ **readDirectory**(`urlText`: *string*, `prefix?`: *string*): *Promise*<string[]\>
 
 **`inheritdoc`**
 
@@ -326,6 +326,7 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `urlText` | *string* |
+| `prefix?` | *string* |
 
 **Returns:** *Promise*<string[]\>
 

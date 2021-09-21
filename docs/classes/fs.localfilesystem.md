@@ -65,7 +65,7 @@ Inherited from: [FileSystem](fs.filesystem.md)
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [fs.ts:412](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L412)
+Defined in: [fs.ts:415](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L415)
 
 ___
 
@@ -86,7 +86,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [fs.ts:359](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L359)
+Defined in: [fs.ts:362](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L362)
 
 ___
 
@@ -108,7 +108,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [fs.ts:330](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L330)
+Defined in: [fs.ts:333](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L333)
 
 ___
 
@@ -129,7 +129,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [fs.ts:279](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L279)
+Defined in: [fs.ts:282](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L282)
 
 ___
 
@@ -149,7 +149,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [fs.ts:293](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L293)
+Defined in: [fs.ts:296](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L296)
 
 ___
 
@@ -170,7 +170,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [fs.ts:303](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L303)
+Defined in: [fs.ts:306](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L306)
 
 ___
 
@@ -191,7 +191,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [fs.ts:316](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L316)
+Defined in: [fs.ts:319](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L319)
 
 ___
 
@@ -213,7 +213,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [fs.ts:323](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L323)
+Defined in: [fs.ts:326](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L326)
 
 ___
 
@@ -233,13 +233,13 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [fs.ts:354](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L354)
+Defined in: [fs.ts:357](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L357)
 
 ___
 
 ### readDirectory
 
-▸ **readDirectory**(`urlText`: *string*): *Promise*<string[]\>
+▸ **readDirectory**(`urlText`: *string*, `prefix?`: *string*): *Promise*<string[]\>
 
 **`inheritdoc`**
 
@@ -248,12 +248,13 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `urlText` | *string* |
+| `prefix?` | *string* |
 
 **Returns:** *Promise*<string[]\>
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [fs.ts:274](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L274)
+Defined in: [fs.ts:275](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L275)
 
 ___
 
@@ -273,7 +274,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [fs.ts:348](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L348)
+Defined in: [fs.ts:351](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L351)
 
 ___
 
@@ -296,4 +297,4 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [fs.ts:365](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L365)
+Defined in: [fs.ts:368](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L368)
