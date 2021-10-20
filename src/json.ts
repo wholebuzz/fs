@@ -1,7 +1,13 @@
 import * as readline from 'readline'
-import { Readable } from 'stream'
+import { Duplex, Readable } from 'stream'
 import through2 from 'through2'
-import { ReadableStreamTree, WritableStreamTree } from 'tree-stream'
+import {
+  finishReadable,
+  finishWritable,
+  pumpWritable,
+  ReadableStreamTree,
+  WritableStreamTree,
+} from 'tree-stream'
 import { FileSystem } from './fs'
 import { hashStream, isShardedFilename, shardedFilename, shardIndex } from './util'
 
@@ -62,10 +68,7 @@ export async function readJSONHashed(fileSystem: FileSystem, url: string) {
 export async function writeContent(fileSystem: FileSystem, url: string, value: string) {
   const stream = await fileSystem.openWritableFile(url)
   return new Promise<void>((resolve, reject) => {
-    const out = stream.finish((err) => {
-      if (err) reject(err)
-      else resolve()
-    })
+    const out = finishWritable(stream, resolve, reject)
     out.write(value)
     out.end()
   })
@@ -91,10 +94,7 @@ export async function writeJSONLines(fileSystem: FileSystem, url: string, obj: o
 
   const stream = await fileSystem.openWritableFile(url)
   return new Promise<void>((resolve, reject) => {
-    const out = stream.finish((err) => {
-      if (err) reject(err)
-      else resolve()
-    })
+    const out = finishWritable(stream, resolve, reject)
     try {
       for (const x of obj) {
         out.write(JSON.stringify(x) + '\n')
@@ -135,10 +135,7 @@ export async function parseLines(
 ): Promise<void> {
   return new Promise((resolve, reject) => {
     const input = readline.createInterface({
-      input: stream.finish((err) => {
-        if (err) reject(err)
-        else resolve()
-      }),
+      input: finishReadable(stream, resolve, reject),
     })
     input.on('line', callback)
   })
@@ -196,10 +193,7 @@ export async function parseJSON(stream: ReadableStreamTree) {
         callback()
       })
     )
-    stream.finish((err) => {
-      if (err) reject(err)
-      else resolve(ret)
-    })
+    finishReadable(stream, resolve, reject, ret)
   })
 }
 
@@ -211,15 +205,31 @@ export async function serializeJSON(
   stream: WritableStreamTree,
   obj: object | any[]
 ): Promise<boolean> {
-  return new Promise((resolve, reject) => {
-    stream = stream.pipeFrom(
-      Array.isArray(obj)
-        ? JSONStream.stringify('[ ', ' , ', ' ]\n')
-        : JSONStream.stringifyObject('{ ', ' , ', ' }\n')
-    )
-    stream.finish((err) => {
-      if (err) reject(err)
-      else resolve(true)
-    }, Readable.from(Array.isArray(obj) ? obj : Object.entries(obj)))
-  })
+  return serializeJSONStream(
+    stream,
+    Readable.from(Array.isArray(obj) ? obj : Object.entries(obj)),
+    Array.isArray(obj)
+  )
+}
+
+/**
+ * Serializes [[readable]] to [[stream]].  Used to implement [[writeJSON]].
+ * @param stream The stream to write a JSON object to.
+ */
+export async function serializeJSONStream(
+  stream: WritableStreamTree,
+  readable: Readable,
+  isArray: boolean
+): Promise<boolean> {
+  return pumpWritable(stream.pipeFrom(createJSONFormatter(isArray)), true, readable)
+}
+
+/**
+ * Create JSON formatter stream.
+ * @param isArray Accept array objects or property tuples.
+ */
+export function createJSONFormatter(isArray: boolean): Duplex {
+  return isArray
+    ? JSONStream.stringify('[ ', ' , ', ' ]\n')
+    : JSONStream.stringifyObject('{ ', ' , ', ' }\n')
 }

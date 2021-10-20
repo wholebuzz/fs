@@ -1,3 +1,4 @@
+import { finishReadable, pumpWritable } from 'tree-stream'
 import yargs from 'yargs'
 import { AnyFileSystem, GoogleCloudFileSystem, LocalFileSystem, S3FileSystem } from './index'
 
@@ -23,12 +24,7 @@ async function main() {
       async (args: Record<string, any>) => {
         const stream = await fs.openReadableFile(args.path)
         await new Promise<void>((resolve, reject) => {
-          stream
-            .finish((err) => {
-              if (err) reject(err)
-              else resolve()
-            })
-            .pipe(process.stdout)
+          finishReadable(stream, resolve, reject).pipe(process.stdout)
         })
       }
     )
@@ -41,12 +37,7 @@ async function main() {
       async (args: Record<string, any>) => {
         const input = await fs.openReadableFile(args.source)
         const output = await fs.openWritableFile(args.target)
-        await new Promise<void>((resolve, reject) => {
-          output.finish((err) => {
-            if (err) reject(err)
-            else resolve()
-          }, input.finish())
-        })
+        return pumpWritable(output, undefined, input.finish())
       }
     )
     .command(
@@ -90,12 +81,7 @@ async function main() {
       },
       async (args: Record<string, any>) => {
         const stream = await fs.openWritableFile(args.path)
-        await new Promise<void>((resolve, reject) => {
-          stream.finish((err) => {
-            if (err) reject(err)
-            else resolve()
-          }, process.stdin)
-        })
+        return pumpWritable(stream, undefined, process.stdin)
       }
     ).argv
 }
