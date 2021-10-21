@@ -37,7 +37,7 @@
 
 • `Const` **JSONStream**: *any*
 
-Defined in: [json.ts:17](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L17)
+Defined in: [json.ts:19](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L19)
 
 ## Functions
 
@@ -62,7 +62,7 @@ Maps lines from [[stream]].  Used to implement [readLines](json.md#readlines).
 
 **Returns:** *Promise*<X[]\>
 
-Defined in: [json.ts:146](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L146)
+Defined in: [json.ts:148](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L148)
 
 ___
 
@@ -90,7 +90,7 @@ Parses lines (with header) from [[stream]].  Used to implement [readLinesWithHea
 
 **Returns:** *Promise*<[H \| *undefined*, X[]]\>
 
-Defined in: [json.ts:156](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L156)
+Defined in: [json.ts:158](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L158)
 
 ___
 
@@ -108,7 +108,7 @@ Parses JSON object from [[stream]].  Used to implement [readJSON](json.md#readjs
 
 **Returns:** *Promise*<unknown\>
 
-Defined in: [json.ts:184](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L184)
+Defined in: [json.ts:186](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L186)
 
 ___
 
@@ -126,7 +126,7 @@ Parses JSON object from [[stream]].  Used to implement [readJSON](json.md#readjs
 
 **Returns:** *Promise*<unknown[]\>
 
-Defined in: [json.ts:201](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L201)
+Defined in: [json.ts:203](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L203)
 
 ___
 
@@ -143,7 +143,7 @@ ___
 
 **Returns:** *Promise*<void\>
 
-Defined in: [json.ts:130](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L130)
+Defined in: [json.ts:132](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L132)
 
 ___
 
@@ -162,7 +162,7 @@ Create JSON formatter stream.
 
 **Returns:** WritableStreamTree
 
-Defined in: [json.ts:254](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L254)
+Defined in: [json.ts:265](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L265)
 
 ___
 
@@ -180,7 +180,7 @@ Create JSON-lines formatter stream.
 
 **Returns:** WritableStreamTree
 
-Defined in: [json.ts:269](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L269)
+Defined in: [json.ts:280](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L280)
 
 ___
 
@@ -198,13 +198,13 @@ Create JSON parser stream.
 
 **Returns:** ReadableStreamTree
 
-Defined in: [json.ts:246](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L246)
+Defined in: [json.ts:257](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L257)
 
 ___
 
 ### pipeJSONParser
 
-▸ **pipeJSONParser**(`stream`: ReadableStreamTree): ReadableStreamTree
+▸ **pipeJSONParser**(`stream`: ReadableStreamTree, `isArray`: *boolean*): ReadableStreamTree
 
 Create JSON parser stream.
 
@@ -213,10 +213,11 @@ Create JSON parser stream.
 | Name | Type |
 | :------ | :------ |
 | `stream` | ReadableStreamTree |
+| `isArray` | *boolean* |
 
 **Returns:** ReadableStreamTree
 
-Defined in: [json.ts:239](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L239)
+Defined in: [json.ts:241](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L241)
 
 ___
 
@@ -235,7 +236,7 @@ Reads a serialized JSON object or array from a file.
 
 **Returns:** *Promise*<unknown\>
 
-Defined in: [json.ts:52](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L52)
+Defined in: [json.ts:54](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L54)
 
 ___
 
@@ -254,7 +255,7 @@ Reads a serialized JSON object from a file, and also hashes the file.
 
 **Returns:** *Promise*<[*unknown*, ``null`` \| *string*]\>
 
-Defined in: [json.ts:60](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L60)
+Defined in: [json.ts:62](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L62)
 
 ___
 
@@ -273,7 +274,7 @@ Reads a serialized JSON-lines array from a file.
 
 **Returns:** *Promise*<unknown[]\>
 
-Defined in: [json.ts:70](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L70)
+Defined in: [json.ts:72](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L72)
 
 ___
 
@@ -299,7 +300,7 @@ Reads every line from a file.
 
 **Returns:** *Promise*<X[]\>
 
-Defined in: [json.ts:24](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L24)
+Defined in: [json.ts:26](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L26)
 
 ___
 
@@ -328,7 +329,7 @@ Reads every line from a file, treating the first line as a header.
 
 **Returns:** *Promise*<[H \| *undefined*, X[]]\>
 
-Defined in: [json.ts:38](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L38)
+Defined in: [json.ts:40](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L40)
 
 ___
 
@@ -347,7 +348,7 @@ Serializes JSON object to [[stream]].  Used to implement [writeJSON](json.md#wri
 
 **Returns:** *Promise*<boolean\>
 
-Defined in: [json.ts:217](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L217)
+Defined in: [json.ts:219](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L219)
 
 ___
 
@@ -366,7 +367,7 @@ Serializes JSON object to [[stream]].  Used to implement [writeJSONLines](json.m
 
 **Returns:** *Promise*<boolean\>
 
-Defined in: [json.ts:232](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L232)
+Defined in: [json.ts:234](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L234)
 
 ___
 
@@ -386,7 +387,7 @@ Writes the string to a file.
 
 **Returns:** *Promise*<void\>
 
-Defined in: [json.ts:79](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L79)
+Defined in: [json.ts:81](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L81)
 
 ___
 
@@ -406,7 +407,7 @@ Serializes object or array to a JSON file.
 
 **Returns:** *Promise*<boolean\>
 
-Defined in: [json.ts:93](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L93)
+Defined in: [json.ts:95](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L95)
 
 ___
 
@@ -426,7 +427,7 @@ Serializes array to a JSON Lines file.
 
 **Returns:** *Promise*<boolean\>
 
-Defined in: [json.ts:102](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L102)
+Defined in: [json.ts:104](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L104)
 
 ___
 
@@ -446,4 +447,4 @@ ___
 
 **Returns:** *Promise*<void\>
 
-Defined in: [json.ts:106](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L106)
+Defined in: [json.ts:108](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L108)

@@ -2,6 +2,8 @@ import ndjson from 'ndjson'
 import * as readline from 'readline'
 import { Readable } from 'stream'
 import { parser } from 'stream-json'
+import { streamArray } from 'stream-json/streamers/StreamArray'
+import { streamObject } from 'stream-json/streamers/StreamObject'
 import through2 from 'through2'
 import {
   finishReadable,
@@ -236,8 +238,17 @@ export async function serializeJSONLines(stream: WritableStreamTree, obj: any[])
 /**
  * Create JSON parser stream.
  */
-export function pipeJSONParser(stream: ReadableStreamTree): ReadableStreamTree {
-  return stream.pipe(parser())
+export function pipeJSONParser(stream: ReadableStreamTree, isArray: boolean): ReadableStreamTree {
+  stream = stream.pipe(parser()).pipe(isArray ? streamArray() : streamObject())
+  if (isArray) {
+    stream = stream.pipe(
+      through2.obj(function (data, _, callback) {
+        this.push(data.value)
+        callback()
+      })
+    )
+  }
+  return stream
 }
 
 /**
