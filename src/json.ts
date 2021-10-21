@@ -1,17 +1,20 @@
+import ndjson from 'ndjson'
 import * as readline from 'readline'
-import { Duplex, Readable } from 'stream'
+import { Readable } from 'stream'
+import { parser } from 'stream-json'
 import through2 from 'through2'
 import {
   finishReadable,
   finishWritable,
+  pumpReadable,
   pumpWritable,
   ReadableStreamTree,
   WritableStreamTree,
 } from 'tree-stream'
 import { FileSystem } from './fs'
-import { hashStream, isShardedFilename, shardedFilename, shardIndex } from './util'
+import { hashStream, shardedFilename, shardIndex } from './util'
 
-const JSONStream = require('JSONStream')
+export const JSONStream = require('JSONStream')
 
 /**
  * Reads every line from a file.
@@ -61,6 +64,14 @@ export async function readJSONHashed(fileSystem: FileSystem, url: string) {
 }
 
 /**
+ * Reads a serialized JSON-lines array from a file.
+ * @param url The URL of the file to parse a JSON object or array from.
+ */
+export async function readJSONLines(fileSystem: FileSystem, url: string) {
+  return parseJSONLines(await fileSystem.openReadableFile(url))
+}
+
+/**
  * Writes the string to a file.
  * @param url The URL of the file to serialize the string to.
  * @param value The string to serialize.
@@ -89,20 +100,7 @@ export async function writeJSON(fileSystem: FileSystem, url: string, value: obje
  * @param value The array to serialize.
  */
 export async function writeJSONLines(fileSystem: FileSystem, url: string, obj: object[]) {
-  const shards = process.env.SHARD_MODULUS ? parseInt(process.env.SHARD_MODULUS, 10) : undefined
-  if (shards && isShardedFilename(url)) return writeShardedJSONLines(fileSystem, url, obj, shards)
-
-  const stream = await fileSystem.openWritableFile(url)
-  return new Promise<void>((resolve, reject) => {
-    const out = finishWritable(stream, resolve, reject)
-    try {
-      for (const x of obj) {
-        out.write(JSON.stringify(x) + '\n')
-      }
-    } finally {
-      out.end()
-    }
-  })
+  return serializeJSONLines(await fileSystem.openWritableFile(url), obj)
 }
 
 export async function writeShardedJSONLines(
@@ -185,16 +183,31 @@ export async function mapLinesWithHeader<X, H>(
  */
 export async function parseJSON(stream: ReadableStreamTree) {
   let ret: unknown | undefined
-  return new Promise((resolve, reject) => {
-    stream = stream.pipe(JSONStream.parse())
-    stream = stream.pipe(
-      through2.obj((data, _, callback) => {
-        ret = data
-        callback()
-      })
-    )
-    finishReadable(stream, resolve, reject, ret)
-  })
+  stream = stream.pipe(JSONStream.parse())
+  stream = stream.pipe(
+    through2.obj((data, _, callback) => {
+      ret = data
+      callback()
+    })
+  )
+  await pumpReadable(stream, undefined)
+  return ret
+}
+
+/**
+ * Parses JSON object from [[stream]].  Used to implement [[readJSON]].
+ * @param stream The stream to read a JSON object from.
+ */
+export async function parseJSONLines(stream: ReadableStreamTree) {
+  const ret: unknown[] = []
+  stream = pipeJSONLinesParser(stream)
+  stream = stream.pipe(
+    through2.obj((data, _, callback) => {
+      ret.push(data)
+      callback()
+    })
+  )
+  return pumpReadable(stream, ret)
 }
 
 /**
@@ -205,31 +218,54 @@ export async function serializeJSON(
   stream: WritableStreamTree,
   obj: object | any[]
 ): Promise<boolean> {
-  return serializeJSONStream(
-    stream,
-    Readable.from(Array.isArray(obj) ? obj : Object.entries(obj)),
-    Array.isArray(obj)
+  return pumpWritable(
+    pipeJSONFormatter(stream, Array.isArray(obj)),
+    true,
+    Readable.from(Array.isArray(obj) ? obj : Object.entries(obj))
   )
 }
 
 /**
- * Serializes [[readable]] to [[stream]].  Used to implement [[writeJSON]].
+ * Serializes JSON object to [[stream]].  Used to implement [[writeJSONLines]].
  * @param stream The stream to write a JSON object to.
  */
-export async function serializeJSONStream(
-  stream: WritableStreamTree,
-  readable: Readable,
-  isArray: boolean
-): Promise<boolean> {
-  return pumpWritable(stream.pipeFrom(createJSONFormatter(isArray)), true, readable)
+export async function serializeJSONLines(stream: WritableStreamTree, obj: any[]): Promise<boolean> {
+  return pumpWritable(pipeJSONLinesFormatter(stream), true, Readable.from(obj))
+}
+
+/**
+ * Create JSON parser stream.
+ */
+export function pipeJSONParser(stream: ReadableStreamTree): ReadableStreamTree {
+  return stream.pipe(parser())
+}
+
+/**
+ * Create JSON parser stream.
+ */
+export function pipeJSONLinesParser(stream: ReadableStreamTree): ReadableStreamTree {
+  return stream.pipe(ndjson.parse())
 }
 
 /**
  * Create JSON formatter stream.
  * @param isArray Accept array objects or property tuples.
  */
-export function createJSONFormatter(isArray: boolean): Duplex {
-  return isArray
-    ? JSONStream.stringify('[ ', ' , ', ' ]\n')
-    : JSONStream.stringifyObject('{ ', ' , ', ' }\n')
+export function pipeJSONFormatter(
+  stream: WritableStreamTree,
+  isArray: boolean
+): WritableStreamTree {
+  return stream.pipeFrom(
+    isArray
+      ? JSONStream.stringify('[ ', ' , ', ' ]\n')
+      : JSONStream.stringifyObject('{ ', ' , ', ' }\n')
+  )
+}
+
+/**
+ * Create JSON-lines formatter stream.
+ * @param isArray Accept array objects or property tuples.
+ */
+export function pipeJSONLinesFormatter(stream: WritableStreamTree): WritableStreamTree {
+  return stream.pipeFrom(ndjson.stringify())
 }
