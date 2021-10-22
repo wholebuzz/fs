@@ -2,6 +2,7 @@ import through2 from 'through2'
 import StreamTree, { pumpWritable } from 'tree-stream'
 import { LocalFileSystem } from './fs'
 import {
+  pipeJSONLinesParser,
   pipeJSONParser,
   readJSON,
   readJSONHashed,
@@ -73,4 +74,15 @@ it('Should serialize JSON Array to JSON-lines', async () => {
   await writeJSONLines(fs, filename, testArray)
   const readObject = await readJSONLines(fs, filename)
   expect(readObject).toEqual(testArray)
+
+  const streamedObject: unknown[] = []
+  const input = pipeJSONLinesParser(await fs.openReadableFile(filename))
+  const output = StreamTree.writable(
+    through2.obj((data: any, _: string, callback: () => void) => {
+      streamedObject.push(data)
+      callback()
+    })
+  )
+  await pumpWritable(output, undefined, input.finish())
+  expect(streamedObject).toEqual(testArray)
 })
