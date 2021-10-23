@@ -1,7 +1,8 @@
 {
   "name": "@wholebuzz/fs",
-  "version": "0.0.16",
+  "version": "0.0.17",
   "description": "File system interface abstraction with implementations for GCP GCS, AWS S3, and Local filesystem",
+  "keywords": [ "file", "json", "stream", "aws", "s3", "gcp", "gcs", "gzip" ],
   "author": "wholebuzz",
   "license": "Apache-2.0",
   "repository": {

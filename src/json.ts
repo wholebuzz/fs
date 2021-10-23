@@ -240,14 +240,7 @@ export async function serializeJSONLines(stream: WritableStreamTree, obj: any[])
  */
 export function pipeJSONParser(stream: ReadableStreamTree, isArray: boolean): ReadableStreamTree {
   stream = stream.pipe(parser()).pipe(isArray ? streamArray() : streamObject())
-  if (isArray) {
-    stream = stream.pipe(
-      through2.obj(function (data, _, callback) {
-        this.push(data.value)
-        callback()
-      })
-    )
-  }
+  if (isArray) stream = pipeFilter(stream, (data) => data.value)
   return stream
 }
 
@@ -279,4 +272,16 @@ export function pipeJSONFormatter(
  */
 export function pipeJSONLinesFormatter(stream: WritableStreamTree): WritableStreamTree {
   return stream.pipeFrom(ndjson.stringify())
+}
+
+/**
+ * Create filter stream.
+ */
+export function pipeFilter(stream: ReadableStreamTree, filter: (x: any) => any) {
+  return stream.pipe(
+    through2.obj(function (data, _, callback) {
+      this.push(filter(data))
+      callback()
+    })
+  )
 }

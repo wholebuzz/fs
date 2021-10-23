@@ -15,6 +15,7 @@
 - [parseJSON](json.md#parsejson)
 - [parseJSONLines](json.md#parsejsonlines)
 - [parseLines](json.md#parselines)
+- [pipeFilter](json.md#pipefilter)
 - [pipeJSONFormatter](json.md#pipejsonformatter)
 - [pipeJSONLinesFormatter](json.md#pipejsonlinesformatter)
 - [pipeJSONLinesParser](json.md#pipejsonlinesparser)
@@ -147,6 +148,25 @@ Defined in: [json.ts:132](https://github.com/wholebuzz/fs/blob/master/src/json.t
 
 ___
 
+### pipeFilter
+
+▸ **pipeFilter**(`stream`: ReadableStreamTree, `filter`: (`x`: *any*) => *any*): ReadableStreamTree
+
+Create filter stream.
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `stream` | ReadableStreamTree |
+| `filter` | (`x`: *any*) => *any* |
+
+**Returns:** ReadableStreamTree
+
+Defined in: [json.ts:280](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L280)
+
+___
+
 ### pipeJSONFormatter
 
 ▸ **pipeJSONFormatter**(`stream`: WritableStreamTree, `isArray`: *boolean*): WritableStreamTree
@@ -162,7 +182,7 @@ Create JSON formatter stream.
 
 **Returns:** WritableStreamTree
 
-Defined in: [json.ts:265](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L265)
+Defined in: [json.ts:258](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L258)
 
 ___
 
@@ -180,7 +200,7 @@ Create JSON-lines formatter stream.
 
 **Returns:** WritableStreamTree
 
-Defined in: [json.ts:280](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L280)
+Defined in: [json.ts:273](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L273)
 
 ___
 
@@ -198,7 +218,7 @@ Create JSON parser stream.
 
 **Returns:** ReadableStreamTree
 
-Defined in: [json.ts:257](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L257)
+Defined in: [json.ts:250](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L250)
 
 ___
 
