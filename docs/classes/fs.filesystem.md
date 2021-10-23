@@ -16,6 +16,8 @@ File system interface for atomic primitives enabling multiple readers and writer
 
   ↳ [*GoogleCloudFileSystem*](gcp.googlecloudfilesystem.md)
 
+  ↳ [*HTTPFileSystem*](http.httpfilesystem.md)
+
   ↳ [*S3FileSystem*](s3.s3filesystem.md)
 
 ## Table of contents

@@ -285,3 +285,15 @@ export function pipeFilter(stream: ReadableStreamTree, filter: (x: any) => any) 
     })
   )
 }
+
+/**
+ * Create filter stream.
+ */
+export function pipeFromFilter(stream: WritableStreamTree, filter: (x: any) => any) {
+  return stream.pipeFrom(
+    through2.obj(function (data, _, callback) {
+      this.push(filter(data))
+      callback()
+    })
+  )
+}

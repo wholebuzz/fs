@@ -16,6 +16,7 @@
 - [parseJSONLines](json.md#parsejsonlines)
 - [parseLines](json.md#parselines)
 - [pipeFilter](json.md#pipefilter)
+- [pipeFromFilter](json.md#pipefromfilter)
 - [pipeJSONFormatter](json.md#pipejsonformatter)
 - [pipeJSONLinesFormatter](json.md#pipejsonlinesformatter)
 - [pipeJSONLinesParser](json.md#pipejsonlinesparser)
@@ -164,6 +165,25 @@ Create filter stream.
 **Returns:** ReadableStreamTree
 
 Defined in: [json.ts:280](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L280)
+
+___
+
+### pipeFromFilter
+
+▸ **pipeFromFilter**(`stream`: WritableStreamTree, `filter`: (`x`: *any*) => *any*): WritableStreamTree
+
+Create filter stream.
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `stream` | WritableStreamTree |
+| `filter` | (`x`: *any*) => *any* |
+
+**Returns:** WritableStreamTree
+
+Defined in: [json.ts:292](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L292)
 
 ___
 
