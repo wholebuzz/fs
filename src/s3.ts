@@ -66,6 +66,11 @@ export class S3FileSystem extends FileSystem {
   }
 
   /** @inheritDoc */
+  async removeDirectory(_urlText: string) {
+    return true
+  }
+
+  /** @inheritDoc */
   async fileExists(urlText: string) {
     const url = this.parseUrl(urlText)
     return this.s3
@@ -154,6 +159,11 @@ export class S3FileSystem extends FileSystem {
       })
       .promise()
     return true
+  }
+
+  /** @inheritDoc */
+  async moveFile(_sourceUrlText: string, _destUrlText: string) {
+    return false
   }
 
   /** @inheritDoc */

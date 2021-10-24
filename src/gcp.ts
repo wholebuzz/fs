@@ -66,6 +66,11 @@ export class GoogleCloudFileSystem extends FileSystem {
   }
 
   /** @inheritDoc */
+  async removeDirectory(_urlText: string) {
+    return true
+  }
+
+  /** @inheritDoc */
   async fileExists(urlText: string) {
     const file = this.getFile(urlText)
     const exists = (await file.exists())[0]
@@ -98,9 +103,7 @@ export class GoogleCloudFileSystem extends FileSystem {
   /** @inheritDoc */
   async openWritableFile(url: string, version?: number | string, options?: CreateOptions) {
     let stream = StreamTree.writable(this.getFile(url, version).createWriteStream(options))
-    if (url.endsWith('.gz')) {
-      stream = stream.pipeFrom(zlib.createGzip())
-    }
+    if (url.endsWith('.gz')) stream = stream.pipeFrom(zlib.createGzip())
     return stream
   }
 
@@ -141,6 +144,11 @@ export class GoogleCloudFileSystem extends FileSystem {
     const destFile = this.getFile(destUrlText)
     await sourceFile.copy(destFile)
     return true
+  }
+
+  /** @inheritDoc */
+  async moveFile(_sourceUrlText: string, _destUrlText: string) {
+    return false
   }
 
   /** @inheritDoc */

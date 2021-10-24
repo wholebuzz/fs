@@ -1,6 +1,5 @@
 import through2 from 'through2'
 import StreamTree, { pumpWritable } from 'tree-stream'
-import { LocalFileSystem } from './fs'
 import {
   pipeJSONLinesParser,
   pipeJSONParser,
@@ -10,6 +9,7 @@ import {
   writeJSON,
   writeJSONLines,
 } from './json'
+import { LocalFileSystem } from './local'
 
 const testObject = {
   foo: 'bar',

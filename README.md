@@ -4,10 +4,25 @@
 
 - `LocalFileSystem` employs content hashing to approximate [GCS Object Versioning](https://cloud.google.com/storage/docs/object-versioning). 
 - `GoogleCloudFileSystem` provides consistent parallel access paterns.
-- `HTTPFileSystem` provides a basic HTTP file system.
 - `S3FileSystem` provides basic file system primitives.
+- `HTTPFileSystem` provides a basic HTTP file system.
 
-# Example
+## Dependencies
+
+These `FileSystem` implementations require peer dependencies:
+
+- LocalFileSystem: `fs-ext`
+- GoogleCloudFileSystem: `@google-cloud/storage`
+- HTTPFileSystem: `axios`
+- S3FileSystem: `aws-sdk` and `s3-stream-upload`
+- SMBFileSystem: `@marsaud/smb2`
+
+## History
+
+The project started to support (@wholebuzz/archive)[https://www.npmjs.com/package/@wholebuzz/archive], a terabyte-scale archive for GCS.
+The focus has since expanded to include powering (dbcp)[https://www.npmjs.com/package/dbcp] with numerous file system implementations under a common interface.
+
+## Example
 
 ```
 import {
@@ -32,7 +47,7 @@ await writeJSON(fs, 's3://bucket/file', { foo: 'bar' })
 const foobar = await readJSON(fs, 's3://bucket/file')
 ```
 
-# CLI
+## CLI
 
 ```bash
 node lib/cli.js ls .
