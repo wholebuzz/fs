@@ -1,13 +1,15 @@
 {
   "name": "@wholebuzz/fs",
-  "version": "0.0.18",
-  "description": "File system interface abstraction with implementations for GCP GCS, AWS S3, and Local filesystem",
+  "version": "0.0.19",
+  "description": "File system interface abstraction with implementations for GCP GCS, AWS S3, Azure, SMB, and Local file systems.",
   "keywords": [
     "file",
     "json",
     "stream",
     "aws",
     "s3",
+    "azure",
+    "smb",
     "gcp",
     "gcs",
     "gzip"
@@ -40,12 +42,13 @@
     "sha.js": "^2.4.11",
     "stream-json": "^1.7.3",
     "through2": "^3.0.1",
-    "tree-stream": "^1.0.11",
+    "tree-stream": "^1.0.12",
     "uuid": "^8.1.0",
     "yargs": "^17.1.1",
     "zlib": "^1.0.5"
   },
   "devDependencies": {
+    "@azure/storage-blob": "^12.8.0",
     "@google-cloud/storage": "^5.8.1",
     "@marsaud/smb2": "^0.18.0",
     "@types/fs-ext": "^2.0.0",

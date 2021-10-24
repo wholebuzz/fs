@@ -1,4 +1,4 @@
-import { finishReadable, pumpWritable } from 'tree-stream'
+import StreamTree, { pumpWritable } from 'tree-stream'
 import yargs from 'yargs'
 import { AnyFileSystem, GoogleCloudFileSystem, LocalFileSystem, S3FileSystem } from './index'
 
@@ -22,10 +22,9 @@ async function main() {
         /* */
       },
       async (args: Record<string, any>) => {
-        const stream = await fs.openReadableFile(args.path)
-        await new Promise<void>((resolve, reject) => {
-          finishReadable(stream, resolve, reject).pipe(process.stdout)
-        })
+        const input = await fs.openReadableFile(args.path)
+        const output = StreamTree.writable(process.stdout)
+        return pumpWritable(output, undefined, input.finish())
       }
     )
     .command(

@@ -1,19 +1,22 @@
 # @wholebuzz/fs
 
-`FileSystem` with atomic primitives enabling multiple readers and writers.
+File system abstraction with implementations for GCP GCS, AWS S3, Azure, SMB, HTTP, and Local file systems. Provides atomic primitives enabling multiple readers and writers.
 
 - `LocalFileSystem` employs content hashing to approximate [GCS Object Versioning](https://cloud.google.com/storage/docs/object-versioning). 
 - `GoogleCloudFileSystem` provides consistent parallel access paterns.
 - `S3FileSystem` provides basic file system primitives.
+- `SMBFileSystem` provides basic file system primitives.
 - `HTTPFileSystem` provides a basic HTTP file system.
 
 ## Dependencies
 
-These `FileSystem` implementations require peer dependencies:
+The `FileSystem` implementations require peer dependencies:
 
-- LocalFileSystem: `fs-ext`
+- AzureBlobStorageFileSystem: `@azure/storage-blob`
+- AzureFileShareFileSystem: `@azure/storage-file-share`
 - GoogleCloudFileSystem: `@google-cloud/storage`
 - HTTPFileSystem: `axios`
+- LocalFileSystem: `fs-ext`
 - S3FileSystem: `aws-sdk` and `s3-stream-upload`
 - SMBFileSystem: `@marsaud/smb2`
 
@@ -21,6 +24,7 @@ These `FileSystem` implementations require peer dependencies:
 
 The project started to support (@wholebuzz/archive)[https://www.npmjs.com/package/@wholebuzz/archive], a terabyte-scale archive for GCS.
 The focus has since expanded to include powering (dbcp)[https://www.npmjs.com/package/dbcp] with numerous file system implementations under a common interface.
+The atomic primitives are only available for Google Cloud Storage and local.
 
 ## Example
 
