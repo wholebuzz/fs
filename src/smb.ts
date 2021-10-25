@@ -11,13 +11,16 @@ import { zlib } from './util'
 export class SMBFileSystem extends FileSystem {
   smb2: SMB2
 
-  constructor(public urlPrefix: string, options: {
-    share: string;
-    username: string;
-    domain: string;
-    password: string;
-    port?: number;
-  }) {
+  constructor(
+    public urlPrefix: string,
+    options: {
+      share: string
+      username: string
+      domain: string
+      password: string
+      port?: number
+    }
+  ) {
     super()
     this.smb2 = new SMB2(options)
   }
@@ -35,13 +38,13 @@ export class SMBFileSystem extends FileSystem {
   /** @inheritDoc */
   async ensureDirectory(url: string, mask?: number) {
     await this.smb2.mkdir(this.parseUrl(url), mask)
-		return true
+    return true
   }
 
   /** @inheritDoc */
   async removeDirectory(url: string) {
     await this.smb2.rmdir(this.parseUrl(url))
-		return true
+    return true
   }
 
   /** @inheritDoc */
@@ -49,7 +52,7 @@ export class SMBFileSystem extends FileSystem {
     try {
       await this.smb2.stat(this.parseUrl(url))
       return true
-    } catch { 
+    } catch {
       return false
     }
   }

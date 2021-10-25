@@ -1,10 +1,4 @@
-export {
-  AnyFileSystem,
-  AppendOptions,
-  CreateOptions,
-  FileStatus,
-  FileSystem,
-} from './fs'
+export { AnyFileSystem, AppendOptions, CreateOptions, FileStatus, FileSystem } from './fs'
 export { GoogleCloudFileSystem } from './gcp'
 export { HTTPFileSystem } from './http'
 export { LocalFileSystem } from './local'

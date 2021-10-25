@@ -12,7 +12,7 @@ File system abstraction with implementations for GCP GCS, AWS S3, Azure, SMB, HT
 
 The `FileSystem` implementations require peer dependencies:
 
-- AzureBlobStorageFileSystem: `@azure/storage-blob`
+- AzureBlobStorageFileSystem: `@azure/storage-blob` and `@azure/identity`
 - AzureFileShareFileSystem: `@azure/storage-file-share`
 - GoogleCloudFileSystem: `@google-cloud/storage`
 - HTTPFileSystem: `axios`
