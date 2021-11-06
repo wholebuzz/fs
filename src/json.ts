@@ -280,7 +280,8 @@ export function pipeJSONLinesFormatter(stream: WritableStreamTree): WritableStre
 export function pipeFilter(stream: ReadableStreamTree, filter: (x: any) => any) {
   return stream.pipe(
     through2.obj(function (data, _, callback) {
-      this.push(filter(data))
+      const filtered = filter(data)
+      if (filtered) this.push(filtered)
       callback()
     })
   )
@@ -292,7 +293,8 @@ export function pipeFilter(stream: ReadableStreamTree, filter: (x: any) => any) 
 export function pipeFromFilter(stream: WritableStreamTree, filter: (x: any) => any) {
   return stream.pipeFrom(
     through2.obj(function (data, _, callback) {
-      this.push(filter(data))
+      const filtered = filter(data)
+      if (filtered) this.push(filtered)
       callback()
     })
   )

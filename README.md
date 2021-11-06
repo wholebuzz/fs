@@ -1,4 +1,4 @@
-# @wholebuzz/fs
+# @wholebuzz/fs ![image](https://img.shields.io/npm/v/@wholebuzz/fs) [![test](https://github.com/wholebuzz/dbcp/actions/workflows/test.yaml/badge.svg)](https://github.com/wholebuzz/fs/actions/workflows/test.yaml)
 
 File system abstraction with implementations for GCP GCS, AWS S3, Azure, SMB, HTTP, and Local file systems. Provides atomic primitives enabling multiple readers and writers.
 
@@ -22,13 +22,13 @@ The `FileSystem` implementations require peer dependencies:
 
 ## History
 
-The project started to support (@wholebuzz/archive)[https://www.npmjs.com/package/@wholebuzz/archive], a terabyte-scale archive for GCS.
-The focus has since expanded to include powering (dbcp)[https://www.npmjs.com/package/dbcp] with numerous file system implementations under a common interface.
+The project started to support [@wholebuzz/archive](https://www.npmjs.com/package/@wholebuzz/archive), a terabyte-scale archive for GCS.
+The focus has since expanded to include powering [dbcp](https://www.npmjs.com/package/dbcp) with a collection of file system implementations under a common interface.
 The atomic primitives are only available for Google Cloud Storage and local.
 
 ## Example
 
-```
+```typescript
 import {
   AnyFileSystem,
   GoogleCloudFileSystem,
