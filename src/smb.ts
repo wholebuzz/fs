@@ -41,8 +41,8 @@ export class SMBFileSystem extends FileSystem {
   }
 
   /** @inheritDoc */
-  async readDirectory(url: string, _options?: ReadDirectoryOptions): Promise<string[]> {
-    return this.smb2.readdir(this.parseUrl(url))
+  async readDirectory(url: string, _options?: ReadDirectoryOptions) {
+    return (await this.smb2.readdir(this.parseUrl(url))).map((x) => ({ url: x }))
   }
 
   /** @inheritDoc */

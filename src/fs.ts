@@ -19,6 +19,10 @@ export interface FileStatus {
   version: string | number
 }
 
+export interface DirectoryEntry extends Partial<FileStatus> {
+  url: string
+}
+
 /**
  * Options for creating a file.
  */
@@ -77,7 +81,7 @@ export abstract class FileSystem {
    * Returns the URLs of the files in a directory.
    * @param urlText The URL of the directory to list files in.
    */
-  abstract readDirectory(urlText: string, options?: ReadDirectoryOptions): Promise<string[]>
+  abstract readDirectory(urlText: string, options?: ReadDirectoryOptions): Promise<DirectoryEntry[]>
 
   /**
    * Ensures the directory exists

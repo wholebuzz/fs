@@ -13,6 +13,7 @@
 
 - [AppendOptions](../interfaces/fs.appendoptions.md)
 - [CreateOptions](../interfaces/fs.createoptions.md)
+- [DirectoryEntry](../interfaces/fs.directoryentry.md)
 - [EnsureDirectoryOptions](../interfaces/fs.ensuredirectoryoptions.md)
 - [FileStatus](../interfaces/fs.filestatus.md)
 - [GetFileStatusOptions](../interfaces/fs.getfilestatusoptions.md)

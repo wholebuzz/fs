@@ -6,6 +6,7 @@ import { v4 as uuidv4 } from 'uuid'
 import {
   AppendOptions,
   CreateOptions,
+  DirectoryEntry,
   EnsureDirectoryOptions,
   FileStatus,
   FileSystem,
@@ -59,14 +60,14 @@ export class GoogleCloudFileSystem extends FileSystem {
   }
 
   /** @inheritDoc */
-  async readDirectory(urlText: string, options?: ReadDirectoryOptions): Promise<string[]> {
+  async readDirectory(urlText: string, options?: ReadDirectoryOptions): Promise<DirectoryEntry[]> {
     return new Promise((resolve, reject) => {
-      const ret: string[] = []
+      const ret: DirectoryEntry[] = []
       const bucket = this.getBucket(urlText)
       bucket
         .getFilesStream({ prefix: options?.prefix })
         .on('error', reject)
-        .on('data', (f: any) => ret.push(`gs://${bucket.name}/${f.name}`))
+        .on('data', (f: any) => ret.push({ url: `gs://${bucket.name}/${f.name}` }))
         .on('end', () => resolve(ret))
     })
   }

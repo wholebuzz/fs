@@ -279,7 +279,7 @@ ___
 
 ### readDirectory
 
-▸ **readDirectory**(`_urlText`: *string*, `_options?`: [*ReadDirectoryOptions*](../interfaces/fs.readdirectoryoptions.md)): *Promise*<string[]\>
+▸ **readDirectory**(`_urlText`: *string*, `_options?`: [*ReadDirectoryOptions*](../interfaces/fs.readdirectoryoptions.md)): *Promise*<never[]\>
 
 **`inheritdoc`**
 
@@ -290,7 +290,7 @@ ___
 | `_urlText` | *string* |
 | `_options?` | [*ReadDirectoryOptions*](../interfaces/fs.readdirectoryoptions.md) |
 
-**Returns:** *Promise*<string[]\>
+**Returns:** *Promise*<never[]\>
 
 Overrides: [FileSystem](fs.filesystem.md)
 

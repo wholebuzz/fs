@@ -4,6 +4,7 @@ import StreamTree, { WritableStreamTree } from 'tree-stream'
 import {
   AppendOptions,
   CreateOptions,
+  DirectoryEntry,
   EnsureDirectoryOptions,
   FileStatus,
   FileSystem,
@@ -50,9 +51,9 @@ export class S3FileSystem extends FileSystem {
   }
 
   /** @inheritDoc */
-  async readDirectory(urlText: string, options?: ReadDirectoryOptions): Promise<string[]> {
+  async readDirectory(urlText: string, options?: ReadDirectoryOptions): Promise<DirectoryEntry[]> {
     return new Promise((resolve, reject) => {
-      const ret: string[] = []
+      const ret: DirectoryEntry[] = []
       const url = this.parseUrl(urlText)
       this.s3.listObjectsV2(
         { Bucket: url.Bucket, Prefix: options?.prefix },
@@ -61,7 +62,13 @@ export class S3FileSystem extends FileSystem {
             reject(err)
           } else {
             data.Contents?.forEach((x) => {
-              if (x.Key) ret.push(`s3://${url.Bucket}/${x.Key}`)
+              if (x.Key) {
+                ret.push({
+                  url: `s3://${url.Bucket}/${x.Key}`,
+                  modified: x.LastModified,
+                  size: x.Size,
+                })
+              }
             })
             resolve(ret)
           }

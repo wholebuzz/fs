@@ -7,6 +7,7 @@ import { promisify } from 'util'
 import {
   AppendOptions,
   CreateOptions,
+  DirectoryEntry,
   EnsureDirectoryOptions,
   FileStatus,
   FileSystem,
@@ -38,10 +39,10 @@ const fsUnlink = promisify(fs.unlink)
  */
 export class LocalFileSystem extends FileSystem {
   /** @inheritDoc */
-  async readDirectory(urlText: string, options?: ReadDirectoryOptions) {
+  async readDirectory(urlText: string, options?: ReadDirectoryOptions): Promise<DirectoryEntry[]> {
     let files = await fsReaddir(urlText)
     if (options?.prefix) files = files.filter((x) => x.startsWith(options.prefix ?? ''))
-    return files.map((x) => path.join(urlText, x))
+    return files.map((x) => ({ url: path.join(urlText, x) }))
   }
 
   /** @inheritDoc */

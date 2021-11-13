@@ -28,7 +28,7 @@ Options for creating a file.
 
 • `Optional` **contentType**: *string*
 
-Defined in: [fs.ts:26](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L26)
+Defined in: [fs.ts:30](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L30)
 
 ___
 
@@ -36,7 +36,7 @@ ___
 
 • `Optional` **debug**: *boolean*
 
-Defined in: [fs.ts:27](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L27)
+Defined in: [fs.ts:31](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L31)
 
 ___
 
@@ -44,4 +44,4 @@ ___
 
 • `Optional` **gzip**: *string* \| *boolean*
 
-Defined in: [fs.ts:28](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L28)
+Defined in: [fs.ts:32](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L32)

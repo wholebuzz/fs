@@ -46,7 +46,7 @@ export class AzureBlobStorageFileSystem extends FileSystem {
   }
 
   /** @inheritDoc */
-  async readDirectory(_urlText: string, _options?: ReadDirectoryOptions): Promise<string[]> {
+  async readDirectory(_urlText: string, _options?: ReadDirectoryOptions) {
     return []
   }
 
