@@ -31,10 +31,12 @@ Class Adapter Pattern wrapping [FileSystem](fs.filesystem.md) by `urlPrefix`.
 - [fileExists](fs.anyfilesystem.md#fileexists)
 - [getFileStatus](fs.anyfilesystem.md#getfilestatus)
 - [getFs](fs.anyfilesystem.md#getfs)
+- [moveFile](fs.anyfilesystem.md#movefile)
 - [openReadableFile](fs.anyfilesystem.md#openreadablefile)
 - [openWritableFile](fs.anyfilesystem.md#openwritablefile)
 - [queueRemoveFile](fs.anyfilesystem.md#queueremovefile)
 - [readDirectory](fs.anyfilesystem.md#readdirectory)
+- [removeDirectory](fs.anyfilesystem.md#removedirectory)
 - [removeFile](fs.anyfilesystem.md#removefile)
 - [replaceFile](fs.anyfilesystem.md#replacefile)
 
@@ -56,7 +58,7 @@ Construct an [AnyFileSystem](fs.anyfilesystem.md) wrapping the provided [FileSys
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [fs.ts:170](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L170)
+Defined in: [fs.ts:198](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L198)
 
 ## Properties
 
@@ -86,7 +88,7 @@ Defined in: [fs.ts:170](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L1
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [fs.ts:253](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L253)
+Defined in: [fs.ts:290](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L290)
 
 ___
 
@@ -107,13 +109,13 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [fs.ts:238](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L238)
+Defined in: [fs.ts:271](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L271)
 
 ___
 
 ### createFile
 
-▸ **createFile**(`urlText`: *string*, `createCallback?`: (`stream`: WritableStreamTree) => *Promise*<boolean\>, `createOptions?`: [*CreateOptions*](../interfaces/fs.createoptions.md)): *Promise*<boolean\>
+▸ **createFile**(`urlText`: *string*, `createCallback?`: (`stream`: WritableStreamTree) => *Promise*<boolean\>, `options?`: [*CreateOptions*](../interfaces/fs.createoptions.md)): *Promise*<boolean\>
 
 **`inheritdoc`**
 
@@ -123,19 +125,19 @@ ___
 | :------ | :------ |
 | `urlText` | *string* |
 | `createCallback?` | (`stream`: WritableStreamTree) => *Promise*<boolean\> |
-| `createOptions?` | [*CreateOptions*](../interfaces/fs.createoptions.md) |
+| `options?` | [*CreateOptions*](../interfaces/fs.createoptions.md) |
 
 **Returns:** *Promise*<boolean\>
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [fs.ts:219](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L219)
+Defined in: [fs.ts:252](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L252)
 
 ___
 
 ### ensureDirectory
 
-▸ **ensureDirectory**(`urlText`: *string*): *Promise*<boolean\>
+▸ **ensureDirectory**(`urlText`: *string*, `options?`: [*EnsureDirectoryOptions*](../interfaces/fs.ensuredirectoryoptions.md)): *Promise*<boolean\>
 
 **`inheritdoc`**
 
@@ -144,12 +146,13 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `urlText` | *string* |
+| `options?` | [*EnsureDirectoryOptions*](../interfaces/fs.ensuredirectoryoptions.md) |
 
 **Returns:** *Promise*<boolean\>
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [fs.ts:194](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L194)
+Defined in: [fs.ts:222](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L222)
 
 ___
 
@@ -169,28 +172,28 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [fs.ts:199](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L199)
+Defined in: [fs.ts:232](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L232)
 
 ___
 
 ### getFileStatus
 
-▸ **getFileStatus**(`urlText`: *string*, `getVersion?`: *boolean*): *Promise*<[*FileStatus*](../interfaces/fs.filestatus.md)\>
+▸ **getFileStatus**(`urlText`: *string*, `options?`: [*GetFileStatusOptions*](../interfaces/fs.getfilestatusoptions.md)): *Promise*<[*FileStatus*](../interfaces/fs.filestatus.md)\>
 
 **`inheritdoc`**
 
 #### Parameters
 
-| Name | Type | Default value |
-| :------ | :------ | :------ |
-| `urlText` | *string* | - |
-| `getVersion` | *boolean* | true |
+| Name | Type |
+| :------ | :------ |
+| `urlText` | *string* |
+| `options?` | [*GetFileStatusOptions*](../interfaces/fs.getfilestatusoptions.md) |
 
 **Returns:** *Promise*<[*FileStatus*](../interfaces/fs.filestatus.md)\>
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [fs.ts:204](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L204)
+Defined in: [fs.ts:237](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L237)
 
 ___
 
@@ -208,13 +211,34 @@ Returns the [FileSystem](fs.filesystem.md) provider for `url`.
 
 **Returns:** [*FileSystem*](fs.filesystem.md)
 
-Defined in: [fs.ts:183](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L183)
+Defined in: [fs.ts:211](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L211)
+
+___
+
+### moveFile
+
+▸ **moveFile**(`sourceUrlText`: *string*, `destUrlText`: *string*): *Promise*<boolean\>
+
+**`inheritdoc`**
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `sourceUrlText` | *string* |
+| `destUrlText` | *string* |
+
+**Returns:** *Promise*<boolean\>
+
+Overrides: [FileSystem](fs.filesystem.md)
+
+Defined in: [fs.ts:276](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L276)
 
 ___
 
 ### openReadableFile
 
-▸ **openReadableFile**(`url`: *string*, `version?`: *string* \| *number*): *Promise*<ReadableStreamTree\>
+▸ **openReadableFile**(`url`: *string*, `options?`: [*OpenReadableFileOptions*](../interfaces/fs.openreadablefileoptions.md)): *Promise*<ReadableStreamTree\>
 
 **`inheritdoc`**
 
@@ -223,19 +247,19 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `url` | *string* |
-| `version?` | *string* \| *number* |
+| `options?` | [*OpenReadableFileOptions*](../interfaces/fs.openreadablefileoptions.md) |
 
 **Returns:** *Promise*<ReadableStreamTree\>
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [fs.ts:209](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L209)
+Defined in: [fs.ts:242](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L242)
 
 ___
 
 ### openWritableFile
 
-▸ **openWritableFile**(`url`: *string*, `version?`: *string* \| *number*, `options?`: [*CreateOptions*](../interfaces/fs.createoptions.md)): *Promise*<WritableStreamTree\>
+▸ **openWritableFile**(`url`: *string*, `options?`: [*OpenWritableFileOptions*](../interfaces/fs.openwritablefileoptions.md)): *Promise*<WritableStreamTree\>
 
 **`inheritdoc`**
 
@@ -244,14 +268,13 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `url` | *string* |
-| `version?` | *string* \| *number* |
-| `options?` | [*CreateOptions*](../interfaces/fs.createoptions.md) |
+| `options?` | [*OpenWritableFileOptions*](../interfaces/fs.openwritablefileoptions.md) |
 
 **Returns:** *Promise*<WritableStreamTree\>
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [fs.ts:214](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L214)
+Defined in: [fs.ts:247](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L247)
 
 ___
 
@@ -271,13 +294,13 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [fs.ts:233](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L233)
+Defined in: [fs.ts:266](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L266)
 
 ___
 
 ### readDirectory
 
-▸ **readDirectory**(`urlText`: *string*, `prefix?`: *string*): *Promise*<string[]\>
+▸ **readDirectory**(`urlText`: *string*, `options?`: [*ReadDirectoryOptions*](../interfaces/fs.readdirectoryoptions.md)): *Promise*<string[]\>
 
 **`inheritdoc`**
 
@@ -286,13 +309,33 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `urlText` | *string* |
-| `prefix?` | *string* |
+| `options?` | [*ReadDirectoryOptions*](../interfaces/fs.readdirectoryoptions.md) |
 
 **Returns:** *Promise*<string[]\>
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [fs.ts:189](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L189)
+Defined in: [fs.ts:217](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L217)
+
+___
+
+### removeDirectory
+
+▸ **removeDirectory**(`urlText`: *string*): *Promise*<boolean\>
+
+**`inheritdoc`**
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `urlText` | *string* |
+
+**Returns:** *Promise*<boolean\>
+
+Overrides: [FileSystem](fs.filesystem.md)
+
+Defined in: [fs.ts:227](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L227)
 
 ___
 
@@ -312,13 +355,13 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [fs.ts:228](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L228)
+Defined in: [fs.ts:261](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L261)
 
 ___
 
 ### replaceFile
 
-▸ **replaceFile**(`urlText`: *string*, `writeCallback`: (`stream`: WritableStreamTree) => *Promise*<boolean\>, `createOptions?`: [*CreateOptions*](../interfaces/fs.createoptions.md), `version?`: *string* \| *number*): *Promise*<boolean\>
+▸ **replaceFile**(`urlText`: *string*, `writeCallback`: (`stream`: WritableStreamTree) => *Promise*<boolean\>, `options?`: [*ReplaceFileOptions*](../interfaces/fs.replacefileoptions.md)): *Promise*<boolean\>
 
 **`inheritdoc`**
 
@@ -328,11 +371,10 @@ ___
 | :------ | :------ |
 | `urlText` | *string* |
 | `writeCallback` | (`stream`: WritableStreamTree) => *Promise*<boolean\> |
-| `createOptions?` | [*CreateOptions*](../interfaces/fs.createoptions.md) |
-| `version?` | *string* \| *number* |
+| `options?` | [*ReplaceFileOptions*](../interfaces/fs.replacefileoptions.md) |
 
 **Returns:** *Promise*<boolean\>
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [fs.ts:243](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L243)
+Defined in: [fs.ts:281](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L281)

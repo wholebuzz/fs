@@ -8,10 +8,15 @@
 
 - [AnyFileSystem](../classes/fs.anyfilesystem.md)
 - [FileSystem](../classes/fs.filesystem.md)
-- [LocalFileSystem](../classes/fs.localfilesystem.md)
 
 ### Interfaces
 
 - [AppendOptions](../interfaces/fs.appendoptions.md)
 - [CreateOptions](../interfaces/fs.createoptions.md)
+- [EnsureDirectoryOptions](../interfaces/fs.ensuredirectoryoptions.md)
 - [FileStatus](../interfaces/fs.filestatus.md)
+- [GetFileStatusOptions](../interfaces/fs.getfilestatusoptions.md)
+- [OpenReadableFileOptions](../interfaces/fs.openreadablefileoptions.md)
+- [OpenWritableFileOptions](../interfaces/fs.openwritablefileoptions.md)
+- [ReadDirectoryOptions](../interfaces/fs.readdirectoryoptions.md)
+- [ReplaceFileOptions](../interfaces/fs.replacefileoptions.md)

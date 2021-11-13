@@ -4,7 +4,18 @@ import * as path from 'path'
 import { Writable } from 'stream'
 import StreamTree, { WritableStreamTree } from 'tree-stream'
 import { promisify } from 'util'
-import { AppendOptions, CreateOptions, FileStatus, FileSystem } from './fs'
+import {
+  AppendOptions,
+  CreateOptions,
+  EnsureDirectoryOptions,
+  FileStatus,
+  FileSystem,
+  GetFileStatusOptions,
+  OpenReadableFileOptions,
+  OpenWritableFileOptions,
+  ReadDirectoryOptions,
+  ReplaceFileOptions,
+} from './fs'
 import { hashStream, logger, zlib } from './util'
 
 const fsAccess = promisify(fs.access)
@@ -27,16 +38,16 @@ const fsUnlink = promisify(fs.unlink)
  */
 export class LocalFileSystem extends FileSystem {
   /** @inheritDoc */
-  async readDirectory(urlText: string, prefix?: string) {
+  async readDirectory(urlText: string, options?: ReadDirectoryOptions) {
     let files = await fsReaddir(urlText)
-    if (prefix) files = files.filter((x) => x.startsWith(prefix))
+    if (options?.prefix) files = files.filter((x) => x.startsWith(options.prefix ?? ''))
     return files.map((x) => path.join(urlText, x))
   }
 
   /** @inheritDoc */
-  async ensureDirectory(urlText: string, mask = 0o755) {
+  async ensureDirectory(urlText: string, options?: EnsureDirectoryOptions) {
     return new Promise<boolean>((resolve, reject) => {
-      fs.mkdir(urlText, mask, (err) => {
+      fs.mkdir(urlText, options?.mask ?? 0o755, (err) => {
         if (err) {
           if (err.code === 'EEXIST') resolve(true)
           else reject(err)
@@ -64,8 +75,8 @@ export class LocalFileSystem extends FileSystem {
   }
 
   /** @inheritDoc */
-  async getFileStatus(urlText: string, getVersion = true) {
-    const version = (getVersion && (await hashStream(fs.createReadStream(urlText)))) || ''
+  async getFileStatus(urlText: string, options?: GetFileStatusOptions) {
+    const version = (options?.version && (await hashStream(fs.createReadStream(urlText)))) || ''
     const stat = await fsStat(urlText)
     return {
       url: urlText,
@@ -77,14 +88,14 @@ export class LocalFileSystem extends FileSystem {
   }
 
   /** @inheritDoc */
-  async openReadableFile(url: string, _?: number | string) {
+  async openReadableFile(url: string, _options?: OpenReadableFileOptions) {
     let stream = StreamTree.readable(fs.createReadStream(url))
     if (url.endsWith('.gz')) stream = stream.pipe(zlib.createGunzip())
     return stream
   }
 
   /** @inheritDoc */
-  async openWritableFile(url: string, _?: number | string, __?: CreateOptions) {
+  async openWritableFile(url: string, _options?: OpenWritableFileOptions) {
     let stream = StreamTree.writable(fs.createWriteStream(url))
     if (url.endsWith('.gz')) stream = stream.pipeFrom(zlib.createGzip())
     return stream
@@ -96,14 +107,14 @@ export class LocalFileSystem extends FileSystem {
     createCallback = StreamTree.writer(async (stream: Writable) => {
       stream.end()
     }),
-    createOptions?: CreateOptions
+    options?: CreateOptions
   ) {
     try {
       return await createCallback(
         StreamTree.writable(fs.createWriteStream(urlText, { flags: 'ax' }))
       )
     } catch (err) {
-      if (createOptions?.debug) logger.debug('createFile', err)
+      if (options?.debug) logger.debug('createFile', err)
       return false
     }
   }
@@ -135,14 +146,13 @@ export class LocalFileSystem extends FileSystem {
   async replaceFile(
     urlText: string,
     writeCallback: (stream: WritableStreamTree) => Promise<boolean>,
-    createOptions?: CreateOptions,
-    version?: string | number
+    options?: ReplaceFileOptions
   ): Promise<boolean> {
     // If the file doesnt exist, creating it suffices.
-    if (version === 0 || (!version && !(await this.fileExists(urlText)))) {
-      const created = await this.createFile(urlText, writeCallback, createOptions)
+    if (options?.version === 0 || (!options?.version && !(await this.fileExists(urlText)))) {
+      const created = await this.createFile(urlText, writeCallback, options)
       if (created) return true
-      if (version === 0) return false
+      if (options?.version === 0) return false
       // But another creator may have succeeded just before us.
     }
 
@@ -151,16 +161,16 @@ export class LocalFileSystem extends FileSystem {
     try {
       const err = await fsFlock(fd, 'ex')
       if (err) {
-        if (createOptions?.debug) logger.debug('replaceFile: flock', err)
+        if (options?.debug) logger.debug('replaceFile: flock', err)
         await fsClose(fd)
         return false
       }
 
       // Bail out if version matching was requested and the versions don't match.
-      if (version) {
+      if (options?.version) {
         const hash = await hashStream(fs.createReadStream(null as any, { fd, autoClose: false }))
-        if (hash !== version) {
-          if (createOptions?.debug) logger.debug(`replaceFile: ${hash} != ${version}`)
+        if (hash !== options?.version) {
+          if (options?.debug) logger.debug(`replaceFile: ${hash} != ${options?.version}`)
           await fsClose(fd)
           return false
         }
@@ -172,7 +182,7 @@ export class LocalFileSystem extends FileSystem {
         StreamTree.writable(fs.createWriteStream(null as any, { fd, start: 0 }))
       )
     } catch (err) {
-      if (createOptions?.debug) logger.debug('replaceFile', err)
+      if (options?.debug) logger.debug('replaceFile', err)
       await fsClose(fd)
       return false
     }

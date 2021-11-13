@@ -62,12 +62,15 @@ node lib/cli.js --help
 
 ### Modules
 
+- [azure-blob](docs/modules/azure_blob.md)
 - [cli](docs/modules/cli.md)
 - [fs](docs/modules/fs.md)
 - [gcp](docs/modules/gcp.md)
 - [http](docs/modules/http.md)
 - [json](docs/modules/json.md)
+- [local](docs/modules/local.md)
 - [s3](docs/modules/s3.md)
+- [smb](docs/modules/smb.md)
 - [util](docs/modules/util.md)
 
 ### Methods
@@ -78,12 +81,24 @@ node lib/cli.js --help
 - [ensureDirectory](fs.filesystem.md#ensuredirectory)
 - [fileExists](fs.filesystem.md#fileexists)
 - [getFileStatus](fs.filesystem.md#getfilestatus)
+- [moveFile](fs.filesystem.md#movefile)
 - [openReadableFile](fs.filesystem.md#openreadablefile)
 - [openWritableFile](fs.filesystem.md#openwritablefile)
 - [queueRemoveFile](fs.filesystem.md#queueremovefile)
 - [readDirectory](fs.filesystem.md#readdirectory)
+- [removeDirectory](fs.filesystem.md#removedirectory)
 - [removeFile](fs.filesystem.md#removefile)
 - [replaceFile](fs.filesystem.md#replacefile)
+
+## Constructors
+
+### constructor
+
+\+ **new FileSystem**(): [*FileSystem*](fs.filesystem.md)
+
+**Returns:** [*FileSystem*](fs.filesystem.md)
+
+## Methods
 
 ### appendToFile
 
@@ -105,7 +120,7 @@ For simple appends, the same paramter can be supplied for both `writeCallback` a
 
 **Returns:** *Promise*<``null`` \| [*FileStatus*](../interfaces/fs.filestatus.md)\>
 
-Defined in: [fs.ts:158](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L158)
+Defined in: [fs.ts:186](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L186)
 
 ___
 
@@ -124,13 +139,13 @@ Copies the file.
 
 **Returns:** *Promise*<boolean\>
 
-Defined in: [fs.ts:133](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L133)
+Defined in: [fs.ts:155](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L155)
 
 ___
 
 ### createFile
 
-▸ `Abstract` **createFile**(`urlText`: *string*, `createCallback?`: (`stream`: WritableStreamTree) => *Promise*<boolean\>, `createOptions?`: [*CreateOptions*](../interfaces/fs.createoptions.md)): *Promise*<boolean\>
+▸ `Abstract` **createFile**(`urlText`: *string*, `createCallback?`: (`stream`: WritableStreamTree) => *Promise*<boolean\>, `options?`: [*CreateOptions*](../interfaces/fs.createoptions.md)): *Promise*<boolean\>
 
 Creates file, failing if the file already exists.
 
@@ -140,17 +155,17 @@ Creates file, failing if the file already exists.
 | :------ | :------ | :------ |
 | `urlText` | *string* | The URL of the file to create. |
 | `createCallback?` | (`stream`: WritableStreamTree) => *Promise*<boolean\> | Stream callback for initializing the file. |
-| `createOptions?` | [*CreateOptions*](../interfaces/fs.createoptions.md) | Initial metadata. |
+| `options?` | [*CreateOptions*](../interfaces/fs.createoptions.md) | - |
 
 **Returns:** *Promise*<boolean\>
 
-Defined in: [fs.ts:110](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L110)
+Defined in: [fs.ts:132](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L132)
 
 ___
 
 ### ensureDirectory
 
-▸ `Abstract` **ensureDirectory**(`urlText`: *string*, `mask?`: *number*): *Promise*<boolean\>
+▸ `Abstract` **ensureDirectory**(`urlText`: *string*, `options?`: [*EnsureDirectoryOptions*](../interfaces/fs.ensuredirectoryoptions.md)): *Promise*<boolean\>
 
 Ensures the directory exists
 
@@ -159,11 +174,11 @@ Ensures the directory exists
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `urlText` | *string* | The URL of the directory. |
-| `mask?` | *number* | - |
+| `options?` | [*EnsureDirectoryOptions*](../interfaces/fs.ensuredirectoryoptions.md) | - |
 
 **Returns:** *Promise*<boolean\>
 
-Defined in: [fs.ts:72](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L72)
+Defined in: [fs.ts:86](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L86)
 
 ___
 
@@ -181,13 +196,13 @@ Returns `true` if the file exists.
 
 **Returns:** *Promise*<boolean\>
 
-Defined in: [fs.ts:78](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L78)
+Defined in: [fs.ts:98](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L98)
 
 ___
 
 ### getFileStatus
 
-▸ `Abstract` **getFileStatus**(`urlText`: *string*, `getVersion?`: *boolean*): *Promise*<[*FileStatus*](../interfaces/fs.filestatus.md)\>
+▸ `Abstract` **getFileStatus**(`urlText`: *string*, `options?`: [*GetFileStatusOptions*](../interfaces/fs.getfilestatusoptions.md)): *Promise*<[*FileStatus*](../interfaces/fs.filestatus.md)\>
 
 Determines the file status. The file version is used to implement atomic mutations.
 
@@ -196,17 +211,36 @@ Determines the file status. The file version is used to implement atomic mutatio
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `urlText` | *string* | The URL of the file to retrieve the status for. |
-| `getVersion?` | *boolean* | - |
+| `options?` | [*GetFileStatusOptions*](../interfaces/fs.getfilestatusoptions.md) | - |
 
 **Returns:** *Promise*<[*FileStatus*](../interfaces/fs.filestatus.md)\>
 
-Defined in: [fs.ts:84](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L84)
+Defined in: [fs.ts:104](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L104)
+
+___
+
+### moveFile
+
+▸ `Abstract` **moveFile**(`sourceUrlText`: *string*, `destUrlText`: *string*): *Promise*<boolean\>
+
+Moves the file.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `sourceUrlText` | *string* | The URL of the source file to copy. |
+| `destUrlText` | *string* | The destination URL to copy the file to. |
+
+**Returns:** *Promise*<boolean\>
+
+Defined in: [fs.ts:162](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L162)
 
 ___
 
 ### openReadableFile
 
-▸ `Abstract` **openReadableFile**(`url`: *string*, `version?`: *string* \| *number*): *Promise*<ReadableStreamTree\>
+▸ `Abstract` **openReadableFile**(`url`: *string*, `options?`: [*OpenReadableFileOptions*](../interfaces/fs.openreadablefileoptions.md)): *Promise*<ReadableStreamTree\>
 
 Opens a file for reading.
 
@@ -217,17 +251,17 @@ Opens a file for reading.
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `url` | *string* | The URL of the file to read from. |
-| `version?` | *string* \| *number* | - |
+| `options?` | [*OpenReadableFileOptions*](../interfaces/fs.openreadablefileoptions.md) | - |
 
 **Returns:** *Promise*<ReadableStreamTree\>
 
-Defined in: [fs.ts:91](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L91)
+Defined in: [fs.ts:111](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L111)
 
 ___
 
 ### openWritableFile
 
-▸ `Abstract` **openWritableFile**(`url`: *string*, `version?`: *string* \| *number*, `options?`: [*CreateOptions*](../interfaces/fs.createoptions.md)): *Promise*<WritableStreamTree\>
+▸ `Abstract` **openWritableFile**(`url`: *string*, `options?`: [*OpenWritableFileOptions*](../interfaces/fs.openwritablefileoptions.md)): *Promise*<WritableStreamTree\>
 
 Opens a file for writing.
 
@@ -238,12 +272,11 @@ Opens a file for writing.
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `url` | *string* | The URL of the file to write to. |
-| `version?` | *string* \| *number* | - |
-| `options?` | [*CreateOptions*](../interfaces/fs.createoptions.md) | - |
+| `options?` | [*OpenWritableFileOptions*](../interfaces/fs.openwritablefileoptions.md) | - |
 
 **Returns:** *Promise*<WritableStreamTree\>
 
-Defined in: [fs.ts:98](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L98)
+Defined in: [fs.ts:121](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L121)
 
 ___
 
@@ -261,13 +294,13 @@ Queues deletion, e.g. after DaysSinceCustomTime.
 
 **Returns:** *Promise*<boolean\>
 
-Defined in: [fs.ts:126](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L126)
+Defined in: [fs.ts:148](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L148)
 
 ___
 
 ### readDirectory
 
-▸ `Abstract` **readDirectory**(`urlText`: *string*, `prefix?`: *string*): *Promise*<string[]\>
+▸ `Abstract` **readDirectory**(`urlText`: *string*, `options?`: [*ReadDirectoryOptions*](../interfaces/fs.readdirectoryoptions.md)): *Promise*<string[]\>
 
 Returns the URLs of the files in a directory.
 
@@ -276,11 +309,29 @@ Returns the URLs of the files in a directory.
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `urlText` | *string* | The URL of the directory to list files in. |
-| `prefix?` | *string* | - |
+| `options?` | [*ReadDirectoryOptions*](../interfaces/fs.readdirectoryoptions.md) | - |
 
 **Returns:** *Promise*<string[]\>
 
-Defined in: [fs.ts:66](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L66)
+Defined in: [fs.ts:80](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L80)
+
+___
+
+### removeDirectory
+
+▸ `Abstract` **removeDirectory**(`urlText`: *string*): *Promise*<boolean\>
+
+Removes the directory
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `urlText` | *string* | The URL of the directory. |
+
+**Returns:** *Promise*<boolean\>
+
+Defined in: [fs.ts:92](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L92)
 
 ___
 
@@ -298,13 +349,13 @@ Deletes the file.
 
 **Returns:** *Promise*<boolean\>
 
-Defined in: [fs.ts:120](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L120)
+Defined in: [fs.ts:142](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L142)
 
 ___
 
 ### replaceFile
 
-▸ `Abstract` **replaceFile**(`urlText`: *string*, `writeCallback`: (`stream`: WritableStreamTree) => *Promise*<boolean\>, `createOptions?`: [*CreateOptions*](../interfaces/fs.createoptions.md), `version?`: *string* \| *number*): *Promise*<boolean\>
+▸ `Abstract` **replaceFile**(`urlText`: *string*, `writeCallback`: (`stream`: WritableStreamTree) => *Promise*<boolean\>, `options?`: [*ReplaceFileOptions*](../interfaces/fs.replacefileoptions.md)): *Promise*<boolean\>
 
 Replaces the file, failing if the file version doesn't match.
 
@@ -314,12 +365,11 @@ Replaces the file, failing if the file version doesn't match.
 | :------ | :------ | :------ |
 | `urlText` | *string* | The URL of the file to replace. |
 | `writeCallback` | (`stream`: WritableStreamTree) => *Promise*<boolean\> | Stream callback for replacing the file. |
-| `createOptions?` | [*CreateOptions*](../interfaces/fs.createoptions.md) | Initial metadata for replaced file. |
-| `version?` | *string* \| *number* | The version of the file to replace. |
+| `options?` | [*ReplaceFileOptions*](../interfaces/fs.replacefileoptions.md) | - |
 
 **Returns:** *Promise*<boolean\>
 
-Defined in: [fs.ts:142](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L142)
+Defined in: [fs.ts:171](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L171)
 [@wholebuzz/fs](../README.md) / [Exports](../modules.md) / json
 
 # Module: json
@@ -505,7 +555,7 @@ Create filter stream.
 
 **Returns:** WritableStreamTree
 
-Defined in: [json.ts:292](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L292)
+Defined in: [json.ts:293](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L293)
 
 ___
 

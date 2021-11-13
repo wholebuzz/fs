@@ -183,7 +183,7 @@ Create filter stream.
 
 **Returns:** WritableStreamTree
 
-Defined in: [json.ts:292](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L292)
+Defined in: [json.ts:293](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L293)
 
 ___
 

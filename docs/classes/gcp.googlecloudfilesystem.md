@@ -32,11 +32,13 @@ Google Cloud Storage [FileSystem](fs.filesystem.md) implemented with `@google-cl
 - [getBucket](gcp.googlecloudfilesystem.md#getbucket)
 - [getFile](gcp.googlecloudfilesystem.md#getfile)
 - [getFileStatus](gcp.googlecloudfilesystem.md#getfilestatus)
+- [moveFile](gcp.googlecloudfilesystem.md#movefile)
 - [openReadableFile](gcp.googlecloudfilesystem.md#openreadablefile)
 - [openWritableFile](gcp.googlecloudfilesystem.md#openwritablefile)
 - [parseUrl](gcp.googlecloudfilesystem.md#parseurl)
 - [queueRemoveFile](gcp.googlecloudfilesystem.md#queueremovefile)
 - [readDirectory](gcp.googlecloudfilesystem.md#readdirectory)
+- [removeDirectory](gcp.googlecloudfilesystem.md#removedirectory)
 - [removeFile](gcp.googlecloudfilesystem.md#removefile)
 - [replaceFile](gcp.googlecloudfilesystem.md#replacefile)
 
@@ -55,7 +57,7 @@ https://cloud.google.com/docs/authentication/production#providing_credentials_to
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [gcp.ts:13](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L13)
+Defined in: [gcp.ts:24](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L24)
 
 ## Properties
 
@@ -63,7 +65,7 @@ Defined in: [gcp.ts:13](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L
 
 • **storage**: *Storage*
 
-Defined in: [gcp.ts:13](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L13)
+Defined in: [gcp.ts:24](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L24)
 
 ## Methods
 
@@ -87,7 +89,7 @@ Defined in: [gcp.ts:13](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [gcp.ts:168](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L168)
+Defined in: [gcp.ts:188](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L188)
 
 ___
 
@@ -108,13 +110,13 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [gcp.ts:139](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L139)
+Defined in: [gcp.ts:155](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L155)
 
 ___
 
 ### createFile
 
-▸ **createFile**(`urlText`: *string*, `createCallback?`: WritableStreamTreeFilter, `createOptions?`: [*CreateOptions*](../interfaces/fs.createoptions.md)): *Promise*<boolean\>
+▸ **createFile**(`urlText`: *string*, `createCallback?`: WritableStreamTreeFilter, `options?`: [*CreateOptions*](../interfaces/fs.createoptions.md)): *Promise*<boolean\>
 
 **`inheritdoc`**
 
@@ -124,19 +126,19 @@ ___
 | :------ | :------ |
 | `urlText` | *string* |
 | `createCallback` | WritableStreamTreeFilter |
-| `createOptions?` | [*CreateOptions*](../interfaces/fs.createoptions.md) |
+| `options?` | [*CreateOptions*](../interfaces/fs.createoptions.md) |
 
 **Returns:** *Promise*<boolean\>
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [gcp.ts:108](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L108)
+Defined in: [gcp.ts:124](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L124)
 
 ___
 
 ### ensureDirectory
 
-▸ **ensureDirectory**(`_urlText`: *string*, `_mask?`: *number*): *Promise*<boolean\>
+▸ **ensureDirectory**(`_urlText`: *string*, `_options?`: [*EnsureDirectoryOptions*](../interfaces/fs.ensuredirectoryoptions.md)): *Promise*<boolean\>
 
 **`inheritdoc`**
 
@@ -145,13 +147,13 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `_urlText` | *string* |
-| `_mask?` | *number* |
+| `_options?` | [*EnsureDirectoryOptions*](../interfaces/fs.ensuredirectoryoptions.md) |
 
 **Returns:** *Promise*<boolean\>
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [gcp.ts:64](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L64)
+Defined in: [gcp.ts:75](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L75)
 
 ___
 
@@ -171,7 +173,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [gcp.ts:69](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L69)
+Defined in: [gcp.ts:85](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L85)
 
 ___
 
@@ -187,7 +189,7 @@ ___
 
 **Returns:** *Bucket*
 
-Defined in: [gcp.ts:39](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L39)
+Defined in: [gcp.ts:50](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L50)
 
 ___
 
@@ -204,34 +206,55 @@ ___
 
 **Returns:** *File*
 
-Defined in: [gcp.ts:44](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L44)
+Defined in: [gcp.ts:55](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L55)
 
 ___
 
 ### getFileStatus
 
-▸ **getFileStatus**(`urlText`: *string*, `_getVersion?`: *boolean*): *Promise*<{ `inode`: *number* = 0; `modified`: *any* ; `size`: *any* ; `url`: *string* ; `version`: *any*  }\>
+▸ **getFileStatus**(`urlText`: *string*, `_options?`: [*GetFileStatusOptions*](../interfaces/fs.getfilestatusoptions.md)): *Promise*<{ `inode`: *number* = 0; `modified`: *any* ; `size`: *any* ; `url`: *string* ; `version`: *any*  }\>
 
 **`inheritdoc`**
 
 #### Parameters
 
-| Name | Type | Default value |
-| :------ | :------ | :------ |
-| `urlText` | *string* | - |
-| `_getVersion` | *boolean* | true |
+| Name | Type |
+| :------ | :------ |
+| `urlText` | *string* |
+| `_options?` | [*GetFileStatusOptions*](../interfaces/fs.getfilestatusoptions.md) |
 
 **Returns:** *Promise*<{ `inode`: *number* = 0; `modified`: *any* ; `size`: *any* ; `url`: *string* ; `version`: *any*  }\>
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [gcp.ts:76](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L76)
+Defined in: [gcp.ts:92](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L92)
+
+___
+
+### moveFile
+
+▸ **moveFile**(`_sourceUrlText`: *string*, `_destUrlText`: *string*): *Promise*<boolean\>
+
+**`inheritdoc`**
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `_sourceUrlText` | *string* |
+| `_destUrlText` | *string* |
+
+**Returns:** *Promise*<boolean\>
+
+Overrides: [FileSystem](fs.filesystem.md)
+
+Defined in: [gcp.ts:163](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L163)
 
 ___
 
 ### openReadableFile
 
-▸ **openReadableFile**(`url`: *string*, `version?`: *string* \| *number*): *Promise*<ReadableStreamTree\>
+▸ **openReadableFile**(`url`: *string*, `options?`: [*OpenReadableFileOptions*](../interfaces/fs.openreadablefileoptions.md)): *Promise*<ReadableStreamTree\>
 
 **`inheritdoc`**
 
@@ -240,19 +263,19 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `url` | *string* |
-| `version?` | *string* \| *number* |
+| `options?` | [*OpenReadableFileOptions*](../interfaces/fs.openreadablefileoptions.md) |
 
 **Returns:** *Promise*<ReadableStreamTree\>
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [gcp.ts:89](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L89)
+Defined in: [gcp.ts:105](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L105)
 
 ___
 
 ### openWritableFile
 
-▸ **openWritableFile**(`url`: *string*, `version?`: *string* \| *number*, `options?`: [*CreateOptions*](../interfaces/fs.createoptions.md)): *Promise*<WritableStreamTree\>
+▸ **openWritableFile**(`url`: *string*, `options?`: [*OpenWritableFileOptions*](../interfaces/fs.openwritablefileoptions.md)): *Promise*<WritableStreamTree\>
 
 **`inheritdoc`**
 
@@ -261,14 +284,13 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `url` | *string* |
-| `version?` | *string* \| *number* |
-| `options?` | [*CreateOptions*](../interfaces/fs.createoptions.md) |
+| `options?` | [*OpenWritableFileOptions*](../interfaces/fs.openwritablefileoptions.md) |
 
 **Returns:** *Promise*<WritableStreamTree\>
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [gcp.ts:99](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L99)
+Defined in: [gcp.ts:117](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L117)
 
 ___
 
@@ -291,7 +313,7 @@ Parse a `gs://bucket/file/name.txt` URL into `bucket` and `file/name.txt`.
 | `bucket` | *string* |
 | `filename` | *string* |
 
-Defined in: [gcp.ts:30](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L30)
+Defined in: [gcp.ts:41](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L41)
 
 ___
 
@@ -311,13 +333,13 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [gcp.ts:133](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L133)
+Defined in: [gcp.ts:149](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L149)
 
 ___
 
 ### readDirectory
 
-▸ **readDirectory**(`urlText`: *string*, `prefix?`: *string*): *Promise*<string[]\>
+▸ **readDirectory**(`urlText`: *string*, `options?`: [*ReadDirectoryOptions*](../interfaces/fs.readdirectoryoptions.md)): *Promise*<string[]\>
 
 **`inheritdoc`**
 
@@ -326,13 +348,33 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `urlText` | *string* |
-| `prefix?` | *string* |
+| `options?` | [*ReadDirectoryOptions*](../interfaces/fs.readdirectoryoptions.md) |
 
 **Returns:** *Promise*<string[]\>
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [gcp.ts:51](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L51)
+Defined in: [gcp.ts:62](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L62)
+
+___
+
+### removeDirectory
+
+▸ **removeDirectory**(`_urlText`: *string*): *Promise*<boolean\>
+
+**`inheritdoc`**
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `_urlText` | *string* |
+
+**Returns:** *Promise*<boolean\>
+
+Overrides: [FileSystem](fs.filesystem.md)
+
+Defined in: [gcp.ts:80](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L80)
 
 ___
 
@@ -352,13 +394,13 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [gcp.ts:127](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L127)
+Defined in: [gcp.ts:143](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L143)
 
 ___
 
 ### replaceFile
 
-▸ **replaceFile**(`urlText`: *string*, `writeCallback`: (`stream`: WritableStreamTree) => *Promise*<boolean\>, `createOptions?`: [*CreateOptions*](../interfaces/fs.createoptions.md), `version?`: *string* \| *number*): *Promise*<boolean\>
+▸ **replaceFile**(`urlText`: *string*, `writeCallback`: (`stream`: WritableStreamTree) => *Promise*<boolean\>, `options?`: [*ReplaceFileOptions*](../interfaces/fs.replacefileoptions.md)): *Promise*<boolean\>
 
 **`inheritdoc`**
 
@@ -368,11 +410,10 @@ ___
 | :------ | :------ |
 | `urlText` | *string* |
 | `writeCallback` | (`stream`: WritableStreamTree) => *Promise*<boolean\> |
-| `createOptions?` | [*CreateOptions*](../interfaces/fs.createoptions.md) |
-| `version?` | *string* \| *number* |
+| `options?` | [*ReplaceFileOptions*](../interfaces/fs.replacefileoptions.md) |
 
 **Returns:** *Promise*<boolean\>
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [gcp.ts:147](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L147)
+Defined in: [gcp.ts:168](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L168)

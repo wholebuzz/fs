@@ -3,7 +3,18 @@ import { Writable } from 'stream'
 import StreamTree, { WritableStreamTree } from 'tree-stream'
 import { v4 as uuidv4 } from 'uuid'
 
-import { AppendOptions, CreateOptions, FileStatus, FileSystem } from './fs'
+import {
+  AppendOptions,
+  CreateOptions,
+  EnsureDirectoryOptions,
+  FileStatus,
+  FileSystem,
+  GetFileStatusOptions,
+  OpenReadableFileOptions,
+  OpenWritableFileOptions,
+  ReadDirectoryOptions,
+  ReplaceFileOptions,
+} from './fs'
 import { logger, zlib } from './util'
 
 /**
@@ -48,12 +59,12 @@ export class GoogleCloudFileSystem extends FileSystem {
   }
 
   /** @inheritDoc */
-  async readDirectory(urlText: string, prefix?: string): Promise<string[]> {
+  async readDirectory(urlText: string, options?: ReadDirectoryOptions): Promise<string[]> {
     return new Promise((resolve, reject) => {
       const ret: string[] = []
       const bucket = this.getBucket(urlText)
       bucket
-        .getFilesStream({ prefix })
+        .getFilesStream({ prefix: options?.prefix })
         .on('error', reject)
         .on('data', (f: any) => ret.push(`gs://${bucket.name}/${f.name}`))
         .on('end', () => resolve(ret))
@@ -61,7 +72,7 @@ export class GoogleCloudFileSystem extends FileSystem {
   }
 
   /** @inheritDoc */
-  async ensureDirectory(_urlText: string, _mask?: number) {
+  async ensureDirectory(_urlText: string, _options?: EnsureDirectoryOptions) {
     return true
   }
 
@@ -78,7 +89,7 @@ export class GoogleCloudFileSystem extends FileSystem {
   }
 
   /** @inheritDoc */
-  async getFileStatus(urlText: string, _getVersion = true) {
+  async getFileStatus(urlText: string, _options?: GetFileStatusOptions) {
     const file = this.getFile(urlText)
     const metadata = await file.getMetadata()
     return {
@@ -91,18 +102,20 @@ export class GoogleCloudFileSystem extends FileSystem {
   }
 
   /** @inheritDoc */
-  async openReadableFile(url: string, version?: number | string) {
+  async openReadableFile(url: string, options?: OpenReadableFileOptions) {
     const gzipped = url.endsWith('.gz')
     let stream = StreamTree.readable(
-      this.getFile(url, version).createReadStream(gzipped ? { decompress: false } : undefined)
+      this.getFile(url, options?.version).createReadStream(
+        gzipped ? { decompress: false } : undefined
+      )
     )
     if (gzipped) stream = stream.pipe(zlib.createGunzip())
     return stream
   }
 
   /** @inheritDoc */
-  async openWritableFile(url: string, version?: number | string, options?: CreateOptions) {
-    let stream = StreamTree.writable(this.getFile(url, version).createWriteStream(options))
+  async openWritableFile(url: string, options?: OpenWritableFileOptions) {
+    let stream = StreamTree.writable(this.getFile(url, options?.version).createWriteStream(options))
     if (url.endsWith('.gz')) stream = stream.pipeFrom(zlib.createGzip())
     return stream
   }
@@ -113,15 +126,15 @@ export class GoogleCloudFileSystem extends FileSystem {
     createCallback = StreamTree.writer(async (stream: Writable) => {
       stream.end()
     }),
-    createOptions?: CreateOptions
+    options?: CreateOptions
   ) {
     try {
       const initialVersion = 0
       return await createCallback(
-        StreamTree.writable(this.getFile(urlText, initialVersion).createWriteStream(createOptions))
+        StreamTree.writable(this.getFile(urlText, initialVersion).createWriteStream(options))
       )
     } catch (err) {
-      if (createOptions?.debug) logger.debug('createFile', err)
+      if (options?.debug) logger.debug('createFile', err)
       return false
     }
   }
@@ -155,19 +168,18 @@ export class GoogleCloudFileSystem extends FileSystem {
   async replaceFile(
     urlText: string,
     writeCallback: (stream: WritableStreamTree) => Promise<boolean>,
-    createOptions?: CreateOptions,
-    version?: string | number
+    options?: ReplaceFileOptions
   ): Promise<boolean> {
     try {
-      if (version === 0 || (!version && !(await this.fileExists(urlText)))) {
-        const created = await this.createFile(urlText, writeCallback, createOptions)
+      if (options?.version === 0 || (!options?.version && !(await this.fileExists(urlText)))) {
+        const created = await this.createFile(urlText, writeCallback, options)
         if (created) return true
-        if (version === 0) return false
+        if (options?.version === 0) return false
       }
-      const replacedFile = this.getFile(urlText, version)
-      return await writeCallback(StreamTree.writable(replacedFile.createWriteStream(createOptions)))
+      const replacedFile = this.getFile(urlText, options?.version)
+      return await writeCallback(StreamTree.writable(replacedFile.createWriteStream(options)))
     } catch (err) {
-      if (createOptions?.debug) logger.debug('replaceGS', err)
+      if (options?.debug) logger.debug('replaceGS', err)
       return false
     }
   }

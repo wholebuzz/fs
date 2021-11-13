@@ -24,8 +24,8 @@ export interface FileStatus {
  */
 export interface CreateOptions {
   contentType?: string
-  gzip?: boolean | string
   debug?: boolean
+  gzip?: boolean | string
 }
 
 /**
@@ -37,6 +37,39 @@ export interface AppendOptions {
 }
 
 /**
+ * Options when opening a Readable file.
+ */
+export interface OpenReadableFileOptions {
+  extra?: Record<string, any>
+  query?: string
+  version?: string | number
+}
+
+/**
+ * Options when opening a Writable file.
+ */
+export interface OpenWritableFileOptions extends CreateOptions {
+  extra?: Record<string, any>
+  version?: string | number
+}
+
+export interface ReplaceFileOptions extends CreateOptions {
+  version?: string | number
+}
+
+export interface GetFileStatusOptions {
+  version?: boolean
+}
+
+export interface ReadDirectoryOptions {
+  prefix?: string
+}
+
+export interface EnsureDirectoryOptions {
+  mask?: number
+}
+
+/**
  * File system interface for atomic primitives enabling multiple readers and writers.
  */
 export abstract class FileSystem {
@@ -44,13 +77,13 @@ export abstract class FileSystem {
    * Returns the URLs of the files in a directory.
    * @param urlText The URL of the directory to list files in.
    */
-  abstract readDirectory(urlText: string, prefix?: string): Promise<string[]>
+  abstract readDirectory(urlText: string, options?: ReadDirectoryOptions): Promise<string[]>
 
   /**
    * Ensures the directory exists
    * @param urlText The URL of the directory.
    */
-  abstract ensureDirectory(urlText: string, mask?: number): Promise<boolean>
+  abstract ensureDirectory(urlText: string, options?: EnsureDirectoryOptions): Promise<boolean>
 
   /**
    * Removes the directory
@@ -68,14 +101,17 @@ export abstract class FileSystem {
    * Determines the file status. The file version is used to implement atomic mutations.
    * @param urlText The URL of the file to retrieve the status for.
    */
-  abstract getFileStatus(urlText: string, getVersion?: boolean): Promise<FileStatus>
+  abstract getFileStatus(urlText: string, options?: GetFileStatusOptions): Promise<FileStatus>
 
   /**
    * Opens a file for reading.
    * @param url The URL of the file to read from.
    * @optional version Fails if version doesn't match for GCS URLs.
    */
-  abstract openReadableFile(url: string, version?: number | string): Promise<ReadableStreamTree>
+  abstract openReadableFile(
+    url: string,
+    options?: OpenReadableFileOptions
+  ): Promise<ReadableStreamTree>
 
   /**
    * Opens a file for writing.
@@ -84,8 +120,7 @@ export abstract class FileSystem {
    */
   abstract openWritableFile(
     url: string,
-    version?: number | string,
-    options?: CreateOptions
+    options?: OpenWritableFileOptions
   ): Promise<WritableStreamTree>
 
   /**
@@ -97,7 +132,7 @@ export abstract class FileSystem {
   abstract createFile(
     urlText: string,
     createCallback?: (stream: WritableStreamTree) => Promise<boolean>,
-    createOptions?: CreateOptions
+    options?: CreateOptions
   ): Promise<boolean>
 
   /**
@@ -136,8 +171,7 @@ export abstract class FileSystem {
   abstract replaceFile(
     urlText: string,
     writeCallback: (stream: WritableStreamTree) => Promise<boolean>,
-    createOptions?: CreateOptions,
-    version?: string | number
+    options?: ReplaceFileOptions
   ): Promise<boolean>
 
   /**
@@ -180,13 +214,13 @@ export class AnyFileSystem extends FileSystem {
   }
 
   /** @inheritDoc */
-  async readDirectory(urlText: string, prefix?: string) {
-    return this.getFs(urlText).readDirectory(urlText, prefix)
+  async readDirectory(urlText: string, options?: ReadDirectoryOptions) {
+    return this.getFs(urlText).readDirectory(urlText, options)
   }
 
   /** @inheritDoc */
-  async ensureDirectory(urlText: string, mask?: number) {
-    return this.getFs(urlText).ensureDirectory(urlText, mask)
+  async ensureDirectory(urlText: string, options?: EnsureDirectoryOptions) {
+    return this.getFs(urlText).ensureDirectory(urlText, options)
   }
 
   /** @inheritDoc */
@@ -200,27 +234,27 @@ export class AnyFileSystem extends FileSystem {
   }
 
   /** @inheritDoc */
-  async getFileStatus(urlText: string, getVersion = true) {
-    return this.getFs(urlText).getFileStatus(urlText, getVersion)
+  async getFileStatus(urlText: string, options?: GetFileStatusOptions) {
+    return this.getFs(urlText).getFileStatus(urlText, options)
   }
 
   /** @inheritDoc */
-  async openReadableFile(url: string, version?: number | string) {
-    return this.getFs(url).openReadableFile(url, version)
+  async openReadableFile(url: string, options?: OpenReadableFileOptions) {
+    return this.getFs(url).openReadableFile(url, options)
   }
 
   /** @inheritDoc */
-  async openWritableFile(url: string, version?: number | string, options?: CreateOptions) {
-    return this.getFs(url).openWritableFile(url, version, options)
+  async openWritableFile(url: string, options?: OpenWritableFileOptions) {
+    return this.getFs(url).openWritableFile(url, options)
   }
 
   /** @inheritDoc */
   async createFile(
     urlText: string,
     createCallback?: (stream: WritableStreamTree) => Promise<boolean>,
-    createOptions?: CreateOptions
+    options?: CreateOptions
   ) {
-    return this.getFs(urlText).createFile(urlText, createCallback, createOptions)
+    return this.getFs(urlText).createFile(urlText, createCallback, options)
   }
 
   /** @inheritDoc */
@@ -247,10 +281,9 @@ export class AnyFileSystem extends FileSystem {
   async replaceFile(
     urlText: string,
     writeCallback: (stream: WritableStreamTree) => Promise<boolean>,
-    createOptions?: CreateOptions,
-    version?: string | number
+    options?: ReplaceFileOptions
   ): Promise<boolean> {
-    return this.getFs(urlText).replaceFile(urlText, writeCallback, createOptions, version)
+    return this.getFs(urlText).replaceFile(urlText, writeCallback, options)
   }
 
   /** @inheritDoc */

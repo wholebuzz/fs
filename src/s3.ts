@@ -1,8 +1,18 @@
 import * as AWS from 'aws-sdk'
-import { Writable } from 'stream'
 import StreamTree, { WritableStreamTree } from 'tree-stream'
 
-import { AppendOptions, CreateOptions, FileStatus, FileSystem } from './fs'
+import {
+  AppendOptions,
+  CreateOptions,
+  EnsureDirectoryOptions,
+  FileStatus,
+  FileSystem,
+  GetFileStatusOptions,
+  OpenReadableFileOptions,
+  OpenWritableFileOptions,
+  ReadDirectoryOptions,
+  ReplaceFileOptions,
+} from './fs'
 import { logger, zlib } from './util'
 
 const UploadStream = require('s3-stream-upload')
@@ -40,12 +50,12 @@ export class S3FileSystem extends FileSystem {
   }
 
   /** @inheritDoc */
-  async readDirectory(urlText: string, prefix?: string): Promise<string[]> {
+  async readDirectory(urlText: string, options?: ReadDirectoryOptions): Promise<string[]> {
     return new Promise((resolve, reject) => {
       const ret: string[] = []
       const url = this.parseUrl(urlText)
       this.s3.listObjectsV2(
-        { Bucket: url.Bucket, Prefix: prefix },
+        { Bucket: url.Bucket, Prefix: options?.prefix },
         (err: AWS.AWSError, data: AWS.S3.Types.ListObjectsOutput) => {
           if (err) {
             reject(err)
@@ -61,7 +71,7 @@ export class S3FileSystem extends FileSystem {
   }
 
   /** @inheritDoc */
-  async ensureDirectory(_urlText: string, _mask?: number) {
+  async ensureDirectory(_urlText: string, _options?: EnsureDirectoryOptions) {
     return true
   }
 
@@ -88,7 +98,7 @@ export class S3FileSystem extends FileSystem {
   }
 
   /** @inheritDoc */
-  async getFileStatus(urlText: string, _getVersion = true) {
+  async getFileStatus(urlText: string, _options?: GetFileStatusOptions) {
     const url = this.parseUrl(urlText)
     const status = await this.s3.headObject(url).promise()
     return {
@@ -101,17 +111,52 @@ export class S3FileSystem extends FileSystem {
   }
 
   /** @inheritDoc */
-  async openReadableFile(urlText: string, version?: number | string) {
+  async openReadableFile(urlText: string, options?: OpenReadableFileOptions) {
     const gzipped = urlText.endsWith('.gz')
-    const url = { ...this.parseUrl(urlText), IfMatch: version?.toString() }
-    let stream = StreamTree.readable(this.s3.getObject(url).createReadStream())
-    if (gzipped) stream = stream.pipe(zlib.createGunzip())
-    return stream
+    if (options?.query) {
+      const formatSuffix = gzipped ? urlText.substring(0, urlText.length - 3) : urlText
+      const inputSerialization: Record<string, any> = {
+        CompressionType: gzipped ? 'GZIP' : 'NONE',
+      }
+      let isJson = false
+      if (formatSuffix.endsWith('.csv')) {
+        inputSerialization.CSV = {}
+      } else if (formatSuffix.endsWith('.parquet')) {
+        inputSerialization.Parquet = {}
+      } else if (formatSuffix.endsWith('.jsonl') || formatSuffix.endsWith('.ndjson')) {
+        inputSerialization.JSON = {
+          Type: 'LINES',
+        }
+      } else {
+        inputSerialization.JSON = {
+          Type: 'DOCUMENT',
+        }
+        isJson = true
+      }
+      const url = {
+        ...this.parseUrl(urlText),
+        Expression: options.query,
+        ExpressionType: 'SQL',
+        InputSerialization: inputSerialization,
+        OutputSerialization: options.extra?.OutputSerialization ?? {
+          JSON: {
+            RecordDelimiter: isJson ? ',' : '\n',
+          },
+        },
+        ...options.extra,
+      }
+      return StreamTree.readable(this.s3.selectObjectContent(url).createReadStream())
+    } else {
+      const url = { ...this.parseUrl(urlText), IfMatch: options?.version?.toString() }
+      let stream = StreamTree.readable(this.s3.getObject(url).createReadStream())
+      if (gzipped) stream = stream.pipe(zlib.createGunzip())
+      return stream
+    }
   }
 
   /** @inheritDoc */
-  async openWritableFile(urlText: string, version?: number | string, _options?: CreateOptions) {
-    const url = { ...this.parseUrl(urlText), Version: version }
+  async openWritableFile(urlText: string, options?: OpenWritableFileOptions) {
+    const url = { ...this.parseUrl(urlText), Version: options?.version }
     let stream = StreamTree.writable(UploadStream(this.s3, url))
     if (urlText.endsWith('.gz')) {
       stream = stream.pipeFrom(zlib.createGzip())
@@ -122,10 +167,8 @@ export class S3FileSystem extends FileSystem {
   /** @inheritDoc */
   async createFile(
     _urlText: string,
-    _createCallback = StreamTree.writer(async (stream: Writable) => {
-      stream.end()
-    }),
-    _createOptions?: CreateOptions
+    _createCallback?: (stream: WritableStreamTree) => Promise<boolean>,
+    _options?: CreateOptions
   ) {
     return false
   }
@@ -170,8 +213,7 @@ export class S3FileSystem extends FileSystem {
   async replaceFile(
     _urlText: string,
     _writeCallback: (stream: WritableStreamTree) => Promise<boolean>,
-    _createOptions?: CreateOptions,
-    _version?: string | number
+    _options?: ReplaceFileOptions
   ): Promise<boolean> {
     return false
   }

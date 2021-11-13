@@ -1,8 +1,19 @@
 import axios from 'axios'
-import { PassThrough, Writable } from 'stream'
+import { PassThrough } from 'stream'
 import StreamTree, { WritableStreamTree } from 'tree-stream'
 
-import { AppendOptions, CreateOptions, FileStatus, FileSystem } from './fs'
+import {
+  AppendOptions,
+  CreateOptions,
+  EnsureDirectoryOptions,
+  FileStatus,
+  FileSystem,
+  GetFileStatusOptions,
+  OpenReadableFileOptions,
+  OpenWritableFileOptions,
+  ReadDirectoryOptions,
+  ReplaceFileOptions,
+} from './fs'
 import { zlib } from './util'
 
 /**
@@ -14,12 +25,12 @@ export class HTTPFileSystem extends FileSystem {
   }
 
   /** @inheritDoc */
-  async readDirectory(_urlText: string, _prefix?: string): Promise<string[]> {
+  async readDirectory(_urlText: string, _options?: ReadDirectoryOptions): Promise<string[]> {
     return []
   }
 
   /** @inheritDoc */
-  async ensureDirectory(_urlText: string, _mask?: number) {
+  async ensureDirectory(_urlText: string, _options?: EnsureDirectoryOptions) {
     return true
   }
 
@@ -39,7 +50,7 @@ export class HTTPFileSystem extends FileSystem {
   }
 
   /** @inheritDoc */
-  async getFileStatus(url: string, _getVersion = true) {
+  async getFileStatus(url: string, _options?: GetFileStatusOptions) {
     const res = await axios({ ...this.options, url, method: 'head' })
     return {
       url,
@@ -51,7 +62,7 @@ export class HTTPFileSystem extends FileSystem {
   }
 
   /** @inheritDoc */
-  async openReadableFile(url: string, _version?: number | string) {
+  async openReadableFile(url: string, _options: OpenReadableFileOptions) {
     const headers = { 'Accept-Encoding': 'gzip', ...this.options?.headers }
     const res = await axios({
       ...this.options,
@@ -68,7 +79,7 @@ export class HTTPFileSystem extends FileSystem {
   }
 
   /** @inheritDoc */
-  async openWritableFile(url: string, _version?: number | string, options?: CreateOptions) {
+  async openWritableFile(url: string, options?: OpenWritableFileOptions) {
     const passThrough = new PassThrough()
     const headers = { ...this.options?.headers }
     if (options?.contentType) headers['Content-Type'] = options.contentType
@@ -81,10 +92,8 @@ export class HTTPFileSystem extends FileSystem {
   /** @inheritDoc */
   async createFile(
     _urlText: string,
-    _createCallback = StreamTree.writer(async (stream: Writable) => {
-      stream.end()
-    }),
-    _createOptions?: CreateOptions
+    _createCallback?: (stream: WritableStreamTree) => Promise<boolean>,
+    _options?: CreateOptions
   ) {
     return false
   }
@@ -118,8 +127,7 @@ export class HTTPFileSystem extends FileSystem {
   async replaceFile(
     _urlText: string,
     _writeCallback: (stream: WritableStreamTree) => Promise<boolean>,
-    _createOptions?: CreateOptions,
-    _version?: string | number
+    _options?: ReplaceFileOptions
   ): Promise<boolean> {
     return false
   }

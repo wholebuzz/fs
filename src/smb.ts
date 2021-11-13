@@ -1,8 +1,18 @@
 import SMB2 from '@marsaud/smb2'
-import { Writable } from 'stream'
 import StreamTree, { WritableStreamTree } from 'tree-stream'
 
-import { AppendOptions, CreateOptions, FileStatus, FileSystem } from './fs'
+import {
+  AppendOptions,
+  CreateOptions,
+  EnsureDirectoryOptions,
+  FileStatus,
+  FileSystem,
+  GetFileStatusOptions,
+  OpenReadableFileOptions,
+  OpenWritableFileOptions,
+  ReadDirectoryOptions,
+  ReplaceFileOptions,
+} from './fs'
 import { zlib } from './util'
 
 /**
@@ -31,13 +41,13 @@ export class SMBFileSystem extends FileSystem {
   }
 
   /** @inheritDoc */
-  async readDirectory(url: string, _prefix?: string): Promise<string[]> {
+  async readDirectory(url: string, _options?: ReadDirectoryOptions): Promise<string[]> {
     return this.smb2.readdir(this.parseUrl(url))
   }
 
   /** @inheritDoc */
-  async ensureDirectory(url: string, mask?: number) {
-    await this.smb2.mkdir(this.parseUrl(url), mask)
+  async ensureDirectory(url: string, options?: EnsureDirectoryOptions) {
+    await this.smb2.mkdir(this.parseUrl(url), options?.mask)
     return true
   }
 
@@ -58,7 +68,7 @@ export class SMBFileSystem extends FileSystem {
   }
 
   /** @inheritDoc */
-  async getFileStatus(url: string, _getVersion = true) {
+  async getFileStatus(url: string, _options?: GetFileStatusOptions) {
     const res = await this.smb2.stat(this.parseUrl(url))
     return {
       url,
@@ -70,7 +80,7 @@ export class SMBFileSystem extends FileSystem {
   }
 
   /** @inheritDoc */
-  async openReadableFile(url: string, _version?: number | string) {
+  async openReadableFile(url: string, _options?: OpenReadableFileOptions) {
     const gzipped = url.endsWith('.gz')
     let stream = StreamTree.readable(await this.smb2.createReadStream(this.parseUrl(url)))
     if (gzipped) stream = stream.pipe(zlib.createGunzip())
@@ -78,7 +88,7 @@ export class SMBFileSystem extends FileSystem {
   }
 
   /** @inheritDoc */
-  async openWritableFile(url: string, _version?: number | string, _options?: CreateOptions) {
+  async openWritableFile(url: string, _options?: OpenWritableFileOptions) {
     let stream = StreamTree.writable(await this.smb2.createWriteStream(this.parseUrl(url)))
     if (url.endsWith('.gz')) stream = stream.pipeFrom(zlib.createGzip())
     return stream
@@ -87,10 +97,8 @@ export class SMBFileSystem extends FileSystem {
   /** @inheritDoc */
   async createFile(
     _urlText: string,
-    _createCallback = StreamTree.writer(async (stream: Writable) => {
-      stream.end()
-    }),
-    _createOptions?: CreateOptions
+    _createCallback?: (stream: WritableStreamTree) => Promise<boolean>,
+    _options?: CreateOptions
   ) {
     return false
   }
@@ -121,8 +129,7 @@ export class SMBFileSystem extends FileSystem {
   async replaceFile(
     _urlText: string,
     _writeCallback: (stream: WritableStreamTree) => Promise<boolean>,
-    _createOptions?: CreateOptions,
-    _version?: string | number
+    _options?: ReplaceFileOptions
   ): Promise<boolean> {
     return false
   }

@@ -6,6 +6,14 @@
 
 Options for creating a file.
 
+## Hierarchy
+
+- **CreateOptions**
+
+  ↳ [*OpenWritableFileOptions*](fs.openwritablefileoptions.md)
+
+  ↳ [*ReplaceFileOptions*](fs.replacefileoptions.md)
+
 ## Table of contents
 
 ### Properties
@@ -20,7 +28,7 @@ Options for creating a file.
 
 • `Optional` **contentType**: *string*
 
-Defined in: [fs.ts:45](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L45)
+Defined in: [fs.ts:26](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L26)
 
 ___
 
@@ -28,7 +36,7 @@ ___
 
 • `Optional` **debug**: *boolean*
 
-Defined in: [fs.ts:47](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L47)
+Defined in: [fs.ts:27](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L27)
 
 ___
 
@@ -36,4 +44,4 @@ ___
 
 • `Optional` **gzip**: *string* \| *boolean*
 
-Defined in: [fs.ts:46](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L46)
+Defined in: [fs.ts:28](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L28)

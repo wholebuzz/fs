@@ -1,9 +1,20 @@
 import { DefaultAzureCredential } from '@azure/identity'
 import { BlobServiceClient } from '@azure/storage-blob'
-import { PassThrough, Readable, Writable } from 'stream'
+import { PassThrough, Readable } from 'stream'
 import StreamTree, { WritableStreamTree } from 'tree-stream'
 
-import { AppendOptions, CreateOptions, FileStatus, FileSystem } from './fs'
+import {
+  AppendOptions,
+  CreateOptions,
+  EnsureDirectoryOptions,
+  FileStatus,
+  FileSystem,
+  GetFileStatusOptions,
+  OpenReadableFileOptions,
+  OpenWritableFileOptions,
+  ReadDirectoryOptions,
+  ReplaceFileOptions,
+} from './fs'
 import { zlib } from './util'
 
 /**
@@ -35,12 +46,12 @@ export class AzureBlobStorageFileSystem extends FileSystem {
   }
 
   /** @inheritDoc */
-  async readDirectory(_urlText: string, _prefix?: string): Promise<string[]> {
+  async readDirectory(_urlText: string, _options?: ReadDirectoryOptions): Promise<string[]> {
     return []
   }
 
   /** @inheritDoc */
-  async ensureDirectory(_urlText: string, _mask?: number) {
+  async ensureDirectory(_urlText: string, _options?: EnsureDirectoryOptions) {
     return true
   }
 
@@ -55,7 +66,7 @@ export class AzureBlobStorageFileSystem extends FileSystem {
   }
 
   /** @inheritDoc */
-  async getFileStatus(url: string, _getVersion = true) {
+  async getFileStatus(url: string, _options?: GetFileStatusOptions) {
     return {
       url,
       modified: new Date(),
@@ -66,7 +77,7 @@ export class AzureBlobStorageFileSystem extends FileSystem {
   }
 
   /** @inheritDoc */
-  async openReadableFile(urlText: string, _version?: number | string) {
+  async openReadableFile(urlText: string, _options: OpenReadableFileOptions) {
     const url = this.parseUrl(urlText)
     const containerClient = this.blobServiceClient.getContainerClient(url.containerName)
     const blobClient = await containerClient.getBlobClient(url.blobName)
@@ -80,7 +91,7 @@ export class AzureBlobStorageFileSystem extends FileSystem {
   }
 
   /** @inheritDoc */
-  async openWritableFile(urlText: string, _version?: number | string, _options?: CreateOptions) {
+  async openWritableFile(urlText: string, _options?: OpenWritableFileOptions) {
     const url = this.parseUrl(urlText)
     const containerClient = this.blobServiceClient.getContainerClient(url.containerName)
     const blobClient = await containerClient.getBlockBlobClient(url.blobName)
@@ -94,10 +105,8 @@ export class AzureBlobStorageFileSystem extends FileSystem {
   /** @inheritDoc */
   async createFile(
     _urlText: string,
-    _createCallback = StreamTree.writer(async (stream: Writable) => {
-      stream.end()
-    }),
-    _createOptions?: CreateOptions
+    _createCallback?: (stream: WritableStreamTree) => Promise<boolean>,
+    _options?: CreateOptions
   ) {
     return false
   }
@@ -126,8 +135,7 @@ export class AzureBlobStorageFileSystem extends FileSystem {
   async replaceFile(
     _urlText: string,
     _writeCallback: (stream: WritableStreamTree) => Promise<boolean>,
-    _createOptions?: CreateOptions,
-    _version?: string | number
+    _options?: ReplaceFileOptions
   ): Promise<boolean> {
     return false
   }
