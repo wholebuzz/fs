@@ -89,8 +89,13 @@ export class LocalFileSystem extends FileSystem {
   }
 
   /** @inheritDoc */
-  async openReadableFile(url: string, _options?: OpenReadableFileOptions) {
-    let stream = StreamTree.readable(fs.createReadStream(url))
+  async openReadableFile(url: string, options?: OpenReadableFileOptions) {
+    let stream = StreamTree.readable(
+      fs.createReadStream(url, {
+        start: options?.byteOffset,
+        end: options?.byteLength ? (options?.byteOffset ?? 0) + options.byteLength - 1 : undefined,
+      })
+    )
     if (url.endsWith('.gz')) stream = stream.pipe(zlib.createGunzip())
     return stream
   }

@@ -80,9 +80,14 @@ export class SMBFileSystem extends FileSystem {
   }
 
   /** @inheritDoc */
-  async openReadableFile(url: string, _options?: OpenReadableFileOptions) {
+  async openReadableFile(url: string, options?: OpenReadableFileOptions) {
     const gzipped = url.endsWith('.gz')
-    let stream = StreamTree.readable(await this.smb2.createReadStream(this.parseUrl(url)))
+    let stream = StreamTree.readable(
+      await this.smb2.createReadStream(this.parseUrl(url), {
+        start: options?.byteOffset,
+        end: options?.byteLength ? (options?.byteOffset ?? 0) + options.byteLength - 1 : undefined,
+      })
+    )
     if (gzipped) stream = stream.pipe(zlib.createGunzip())
     return stream
   }

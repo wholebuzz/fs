@@ -44,6 +44,8 @@ export interface AppendOptions {
  * Options when opening a Readable file.
  */
 export interface OpenReadableFileOptions {
+  byteOffset?: number
+  byteLength?: number
   extra?: Record<string, any>
   query?: string
   version?: string | number

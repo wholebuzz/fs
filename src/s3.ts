@@ -154,7 +154,15 @@ export class S3FileSystem extends FileSystem {
       }
       return StreamTree.readable(this.s3.selectObjectContent(url).createReadStream())
     } else {
-      const url = { ...this.parseUrl(urlText), IfMatch: options?.version?.toString() }
+      const url = {
+        ...this.parseUrl(urlText),
+        IfMatch: options?.version?.toString(),
+        Range:
+          options?.byteOffset != null && options.byteLength != null
+            ? `bytes=${options.byteOffset}-${options.byteOffset + options.byteLength - 1}`
+            : undefined,
+        ...options?.extra,
+      }
       let stream = StreamTree.readable(this.s3.getObject(url).createReadStream())
       if (gzipped) stream = stream.pipe(zlib.createGunzip())
       return stream

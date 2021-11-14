@@ -77,11 +77,14 @@ export class AzureBlobStorageFileSystem extends FileSystem {
   }
 
   /** @inheritDoc */
-  async openReadableFile(urlText: string, _options: OpenReadableFileOptions) {
+  async openReadableFile(urlText: string, options: OpenReadableFileOptions) {
     const url = this.parseUrl(urlText)
     const containerClient = this.blobServiceClient.getContainerClient(url.containerName)
     const blobClient = await containerClient.getBlobClient(url.blobName)
-    const downloadBlockBlobResponse = await blobClient.download()
+    const downloadBlockBlobResponse = await blobClient.download(
+      options?.byteOffset,
+      options?.byteLength
+    )
     if (!downloadBlockBlobResponse.readableStreamBody) throw new Error('Open failed')
     const readable = new Readable()
     downloadBlockBlobResponse.readableStreamBody.wrap(readable)

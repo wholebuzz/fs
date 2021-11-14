@@ -1,67 +1,85 @@
-[@wholebuzz/fs](../README.md) / [Exports](../modules.md) / [http](../modules/http.md) / HTTPFileSystem
+[@wholebuzz/fs](../README.md) / [Exports](../modules.md) / [azure-blob](../modules/azure_blob.md) / AzureBlobStorageFileSystem
 
-# Class: HTTPFileSystem
+# Class: AzureBlobStorageFileSystem
 
-[http](../modules/http.md).HTTPFileSystem
+[azure-blob](../modules/azure_blob.md).AzureBlobStorageFileSystem
 
-HTTP [FileSystem](fs.filesystem.md) implemented with `axios`.
+Azure Blob Storage [FileSystem](fs.filesystem.md) implemented with `@azure/storage-blob`.
 
 ## Hierarchy
 
 - [*FileSystem*](fs.filesystem.md)
 
-  ↳ **HTTPFileSystem**
+  ↳ **AzureBlobStorageFileSystem**
 
 ## Table of contents
 
 ### Constructors
 
-- [constructor](http.httpfilesystem.md#constructor)
+- [constructor](azure_blob.azureblobstoragefilesystem.md#constructor)
 
 ### Properties
 
-- [options](http.httpfilesystem.md#options)
+- [account](azure_blob.azureblobstoragefilesystem.md#account)
+- [blobServiceClient](azure_blob.azureblobstoragefilesystem.md#blobserviceclient)
+- [urlPrefix](azure_blob.azureblobstoragefilesystem.md#urlprefix)
 
 ### Methods
 
-- [appendToFile](http.httpfilesystem.md#appendtofile)
-- [copyFile](http.httpfilesystem.md#copyfile)
-- [createFile](http.httpfilesystem.md#createfile)
-- [ensureDirectory](http.httpfilesystem.md#ensuredirectory)
-- [fileExists](http.httpfilesystem.md#fileexists)
-- [getFileStatus](http.httpfilesystem.md#getfilestatus)
-- [moveFile](http.httpfilesystem.md#movefile)
-- [openReadableFile](http.httpfilesystem.md#openreadablefile)
-- [openWritableFile](http.httpfilesystem.md#openwritablefile)
-- [queueRemoveFile](http.httpfilesystem.md#queueremovefile)
-- [readDirectory](http.httpfilesystem.md#readdirectory)
-- [removeDirectory](http.httpfilesystem.md#removedirectory)
-- [removeFile](http.httpfilesystem.md#removefile)
-- [replaceFile](http.httpfilesystem.md#replacefile)
+- [appendToFile](azure_blob.azureblobstoragefilesystem.md#appendtofile)
+- [copyFile](azure_blob.azureblobstoragefilesystem.md#copyfile)
+- [createFile](azure_blob.azureblobstoragefilesystem.md#createfile)
+- [ensureDirectory](azure_blob.azureblobstoragefilesystem.md#ensuredirectory)
+- [fileExists](azure_blob.azureblobstoragefilesystem.md#fileexists)
+- [getFileStatus](azure_blob.azureblobstoragefilesystem.md#getfilestatus)
+- [moveFile](azure_blob.azureblobstoragefilesystem.md#movefile)
+- [openReadableFile](azure_blob.azureblobstoragefilesystem.md#openreadablefile)
+- [openWritableFile](azure_blob.azureblobstoragefilesystem.md#openwritablefile)
+- [parseUrl](azure_blob.azureblobstoragefilesystem.md#parseurl)
+- [queueRemoveFile](azure_blob.azureblobstoragefilesystem.md#queueremovefile)
+- [readDirectory](azure_blob.azureblobstoragefilesystem.md#readdirectory)
+- [removeDirectory](azure_blob.azureblobstoragefilesystem.md#removedirectory)
+- [removeFile](azure_blob.azureblobstoragefilesystem.md#removefile)
+- [replaceFile](azure_blob.azureblobstoragefilesystem.md#replacefile)
 
 ## Constructors
 
 ### constructor
 
-\+ **new HTTPFileSystem**(`options?`: *Record*<string, any\>): [*HTTPFileSystem*](http.httpfilesystem.md)
+\+ **new AzureBlobStorageFileSystem**(`urlPrefix`: *string*, `account`: *string*): [*AzureBlobStorageFileSystem*](azure_blob.azureblobstoragefilesystem.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `options?` | *Record*<string, any\> |
+| `urlPrefix` | *string* |
+| `account` | *string* |
 
-**Returns:** [*HTTPFileSystem*](http.httpfilesystem.md)
+**Returns:** [*AzureBlobStorageFileSystem*](azure_blob.azureblobstoragefilesystem.md)
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [http.ts:22](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L22)
+Defined in: [azure-blob.ts:24](https://github.com/wholebuzz/fs/blob/master/src/azure-blob.ts#L24)
 
 ## Properties
 
-### options
+### account
 
-• `Optional` **options**: *Record*<string, any\>
+• **account**: *string*
+
+___
+
+### blobServiceClient
+
+• **blobServiceClient**: *BlobServiceClient*
+
+Defined in: [azure-blob.ts:24](https://github.com/wholebuzz/fs/blob/master/src/azure-blob.ts#L24)
+
+___
+
+### urlPrefix
+
+• **urlPrefix**: *string*
 
 ## Methods
 
@@ -85,7 +103,7 @@ Defined in: [http.ts:22](https://github.com/wholebuzz/fs/blob/master/src/http.ts
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [http.ts:140](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L140)
+Defined in: [azure-blob.ts:147](https://github.com/wholebuzz/fs/blob/master/src/azure-blob.ts#L147)
 
 ___
 
@@ -106,7 +124,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [http.ts:121](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L121)
+Defined in: [azure-blob.ts:128](https://github.com/wholebuzz/fs/blob/master/src/azure-blob.ts#L128)
 
 ___
 
@@ -128,7 +146,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [http.ts:97](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L97)
+Defined in: [azure-blob.ts:109](https://github.com/wholebuzz/fs/blob/master/src/azure-blob.ts#L109)
 
 ___
 
@@ -149,13 +167,13 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [http.ts:33](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L33)
+Defined in: [azure-blob.ts:54](https://github.com/wholebuzz/fs/blob/master/src/azure-blob.ts#L54)
 
 ___
 
 ### fileExists
 
-▸ **fileExists**(`url`: *string*): *Promise*<boolean\>
+▸ **fileExists**(`_url`: *string*): *Promise*<boolean\>
 
 **`inheritdoc`**
 
@@ -163,19 +181,19 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `url` | *string* |
+| `_url` | *string* |
 
 **Returns:** *Promise*<boolean\>
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [http.ts:43](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L43)
+Defined in: [azure-blob.ts:64](https://github.com/wholebuzz/fs/blob/master/src/azure-blob.ts#L64)
 
 ___
 
 ### getFileStatus
 
-▸ **getFileStatus**(`url`: *string*, `_options?`: [*GetFileStatusOptions*](../interfaces/fs.getfilestatusoptions.md)): *Promise*<{ `inode`: *number* = 0; `modified`: Date ; `size`: *any* ; `url`: *string* ; `version`: *number* = 0 }\>
+▸ **getFileStatus**(`url`: *string*, `_options?`: [*GetFileStatusOptions*](../interfaces/fs.getfilestatusoptions.md)): *Promise*<{ `inode`: *number* = 0; `modified`: Date ; `size`: *number* = 0; `url`: *string* ; `version`: *number* = 0 }\>
 
 **`inheritdoc`**
 
@@ -186,11 +204,11 @@ ___
 | `url` | *string* |
 | `_options?` | [*GetFileStatusOptions*](../interfaces/fs.getfilestatusoptions.md) |
 
-**Returns:** *Promise*<{ `inode`: *number* = 0; `modified`: Date ; `size`: *any* ; `url`: *string* ; `version`: *number* = 0 }\>
+**Returns:** *Promise*<{ `inode`: *number* = 0; `modified`: Date ; `size`: *number* = 0; `url`: *string* ; `version`: *number* = 0 }\>
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [http.ts:53](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L53)
+Defined in: [azure-blob.ts:69](https://github.com/wholebuzz/fs/blob/master/src/azure-blob.ts#L69)
 
 ___
 
@@ -211,13 +229,13 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [http.ts:126](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L126)
+Defined in: [azure-blob.ts:133](https://github.com/wholebuzz/fs/blob/master/src/azure-blob.ts#L133)
 
 ___
 
 ### openReadableFile
 
-▸ **openReadableFile**(`url`: *string*, `options`: [*OpenReadableFileOptions*](../interfaces/fs.openreadablefileoptions.md)): *Promise*<ReadableStreamTree\>
+▸ **openReadableFile**(`urlText`: *string*, `options`: [*OpenReadableFileOptions*](../interfaces/fs.openreadablefileoptions.md)): *Promise*<ReadableStreamTree\>
 
 **`inheritdoc`**
 
@@ -225,20 +243,20 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `url` | *string* |
+| `urlText` | *string* |
 | `options` | [*OpenReadableFileOptions*](../interfaces/fs.openreadablefileoptions.md) |
 
 **Returns:** *Promise*<ReadableStreamTree\>
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [http.ts:65](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L65)
+Defined in: [azure-blob.ts:80](https://github.com/wholebuzz/fs/blob/master/src/azure-blob.ts#L80)
 
 ___
 
 ### openWritableFile
 
-▸ **openWritableFile**(`url`: *string*, `options?`: [*OpenWritableFileOptions*](../interfaces/fs.openwritablefileoptions.md)): *Promise*<WritableStreamTree\>
+▸ **openWritableFile**(`urlText`: *string*, `_options?`: [*OpenWritableFileOptions*](../interfaces/fs.openwritablefileoptions.md)): *Promise*<WritableStreamTree\>
 
 **`inheritdoc`**
 
@@ -246,14 +264,37 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `url` | *string* |
-| `options?` | [*OpenWritableFileOptions*](../interfaces/fs.openwritablefileoptions.md) |
+| `urlText` | *string* |
+| `_options?` | [*OpenWritableFileOptions*](../interfaces/fs.openwritablefileoptions.md) |
 
 **Returns:** *Promise*<WritableStreamTree\>
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [http.ts:86](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L86)
+Defined in: [azure-blob.ts:97](https://github.com/wholebuzz/fs/blob/master/src/azure-blob.ts#L97)
+
+___
+
+### parseUrl
+
+▸ **parseUrl**(`url`: *string*): *object*
+
+Parse an `azure-blob://bucket/file/name.txt` URL into `bucket` and `file/name.txt`.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `url` | *string* | The URL to parse. |
+
+**Returns:** *object*
+
+| Name | Type |
+| :------ | :------ |
+| `blobName` | *string* |
+| `containerName` | *string* |
+
+Defined in: [azure-blob.ts:39](https://github.com/wholebuzz/fs/blob/master/src/azure-blob.ts#L39)
 
 ___
 
@@ -273,7 +314,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [http.ts:116](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L116)
+Defined in: [azure-blob.ts:123](https://github.com/wholebuzz/fs/blob/master/src/azure-blob.ts#L123)
 
 ___
 
@@ -294,7 +335,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [http.ts:28](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L28)
+Defined in: [azure-blob.ts:49](https://github.com/wholebuzz/fs/blob/master/src/azure-blob.ts#L49)
 
 ___
 
@@ -314,13 +355,13 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [http.ts:38](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L38)
+Defined in: [azure-blob.ts:59](https://github.com/wholebuzz/fs/blob/master/src/azure-blob.ts#L59)
 
 ___
 
 ### removeFile
 
-▸ **removeFile**(`url`: *string*): *Promise*<boolean\>
+▸ **removeFile**(`_url`: *string*): *Promise*<boolean\>
 
 **`inheritdoc`**
 
@@ -328,13 +369,13 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `url` | *string* |
+| `_url` | *string* |
 
 **Returns:** *Promise*<boolean\>
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [http.ts:106](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L106)
+Defined in: [azure-blob.ts:118](https://github.com/wholebuzz/fs/blob/master/src/azure-blob.ts#L118)
 
 ___
 
@@ -356,4 +397,4 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [http.ts:131](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L131)
+Defined in: [azure-blob.ts:138](https://github.com/wholebuzz/fs/blob/master/src/azure-blob.ts#L138)

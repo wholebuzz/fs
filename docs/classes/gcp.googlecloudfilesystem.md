@@ -89,7 +89,7 @@ Defined in: [gcp.ts:25](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [gcp.ts:189](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L189)
+Defined in: [gcp.ts:191](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L191)
 
 ___
 
@@ -110,7 +110,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [gcp.ts:156](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L156)
+Defined in: [gcp.ts:158](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L158)
 
 ___
 
@@ -132,7 +132,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [gcp.ts:125](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L125)
+Defined in: [gcp.ts:127](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L127)
 
 ___
 
@@ -248,7 +248,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [gcp.ts:164](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L164)
+Defined in: [gcp.ts:166](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L166)
 
 ___
 
@@ -290,7 +290,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [gcp.ts:118](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L118)
+Defined in: [gcp.ts:120](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L120)
 
 ___
 
@@ -333,7 +333,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [gcp.ts:150](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L150)
+Defined in: [gcp.ts:152](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L152)
 
 ___
 
@@ -394,7 +394,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [gcp.ts:144](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L144)
+Defined in: [gcp.ts:146](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L146)
 
 ___
 
@@ -416,4 +416,4 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [gcp.ts:169](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L169)
+Defined in: [gcp.ts:171](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L171)

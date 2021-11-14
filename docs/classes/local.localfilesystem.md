@@ -1,70 +1,49 @@
-[@wholebuzz/fs](../README.md) / [Exports](../modules.md) / [fs](../modules/fs.md) / AnyFileSystem
+[@wholebuzz/fs](../README.md) / [Exports](../modules.md) / [local](../modules/local.md) / LocalFileSystem
 
-# Class: AnyFileSystem
+# Class: LocalFileSystem
 
-[fs](../modules/fs.md).AnyFileSystem
+[local](../modules/local.md).LocalFileSystem
 
-Class Adapter Pattern wrapping [FileSystem](fs.filesystem.md) by `urlPrefix`.
+Local [FileSystem](fs.filesystem.md) implemented with `fs` and `fs-ext`.
 
 ## Hierarchy
 
 - [*FileSystem*](fs.filesystem.md)
 
-  ↳ **AnyFileSystem**
+  ↳ **LocalFileSystem**
 
 ## Table of contents
 
 ### Constructors
 
-- [constructor](fs.anyfilesystem.md#constructor)
-
-### Properties
-
-- [supported](fs.anyfilesystem.md#supported)
+- [constructor](local.localfilesystem.md#constructor)
 
 ### Methods
 
-- [appendToFile](fs.anyfilesystem.md#appendtofile)
-- [copyFile](fs.anyfilesystem.md#copyfile)
-- [createFile](fs.anyfilesystem.md#createfile)
-- [ensureDirectory](fs.anyfilesystem.md#ensuredirectory)
-- [fileExists](fs.anyfilesystem.md#fileexists)
-- [getFileStatus](fs.anyfilesystem.md#getfilestatus)
-- [getFs](fs.anyfilesystem.md#getfs)
-- [moveFile](fs.anyfilesystem.md#movefile)
-- [openReadableFile](fs.anyfilesystem.md#openreadablefile)
-- [openWritableFile](fs.anyfilesystem.md#openwritablefile)
-- [queueRemoveFile](fs.anyfilesystem.md#queueremovefile)
-- [readDirectory](fs.anyfilesystem.md#readdirectory)
-- [removeDirectory](fs.anyfilesystem.md#removedirectory)
-- [removeFile](fs.anyfilesystem.md#removefile)
-- [replaceFile](fs.anyfilesystem.md#replacefile)
+- [appendToFile](local.localfilesystem.md#appendtofile)
+- [copyFile](local.localfilesystem.md#copyfile)
+- [createFile](local.localfilesystem.md#createfile)
+- [ensureDirectory](local.localfilesystem.md#ensuredirectory)
+- [fileExists](local.localfilesystem.md#fileexists)
+- [getFileStatus](local.localfilesystem.md#getfilestatus)
+- [moveFile](local.localfilesystem.md#movefile)
+- [openReadableFile](local.localfilesystem.md#openreadablefile)
+- [openWritableFile](local.localfilesystem.md#openwritablefile)
+- [queueRemoveFile](local.localfilesystem.md#queueremovefile)
+- [readDirectory](local.localfilesystem.md#readdirectory)
+- [removeDirectory](local.localfilesystem.md#removedirectory)
+- [removeFile](local.localfilesystem.md#removefile)
+- [replaceFile](local.localfilesystem.md#replacefile)
 
 ## Constructors
 
 ### constructor
 
-\+ **new AnyFileSystem**(`supported`: { `fs`: [*FileSystem*](fs.filesystem.md) ; `urlPrefix`: *string*  }[]): [*AnyFileSystem*](fs.anyfilesystem.md)
+\+ **new LocalFileSystem**(): [*LocalFileSystem*](local.localfilesystem.md)
 
-Construct an [AnyFileSystem](fs.anyfilesystem.md) wrapping the provided [FileSystem](fs.filesystem.md).
+**Returns:** [*LocalFileSystem*](local.localfilesystem.md)
 
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `supported` | { `fs`: [*FileSystem*](fs.filesystem.md) ; `urlPrefix`: *string*  }[] | The [FileSystem](fs.filesystem.md) to delegate according to `urlPrefix`. |
-
-**Returns:** [*AnyFileSystem*](fs.anyfilesystem.md)
-
-Overrides: [FileSystem](fs.filesystem.md)
-
-Defined in: [fs.ts:204](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L204)
-
-## Properties
-
-### supported
-
-• **supported**: { `fs`: [*FileSystem*](fs.filesystem.md) ; `urlPrefix`: *string*  }[]
+Inherited from: [FileSystem](fs.filesystem.md)
 
 ## Methods
 
@@ -88,13 +67,13 @@ Defined in: [fs.ts:204](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L2
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [fs.ts:296](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L296)
+Defined in: [local.ts:198](https://github.com/wholebuzz/fs/blob/master/src/local.ts#L198)
 
 ___
 
 ### copyFile
 
-▸ **copyFile**(`sourceUrlText`: *string*, `destUrlText`: *string*): *Promise*<boolean\>
+▸ **copyFile**(`source`: *string*, `dest`: *string*): *Promise*<boolean\>
 
 **`inheritdoc`**
 
@@ -102,20 +81,20 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `sourceUrlText` | *string* |
-| `destUrlText` | *string* |
+| `source` | *string* |
+| `dest` | *string* |
 
 **Returns:** *Promise*<boolean\>
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [fs.ts:277](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L277)
+Defined in: [local.ts:140](https://github.com/wholebuzz/fs/blob/master/src/local.ts#L140)
 
 ___
 
 ### createFile
 
-▸ **createFile**(`urlText`: *string*, `createCallback?`: (`stream`: WritableStreamTree) => *Promise*<boolean\>, `options?`: [*CreateOptions*](../interfaces/fs.createoptions.md)): *Promise*<boolean\>
+▸ **createFile**(`urlText`: *string*, `createCallback?`: WritableStreamTreeFilter, `options?`: [*CreateOptions*](../interfaces/fs.createoptions.md)): *Promise*<boolean\>
 
 **`inheritdoc`**
 
@@ -124,14 +103,14 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `urlText` | *string* |
-| `createCallback?` | (`stream`: WritableStreamTree) => *Promise*<boolean\> |
+| `createCallback` | WritableStreamTreeFilter |
 | `options?` | [*CreateOptions*](../interfaces/fs.createoptions.md) |
 
 **Returns:** *Promise*<boolean\>
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [fs.ts:258](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L258)
+Defined in: [local.ts:111](https://github.com/wholebuzz/fs/blob/master/src/local.ts#L111)
 
 ___
 
@@ -152,7 +131,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [fs.ts:228](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L228)
+Defined in: [local.ts:49](https://github.com/wholebuzz/fs/blob/master/src/local.ts#L49)
 
 ___
 
@@ -172,13 +151,13 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [fs.ts:238](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L238)
+Defined in: [local.ts:69](https://github.com/wholebuzz/fs/blob/master/src/local.ts#L69)
 
 ___
 
 ### getFileStatus
 
-▸ **getFileStatus**(`urlText`: *string*, `options?`: [*GetFileStatusOptions*](../interfaces/fs.getfilestatusoptions.md)): *Promise*<[*FileStatus*](../interfaces/fs.filestatus.md)\>
+▸ **getFileStatus**(`urlText`: *string*, `options?`: [*GetFileStatusOptions*](../interfaces/fs.getfilestatusoptions.md)): *Promise*<{ `inode`: *number* ; `modified`: Date ; `size`: *number* ; `url`: *string* ; `version`: *string*  }\>
 
 **`inheritdoc`**
 
@@ -189,35 +168,17 @@ ___
 | `urlText` | *string* |
 | `options?` | [*GetFileStatusOptions*](../interfaces/fs.getfilestatusoptions.md) |
 
-**Returns:** *Promise*<[*FileStatus*](../interfaces/fs.filestatus.md)\>
+**Returns:** *Promise*<{ `inode`: *number* ; `modified`: Date ; `size`: *number* ; `url`: *string* ; `version`: *string*  }\>
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [fs.ts:243](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L243)
-
-___
-
-### getFs
-
-▸ **getFs**(`url`: *string*): [*FileSystem*](fs.filesystem.md)
-
-Returns the [FileSystem](fs.filesystem.md) provider for `url`.
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `url` | *string* | The URL of the file. |
-
-**Returns:** [*FileSystem*](fs.filesystem.md)
-
-Defined in: [fs.ts:217](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L217)
+Defined in: [local.ts:79](https://github.com/wholebuzz/fs/blob/master/src/local.ts#L79)
 
 ___
 
 ### moveFile
 
-▸ **moveFile**(`sourceUrlText`: *string*, `destUrlText`: *string*): *Promise*<boolean\>
+▸ **moveFile**(`source`: *string*, `dest`: *string*): *Promise*<boolean\>
 
 **`inheritdoc`**
 
@@ -225,14 +186,14 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `sourceUrlText` | *string* |
-| `destUrlText` | *string* |
+| `source` | *string* |
+| `dest` | *string* |
 
 **Returns:** *Promise*<boolean\>
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [fs.ts:282](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L282)
+Defined in: [local.ts:146](https://github.com/wholebuzz/fs/blob/master/src/local.ts#L146)
 
 ___
 
@@ -253,13 +214,13 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [fs.ts:248](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L248)
+Defined in: [local.ts:92](https://github.com/wholebuzz/fs/blob/master/src/local.ts#L92)
 
 ___
 
 ### openWritableFile
 
-▸ **openWritableFile**(`url`: *string*, `options?`: [*OpenWritableFileOptions*](../interfaces/fs.openwritablefileoptions.md)): *Promise*<WritableStreamTree\>
+▸ **openWritableFile**(`url`: *string*, `_options?`: [*OpenWritableFileOptions*](../interfaces/fs.openwritablefileoptions.md)): *Promise*<WritableStreamTree\>
 
 **`inheritdoc`**
 
@@ -268,19 +229,19 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `url` | *string* |
-| `options?` | [*OpenWritableFileOptions*](../interfaces/fs.openwritablefileoptions.md) |
+| `_options?` | [*OpenWritableFileOptions*](../interfaces/fs.openwritablefileoptions.md) |
 
 **Returns:** *Promise*<WritableStreamTree\>
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [fs.ts:253](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L253)
+Defined in: [local.ts:104](https://github.com/wholebuzz/fs/blob/master/src/local.ts#L104)
 
 ___
 
 ### queueRemoveFile
 
-▸ **queueRemoveFile**(`urlText`: *string*): *Promise*<boolean\>
+▸ **queueRemoveFile**(`source`: *string*): *Promise*<boolean\>
 
 **`inheritdoc`**
 
@@ -288,13 +249,13 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `urlText` | *string* |
+| `source` | *string* |
 
 **Returns:** *Promise*<boolean\>
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [fs.ts:272](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L272)
+Defined in: [local.ts:135](https://github.com/wholebuzz/fs/blob/master/src/local.ts#L135)
 
 ___
 
@@ -315,7 +276,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [fs.ts:223](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L223)
+Defined in: [local.ts:42](https://github.com/wholebuzz/fs/blob/master/src/local.ts#L42)
 
 ___
 
@@ -335,13 +296,13 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [fs.ts:233](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L233)
+Defined in: [local.ts:63](https://github.com/wholebuzz/fs/blob/master/src/local.ts#L63)
 
 ___
 
 ### removeFile
 
-▸ **removeFile**(`urlText`: *string*): *Promise*<boolean\>
+▸ **removeFile**(`source`: *string*): *Promise*<boolean\>
 
 **`inheritdoc`**
 
@@ -349,13 +310,13 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `urlText` | *string* |
+| `source` | *string* |
 
 **Returns:** *Promise*<boolean\>
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [fs.ts:267](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L267)
+Defined in: [local.ts:129](https://github.com/wholebuzz/fs/blob/master/src/local.ts#L129)
 
 ___
 
@@ -377,4 +338,4 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [fs.ts:287](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L287)
+Defined in: [local.ts:152](https://github.com/wholebuzz/fs/blob/master/src/local.ts#L152)

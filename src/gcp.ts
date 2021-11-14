@@ -106,9 +106,11 @@ export class GoogleCloudFileSystem extends FileSystem {
   async openReadableFile(url: string, options?: OpenReadableFileOptions) {
     const gzipped = url.endsWith('.gz')
     let stream = StreamTree.readable(
-      this.getFile(url, options?.version).createReadStream(
-        gzipped ? { decompress: false } : undefined
-      )
+      this.getFile(url, options?.version).createReadStream({
+        decompress: gzipped ? false : undefined,
+        start: options?.byteOffset,
+        end: options?.byteLength ? (options.byteOffset ?? 0) + options.byteLength - 1 : undefined,
+      })
     )
     if (gzipped) stream = stream.pipe(zlib.createGunzip())
     return stream

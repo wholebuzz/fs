@@ -62,8 +62,12 @@ export class HTTPFileSystem extends FileSystem {
   }
 
   /** @inheritDoc */
-  async openReadableFile(url: string, _options: OpenReadableFileOptions) {
+  async openReadableFile(url: string, options: OpenReadableFileOptions) {
     const headers = { 'Accept-Encoding': 'gzip', ...this.options?.headers }
+    if (options.byteLength != null) {
+      const offset = options.byteOffset || 0
+      headers.range = `bytes=${offset}-${offset + options.byteLength - 1}`
+    }
     const res = await axios({
       ...this.options,
       url,
