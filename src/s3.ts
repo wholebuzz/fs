@@ -1,4 +1,5 @@
 import * as AWS from 'aws-sdk'
+import { PassThrough } from 'stream'
 import StreamTree, { WritableStreamTree } from 'tree-stream'
 
 import {
@@ -152,7 +153,25 @@ export class S3FileSystem extends FileSystem {
         },
         ...options.extra,
       }
-      return StreamTree.readable(this.s3.selectObjectContent(url).createReadStream())
+      const passThrough = new PassThrough()
+      const ret = StreamTree.readable(passThrough)
+      this.s3.selectObjectContent(url, (error, data) => {
+        if (error || !data || !data.Payload) {
+          passThrough.destroy(error)
+        } else {
+          ;(data.Payload as any)
+            .on('data', (event: any) => {
+              if (event.Records) {
+                passThrough.push(event.Records.Payload)
+              } else if (event.Stats) {
+                // console.log(`selectObjectContent.Stats`, event.Stats)
+              }
+            })
+            .on('error', (err: Error) => passThrough.destroy(err))
+            .on('end', () => passThrough.push(null))
+        }
+      })
+      return ret
     } else {
       const url = {
         ...this.parseUrl(urlText),
