@@ -55,7 +55,7 @@ HTTP [FileSystem](fs.filesystem.md) implemented with `axios`.
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [http.ts:22](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L22)
+Defined in: [src/http.ts:22](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L22)
 
 ## Properties
 
@@ -85,7 +85,7 @@ Defined in: [http.ts:22](https://github.com/wholebuzz/fs/blob/master/src/http.ts
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [http.ts:140](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L140)
+Defined in: [src/http.ts:140](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L140)
 
 ___
 
@@ -106,7 +106,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [http.ts:121](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L121)
+Defined in: [src/http.ts:121](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L121)
 
 ___
 
@@ -128,7 +128,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [http.ts:97](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L97)
+Defined in: [src/http.ts:97](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L97)
 
 ___
 
@@ -149,7 +149,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [http.ts:33](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L33)
+Defined in: [src/http.ts:33](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L33)
 
 ___
 
@@ -169,7 +169,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [http.ts:43](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L43)
+Defined in: [src/http.ts:43](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L43)
 
 ___
 
@@ -190,7 +190,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [http.ts:53](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L53)
+Defined in: [src/http.ts:53](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L53)
 
 ___
 
@@ -211,7 +211,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [http.ts:126](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L126)
+Defined in: [src/http.ts:126](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L126)
 
 ___
 
@@ -232,7 +232,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [http.ts:65](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L65)
+Defined in: [src/http.ts:65](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L65)
 
 ___
 
@@ -253,7 +253,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [http.ts:86](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L86)
+Defined in: [src/http.ts:86](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L86)
 
 ___
 
@@ -273,7 +273,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [http.ts:116](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L116)
+Defined in: [src/http.ts:116](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L116)
 
 ___
 
@@ -294,7 +294,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [http.ts:28](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L28)
+Defined in: [src/http.ts:28](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L28)
 
 ___
 
@@ -314,7 +314,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [http.ts:38](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L38)
+Defined in: [src/http.ts:38](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L38)
 
 ___
 
@@ -334,7 +334,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [http.ts:106](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L106)
+Defined in: [src/http.ts:106](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L106)
 
 ___
 
@@ -356,4 +356,4 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [http.ts:131](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L131)
+Defined in: [src/http.ts:131](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L131)

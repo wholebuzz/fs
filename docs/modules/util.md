@@ -36,7 +36,7 @@
 | `error` | (...`args`: *any*[]) => *void* |
 | `info` | (...`args`: *any*[]) => *void* |
 
-Defined in: [util.ts:8](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L8)
+Defined in: [src/util.ts:8](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L8)
 
 ___
 
@@ -44,7 +44,7 @@ ___
 
 • `Const` **zlib**: *any*
 
-Defined in: [util.ts:6](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L6)
+Defined in: [src/util.ts:6](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L6)
 
 ## Functions
 
@@ -62,7 +62,7 @@ Hashes a [[Readable]] stream.
 
 **Returns:** *Promise*<string \| ``null``\>
 
-Defined in: [util.ts:46](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L46)
+Defined in: [src/util.ts:46](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L46)
 
 ___
 
@@ -78,7 +78,7 @@ ___
 
 **Returns:** *undefined* \| *number*
 
-Defined in: [util.ts:25](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L25)
+Defined in: [src/util.ts:25](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L25)
 
 ___
 
@@ -94,7 +94,7 @@ ___
 
 **Returns:** *string*
 
-Defined in: [util.ts:40](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L40)
+Defined in: [src/util.ts:40](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L40)
 
 ___
 
@@ -111,7 +111,7 @@ ___
 
 **Returns:** *number*
 
-Defined in: [util.ts:19](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L19)
+Defined in: [src/util.ts:19](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L19)
 
 ___
 
@@ -128,7 +128,7 @@ ___
 
 **Returns:** *boolean*
 
-Defined in: [util.ts:22](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L22)
+Defined in: [src/util.ts:22](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L22)
 
 ___
 
@@ -145,4 +145,4 @@ ___
 
 **Returns:** *string*
 
-Defined in: [util.ts:27](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L27)
+Defined in: [src/util.ts:27](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L27)

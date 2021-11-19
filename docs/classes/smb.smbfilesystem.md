@@ -63,7 +63,7 @@ SMB [FileSystem](fs.filesystem.md) implemented with `@marsaud/smb2`.
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [smb.ts:22](https://github.com/wholebuzz/fs/blob/master/src/smb.ts#L22)
+Defined in: [src/smb.ts:22](https://github.com/wholebuzz/fs/blob/master/src/smb.ts#L22)
 
 ## Properties
 
@@ -71,7 +71,7 @@ Defined in: [smb.ts:22](https://github.com/wholebuzz/fs/blob/master/src/smb.ts#L
 
 • **smb2**: *SMB2*
 
-Defined in: [smb.ts:22](https://github.com/wholebuzz/fs/blob/master/src/smb.ts#L22)
+Defined in: [src/smb.ts:22](https://github.com/wholebuzz/fs/blob/master/src/smb.ts#L22)
 
 ___
 
@@ -101,7 +101,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [smb.ts:143](https://github.com/wholebuzz/fs/blob/master/src/smb.ts#L143)
+Defined in: [src/smb.ts:143](https://github.com/wholebuzz/fs/blob/master/src/smb.ts#L143)
 
 ___
 
@@ -122,7 +122,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [smb.ts:123](https://github.com/wholebuzz/fs/blob/master/src/smb.ts#L123)
+Defined in: [src/smb.ts:123](https://github.com/wholebuzz/fs/blob/master/src/smb.ts#L123)
 
 ___
 
@@ -144,7 +144,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [smb.ts:103](https://github.com/wholebuzz/fs/blob/master/src/smb.ts#L103)
+Defined in: [src/smb.ts:103](https://github.com/wholebuzz/fs/blob/master/src/smb.ts#L103)
 
 ___
 
@@ -165,7 +165,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [smb.ts:49](https://github.com/wholebuzz/fs/blob/master/src/smb.ts#L49)
+Defined in: [src/smb.ts:49](https://github.com/wholebuzz/fs/blob/master/src/smb.ts#L49)
 
 ___
 
@@ -185,7 +185,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [smb.ts:61](https://github.com/wholebuzz/fs/blob/master/src/smb.ts#L61)
+Defined in: [src/smb.ts:61](https://github.com/wholebuzz/fs/blob/master/src/smb.ts#L61)
 
 ___
 
@@ -206,7 +206,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [smb.ts:71](https://github.com/wholebuzz/fs/blob/master/src/smb.ts#L71)
+Defined in: [src/smb.ts:71](https://github.com/wholebuzz/fs/blob/master/src/smb.ts#L71)
 
 ___
 
@@ -227,7 +227,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [smb.ts:128](https://github.com/wholebuzz/fs/blob/master/src/smb.ts#L128)
+Defined in: [src/smb.ts:128](https://github.com/wholebuzz/fs/blob/master/src/smb.ts#L128)
 
 ___
 
@@ -248,7 +248,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [smb.ts:83](https://github.com/wholebuzz/fs/blob/master/src/smb.ts#L83)
+Defined in: [src/smb.ts:83](https://github.com/wholebuzz/fs/blob/master/src/smb.ts#L83)
 
 ___
 
@@ -269,7 +269,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [smb.ts:96](https://github.com/wholebuzz/fs/blob/master/src/smb.ts#L96)
+Defined in: [src/smb.ts:96](https://github.com/wholebuzz/fs/blob/master/src/smb.ts#L96)
 
 ___
 
@@ -285,7 +285,7 @@ ___
 
 **Returns:** *string*
 
-Defined in: [smb.ts:38](https://github.com/wholebuzz/fs/blob/master/src/smb.ts#L38)
+Defined in: [src/smb.ts:38](https://github.com/wholebuzz/fs/blob/master/src/smb.ts#L38)
 
 ___
 
@@ -305,7 +305,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [smb.ts:118](https://github.com/wholebuzz/fs/blob/master/src/smb.ts#L118)
+Defined in: [src/smb.ts:118](https://github.com/wholebuzz/fs/blob/master/src/smb.ts#L118)
 
 ___
 
@@ -326,7 +326,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [smb.ts:44](https://github.com/wholebuzz/fs/blob/master/src/smb.ts#L44)
+Defined in: [src/smb.ts:44](https://github.com/wholebuzz/fs/blob/master/src/smb.ts#L44)
 
 ___
 
@@ -346,7 +346,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [smb.ts:55](https://github.com/wholebuzz/fs/blob/master/src/smb.ts#L55)
+Defined in: [src/smb.ts:55](https://github.com/wholebuzz/fs/blob/master/src/smb.ts#L55)
 
 ___
 
@@ -366,7 +366,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [smb.ts:112](https://github.com/wholebuzz/fs/blob/master/src/smb.ts#L112)
+Defined in: [src/smb.ts:112](https://github.com/wholebuzz/fs/blob/master/src/smb.ts#L112)
 
 ___
 
@@ -388,4 +388,4 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [smb.ts:134](https://github.com/wholebuzz/fs/blob/master/src/smb.ts#L134)
+Defined in: [src/smb.ts:134](https://github.com/wholebuzz/fs/blob/master/src/smb.ts#L134)

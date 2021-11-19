@@ -29,7 +29,7 @@ Create filter stream.
 
 **Returns:** ReadableStreamTree
 
-Defined in: [stream.ts:33](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L33)
+Defined in: [src/stream.ts:33](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L33)
 
 ___
 
@@ -48,7 +48,7 @@ Create filter stream.
 
 **Returns:** WritableStreamTree
 
-Defined in: [stream.ts:46](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L46)
+Defined in: [src/stream.ts:46](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L46)
 
 ___
 
@@ -64,7 +64,7 @@ ___
 
 **Returns:** *Promise*<Buffer\>
 
-Defined in: [stream.ts:9](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L9)
+Defined in: [src/stream.ts:9](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L9)
 
 ___
 
@@ -80,7 +80,7 @@ ___
 
 **Returns:** *Promise*<string\>
 
-Defined in: [stream.ts:5](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L5)
+Defined in: [src/stream.ts:5](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L5)
 
 ___
 
@@ -97,4 +97,4 @@ ___
 
 **Returns:** WritableStreamTree
 
-Defined in: [stream.ts:18](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L18)
+Defined in: [src/stream.ts:18](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L18)

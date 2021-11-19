@@ -74,6 +74,7 @@ node lib/cli.js --help
 - [s3](docs/modules/s3.md)
 - [smb](docs/modules/smb.md)
 - [stream](docs/modules/stream.md)
+- [tfrecord](docs/modules/tfrecord.md)
 - [util](docs/modules/util.md)
 
 ### Methods
@@ -123,7 +124,7 @@ For simple appends, the same paramter can be supplied for both `writeCallback` a
 
 **Returns:** *Promise*<``null`` \| [*FileStatus*](../interfaces/fs.filestatus.md)\>
 
-Defined in: [fs.ts:192](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L192)
+Defined in: [src/fs.ts:192](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L192)
 
 ___
 
@@ -142,7 +143,7 @@ Copies the file.
 
 **Returns:** *Promise*<boolean\>
 
-Defined in: [fs.ts:161](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L161)
+Defined in: [src/fs.ts:161](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L161)
 
 ___
 
@@ -162,7 +163,7 @@ Creates file, failing if the file already exists.
 
 **Returns:** *Promise*<boolean\>
 
-Defined in: [fs.ts:138](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L138)
+Defined in: [src/fs.ts:138](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L138)
 
 ___
 
@@ -181,7 +182,7 @@ Ensures the directory exists
 
 **Returns:** *Promise*<boolean\>
 
-Defined in: [fs.ts:92](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L92)
+Defined in: [src/fs.ts:92](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L92)
 
 ___
 
@@ -199,7 +200,7 @@ Returns `true` if the file exists.
 
 **Returns:** *Promise*<boolean\>
 
-Defined in: [fs.ts:104](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L104)
+Defined in: [src/fs.ts:104](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L104)
 
 ___
 
@@ -218,7 +219,7 @@ Determines the file status. The file version is used to implement atomic mutatio
 
 **Returns:** *Promise*<[*FileStatus*](../interfaces/fs.filestatus.md)\>
 
-Defined in: [fs.ts:110](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L110)
+Defined in: [src/fs.ts:110](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L110)
 
 ___
 
@@ -237,7 +238,7 @@ Moves the file.
 
 **Returns:** *Promise*<boolean\>
 
-Defined in: [fs.ts:168](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L168)
+Defined in: [src/fs.ts:168](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L168)
 
 ___
 
@@ -258,7 +259,7 @@ Opens a file for reading.
 
 **Returns:** *Promise*<ReadableStreamTree\>
 
-Defined in: [fs.ts:117](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L117)
+Defined in: [src/fs.ts:117](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L117)
 
 ___
 
@@ -279,7 +280,7 @@ Opens a file for writing.
 
 **Returns:** *Promise*<WritableStreamTree\>
 
-Defined in: [fs.ts:127](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L127)
+Defined in: [src/fs.ts:127](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L127)
 
 ___
 
@@ -297,7 +298,7 @@ Queues deletion, e.g. after DaysSinceCustomTime.
 
 **Returns:** *Promise*<boolean\>
 
-Defined in: [fs.ts:154](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L154)
+Defined in: [src/fs.ts:154](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L154)
 
 ___
 
@@ -316,7 +317,7 @@ Returns the URLs of the files in a directory.
 
 **Returns:** *Promise*<[*DirectoryEntry*](../interfaces/fs.directoryentry.md)[]\>
 
-Defined in: [fs.ts:86](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L86)
+Defined in: [src/fs.ts:86](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L86)
 
 ___
 
@@ -334,7 +335,7 @@ Removes the directory
 
 **Returns:** *Promise*<boolean\>
 
-Defined in: [fs.ts:98](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L98)
+Defined in: [src/fs.ts:98](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L98)
 
 ___
 
@@ -352,7 +353,7 @@ Deletes the file.
 
 **Returns:** *Promise*<boolean\>
 
-Defined in: [fs.ts:148](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L148)
+Defined in: [src/fs.ts:148](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L148)
 
 ___
 
@@ -372,7 +373,7 @@ Replaces the file, failing if the file version doesn't match.
 
 **Returns:** *Promise*<boolean\>
 
-Defined in: [fs.ts:177](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L177)
+Defined in: [src/fs.ts:177](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L177)
 [@wholebuzz/fs](../README.md) / [Exports](../modules.md) / json
 
 # Module: json
@@ -406,7 +407,7 @@ Defined in: [fs.ts:177](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L1
 
 • `Const` **JSONStream**: *any*
 
-Defined in: [json.ts:12](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L12)
+Defined in: [src/json.ts:12](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L12)
 
 ## Functions
 
@@ -424,7 +425,7 @@ Parses JSON object from [[stream]].  Used to implement [readJSON](json.md#readjs
 
 **Returns:** *Promise*<unknown\>
 
-Defined in: [json.ts:86](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L86)
+Defined in: [src/json.ts:86](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L86)
 
 ___
 
@@ -442,7 +443,7 @@ Parses JSON object from [[stream]].  Used to implement [readJSON](json.md#readjs
 
 **Returns:** *Promise*<unknown[]\>
 
-Defined in: [json.ts:103](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L103)
+Defined in: [src/json.ts:103](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L103)
 
 ___
 
@@ -461,7 +462,7 @@ Create JSON formatter stream.
 
 **Returns:** WritableStreamTree
 
-Defined in: [json.ts:158](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L158)
+Defined in: [src/json.ts:158](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L158)
 
 ___
 
@@ -479,7 +480,7 @@ Create JSON-lines formatter stream.
 
 **Returns:** WritableStreamTree
 
-Defined in: [json.ts:173](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L173)
+Defined in: [src/json.ts:173](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L173)
 
 ___
 
@@ -497,7 +498,7 @@ Create JSON parser stream.
 
 **Returns:** ReadableStreamTree
 
-Defined in: [json.ts:150](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L150)
+Defined in: [src/json.ts:150](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L150)
 
 ___
 
@@ -516,7 +517,7 @@ Create JSON parser stream.
 
 **Returns:** ReadableStreamTree
 
-Defined in: [json.ts:141](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L141)
+Defined in: [src/json.ts:141](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L141)
 
 ___
 
@@ -535,7 +536,7 @@ Reads a serialized JSON object or array from a file.
 
 **Returns:** *Promise*<unknown\>
 
-Defined in: [json.ts:18](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L18)
+Defined in: [src/json.ts:18](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L18)
 
 ___
 
@@ -554,7 +555,7 @@ Reads a serialized JSON object from a file, and also hashes the file.
 
 **Returns:** *Promise*<[*unknown*, ``null`` \| *string*]\>
 
-Defined in: [json.ts:26](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L26)
+Defined in: [src/json.ts:26](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L26)
 
 ___
 
@@ -573,7 +574,7 @@ Reads a serialized JSON-lines array from a file.
 
 **Returns:** *Promise*<unknown[]\>
 
-Defined in: [json.ts:36](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L36)
+Defined in: [src/json.ts:36](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L36)
 
 ___
 
@@ -592,7 +593,7 @@ Serializes JSON object to [[stream]].  Used to implement [writeJSON](json.md#wri
 
 **Returns:** *Promise*<boolean\>
 
-Defined in: [json.ts:119](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L119)
+Defined in: [src/json.ts:119](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L119)
 
 ___
 
@@ -611,7 +612,7 @@ Serializes JSON object to [[stream]].  Used to implement [writeJSONLines](json.m
 
 **Returns:** *Promise*<boolean\>
 
-Defined in: [json.ts:134](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L134)
+Defined in: [src/json.ts:134](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L134)
 
 ___
 
@@ -631,7 +632,7 @@ Serializes object or array to a JSON file.
 
 **Returns:** *Promise*<boolean\>
 
-Defined in: [json.ts:45](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L45)
+Defined in: [src/json.ts:45](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L45)
 
 ___
 
@@ -651,7 +652,7 @@ Serializes array to a JSON Lines file.
 
 **Returns:** *Promise*<boolean\>
 
-Defined in: [json.ts:54](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L54)
+Defined in: [src/json.ts:54](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L54)
 
 ___
 
@@ -671,4 +672,4 @@ ___
 
 **Returns:** *Promise*<void\>
 
-Defined in: [json.ts:58](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L58)
+Defined in: [src/json.ts:58](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L58)

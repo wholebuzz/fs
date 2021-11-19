@@ -16,4 +16,4 @@
 
 • `Optional` **prefix**: *string*
 
-Defined in: [fs.ts:71](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L71)
+Defined in: [src/fs.ts:71](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L71)

@@ -6,6 +6,7 @@
 
 ### Functions
 
+- [appendLine](lines.md#appendline)
 - [mapLines](lines.md#maplines)
 - [mapLinesWithHeader](lines.md#maplineswithheader)
 - [parseLines](lines.md#parselines)
@@ -14,6 +15,26 @@
 - [writeContent](lines.md#writecontent)
 
 ## Functions
+
+### appendLine
+
+▸ **appendLine**(`fileSystem`: [*FileSystem*](../classes/fs.filesystem.md), `urlText`: *string*, `line`: *string*): *Promise*<[*FileStatus*](../interfaces/fs.filestatus.md) \| ``null``\>
+
+Appends a line of text to a file.
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `fileSystem` | [*FileSystem*](../classes/fs.filesystem.md) |
+| `urlText` | *string* |
+| `line` | *string* |
+
+**Returns:** *Promise*<[*FileStatus*](../interfaces/fs.filestatus.md) \| ``null``\>
+
+Defined in: [src/lines.ts:88](https://github.com/wholebuzz/fs/blob/master/src/lines.ts#L88)
+
+___
 
 ### mapLines
 
@@ -36,7 +57,7 @@ Maps lines from [[stream]].  Used to implement [readLines](lines.md#readlines).
 
 **Returns:** *Promise*<X[]\>
 
-Defined in: [lines.ts:50](https://github.com/wholebuzz/fs/blob/master/src/lines.ts#L50)
+Defined in: [src/lines.ts:50](https://github.com/wholebuzz/fs/blob/master/src/lines.ts#L50)
 
 ___
 
@@ -64,7 +85,7 @@ Parses lines (with header) from [[stream]].  Used to implement [readLinesWithHea
 
 **Returns:** *Promise*<[H \| *undefined*, X[]]\>
 
-Defined in: [lines.ts:60](https://github.com/wholebuzz/fs/blob/master/src/lines.ts#L60)
+Defined in: [src/lines.ts:60](https://github.com/wholebuzz/fs/blob/master/src/lines.ts#L60)
 
 ___
 
@@ -81,7 +102,7 @@ ___
 
 **Returns:** *Promise*<void\>
 
-Defined in: [lines.ts:34](https://github.com/wholebuzz/fs/blob/master/src/lines.ts#L34)
+Defined in: [src/lines.ts:34](https://github.com/wholebuzz/fs/blob/master/src/lines.ts#L34)
 
 ___
 
@@ -107,7 +128,7 @@ Reads every line from a file.
 
 **Returns:** *Promise*<X[]\>
 
-Defined in: [lines.ts:10](https://github.com/wholebuzz/fs/blob/master/src/lines.ts#L10)
+Defined in: [src/lines.ts:10](https://github.com/wholebuzz/fs/blob/master/src/lines.ts#L10)
 
 ___
 
@@ -136,7 +157,7 @@ Reads every line from a file, treating the first line as a header.
 
 **Returns:** *Promise*<[H \| *undefined*, X[]]\>
 
-Defined in: [lines.ts:24](https://github.com/wholebuzz/fs/blob/master/src/lines.ts#L24)
+Defined in: [src/lines.ts:24](https://github.com/wholebuzz/fs/blob/master/src/lines.ts#L24)
 
 ___
 
@@ -156,4 +177,4 @@ Writes the string to a file.
 
 **Returns:** *Promise*<void\>
 
-Defined in: [lines.ts:89](https://github.com/wholebuzz/fs/blob/master/src/lines.ts#L89)
+Defined in: [src/lines.ts:107](https://github.com/wholebuzz/fs/blob/master/src/lines.ts#L107)

@@ -1,6 +1,6 @@
 import * as readline from 'readline'
-import { finishReadable, finishWritable, ReadableStreamTree } from 'tree-stream'
-import { FileSystem } from './fs'
+import StreamTree, { finishReadable, finishWritable, ReadableStreamTree } from 'tree-stream'
+import { FileStatus, FileSystem } from './fs'
 
 /**
  * Reads every line from a file.
@@ -79,6 +79,24 @@ export async function mapLinesWithHeader<X, H>(
       }
     })
   })
+}
+
+/**
+ * Appends a line of text to a file.
+ * @param url The URL of the file to append a line to.
+ */
+export async function appendLine(
+  fileSystem: FileSystem,
+  urlText: string,
+  line: string
+): Promise<FileStatus | null> {
+  return fileSystem.appendToFile(
+    urlText,
+    StreamTree.writer(async (stream) => {
+      stream.write(line + '\n')
+      stream.end()
+    })
+  )
 }
 
 /**

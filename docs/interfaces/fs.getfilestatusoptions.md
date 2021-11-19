@@ -16,4 +16,4 @@
 
 • `Optional` **version**: *boolean*
 
-Defined in: [fs.ts:67](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L67)
+Defined in: [src/fs.ts:67](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L67)

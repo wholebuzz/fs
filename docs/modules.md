@@ -18,4 +18,5 @@
 - [s3](modules/s3.md)
 - [smb](modules/smb.md)
 - [stream](modules/stream.md)
+- [tfrecord](modules/tfrecord.md)
 - [util](modules/util.md)

@@ -24,7 +24,7 @@ File status like `struct stat` with added versioning.
 
 The file inode
 
-Defined in: [fs.ts:16](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L16)
+Defined in: [src/fs.ts:16](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L16)
 
 ___
 
@@ -34,7 +34,7 @@ ___
 
 The file last modified
 
-Defined in: [fs.ts:10](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L10)
+Defined in: [src/fs.ts:10](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L10)
 
 ___
 
@@ -44,7 +44,7 @@ ___
 
 The file size
 
-Defined in: [fs.ts:13](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L13)
+Defined in: [src/fs.ts:13](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L13)
 
 ___
 
@@ -52,7 +52,7 @@ ___
 
 • **url**: *string*
 
-Defined in: [fs.ts:7](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L7)
+Defined in: [src/fs.ts:7](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L7)
 
 ___
 
@@ -62,4 +62,4 @@ ___
 
 Content hash for local file, and `metadata.generation` for GCP
 
-Defined in: [fs.ts:19](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L19)
+Defined in: [src/fs.ts:19](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L19)

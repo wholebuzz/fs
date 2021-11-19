@@ -30,7 +30,7 @@ The file inode
 
 Inherited from: Partial.inode
 
-Defined in: [fs.ts:16](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L16)
+Defined in: [src/fs.ts:16](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L16)
 
 ___
 
@@ -42,7 +42,7 @@ The file last modified
 
 Inherited from: Partial.modified
 
-Defined in: [fs.ts:10](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L10)
+Defined in: [src/fs.ts:10](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L10)
 
 ___
 
@@ -54,7 +54,7 @@ The file size
 
 Inherited from: Partial.size
 
-Defined in: [fs.ts:13](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L13)
+Defined in: [src/fs.ts:13](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L13)
 
 ___
 
@@ -64,7 +64,7 @@ ___
 
 Overrides: Partial.url
 
-Defined in: [fs.ts:23](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L23)
+Defined in: [src/fs.ts:23](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L23)
 
 ___
 
@@ -76,4 +76,4 @@ Content hash for local file, and `metadata.generation` for GCP
 
 Inherited from: Partial.version
 
-Defined in: [fs.ts:19](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L19)
+Defined in: [src/fs.ts:19](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L19)

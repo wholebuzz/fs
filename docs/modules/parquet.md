@@ -26,7 +26,7 @@
 
 **Returns:** *ParquetEnvelopeReader*
 
-Defined in: [parquet.ts:34](https://github.com/wholebuzz/fs/blob/master/src/parquet.ts#L34)
+Defined in: [src/parquet.ts:34](https://github.com/wholebuzz/fs/blob/master/src/parquet.ts#L34)
 
 ___
 
@@ -43,7 +43,7 @@ ___
 
 **Returns:** *Promise*<any\>
 
-Defined in: [parquet.ts:29](https://github.com/wholebuzz/fs/blob/master/src/parquet.ts#L29)
+Defined in: [src/parquet.ts:29](https://github.com/wholebuzz/fs/blob/master/src/parquet.ts#L29)
 
 ___
 
@@ -61,7 +61,7 @@ ___
 
 **Returns:** *Promise*<ReadableStreamTree\>
 
-Defined in: [parquet.ts:8](https://github.com/wholebuzz/fs/blob/master/src/parquet.ts#L8)
+Defined in: [src/parquet.ts:8](https://github.com/wholebuzz/fs/blob/master/src/parquet.ts#L8)
 
 ___
 
@@ -78,4 +78,4 @@ ___
 
 **Returns:** WritableStreamTree
 
-Defined in: [parquet.ts:46](https://github.com/wholebuzz/fs/blob/master/src/parquet.ts#L46)
+Defined in: [src/parquet.ts:46](https://github.com/wholebuzz/fs/blob/master/src/parquet.ts#L46)
