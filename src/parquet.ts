@@ -4,16 +4,42 @@ import { PassThrough } from 'stream'
 import StreamTree, { ReadableStreamTree, WritableStreamTree } from 'tree-stream'
 import { FileSystem } from './fs'
 import { readableToBuffer } from './stream'
+import { isShardedFilename, shardedFilename } from './util'
+
+export interface OpenParquetFileOptions {
+  columnList?: string[][] | string[]
+}
+
+export async function openParquetFiles(
+  fileSystem: FileSystem,
+  url: string,
+  options?: OpenParquetFileOptions & { shards?: number }
+): Promise<ReadableStreamTree[]> {
+  if (!options?.shards || !isShardedFilename(url)) {
+    return [await openParquetFile(fileSystem, url, options)]
+  }
+  return Promise.all(
+    new Array(options.shards)
+      .fill(undefined)
+      .map((_, index) =>
+        openParquetFile(
+          fileSystem,
+          shardedFilename(url, { index, modulus: options.shards! }),
+          options
+        )
+      )
+  )
+}
 
 export async function openParquetFile(
   fileSystem: FileSystem,
   url: string,
-  columnList?: string[][] | string[]
+  options?: OpenParquetFileOptions
 ): Promise<ReadableStreamTree> {
   const reader = await newParquetReader(fileSystem, url)
   const passThrough = new PassThrough({ objectMode: true })
   const closePassThrough = () => passThrough.push(null)
-  const cursor = reader.getCursor(columnList)
+  const cursor = reader.getCursor(options?.columnList)
   const handleRecord = (record: RowInterface) => {
     if (!record) {
       reader.close().then(closePassThrough)

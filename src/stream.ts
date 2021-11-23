@@ -1,5 +1,5 @@
-import { Readable, Writable } from 'stream'
-import through2 from 'through2'
+import SHA from 'sha.js'
+import { Readable, Transform, Writable } from 'stream'
 import StreamTree, { ReadableStreamTree, WritableStreamTree } from 'tree-stream'
 
 export async function readableToString(stream: Readable): Promise<string> {
@@ -32,10 +32,13 @@ export function writableToString(target: { value: string }): WritableStreamTree 
  */
 export function pipeFilter(stream: ReadableStreamTree, filter: (x: any) => any) {
   return stream.pipe(
-    through2.obj(function (data, _, callback) {
-      const filtered = filter(data)
-      if (filtered) this.push(filtered)
-      callback()
+    new Transform({
+      objectMode: true,
+      transform(data, _, callback) {
+        const filtered = filter(data)
+        if (filtered) this.push(filtered)
+        callback()
+      },
     })
   )
 }
@@ -45,10 +48,62 @@ export function pipeFilter(stream: ReadableStreamTree, filter: (x: any) => any) 
  */
 export function pipeFromFilter(stream: WritableStreamTree, filter: (x: any) => any) {
   return stream.pipeFrom(
-    through2.obj(function (data, _, callback) {
-      const filtered = filter(data)
-      if (filtered) this.push(filtered)
-      callback()
+    new Transform({
+      objectMode: true,
+      transform(data, _, callback) {
+        const filtered = filter(data)
+        if (filtered) this.push(filtered)
+        callback()
+      },
     })
   )
+}
+
+/**
+ * Split input by shardFunction
+ */
+export function shardWritables(
+  writable: WritableStreamTree[],
+  shards?: number,
+  shardFunction?: (x: object, modulus: number) => number
+) {
+  if (writable.length === 1) return writable[0]
+  if (!writable.length || !shards || !shardFunction) throw new Error('No shards')
+  const ret = StreamTree.writable(
+    new Writable({
+      objectMode: true,
+      write(x: object, _encoding, callback: () => void) {
+        const shard = shardFunction(x, shards)
+        writable[shard].node.stream.write(x)
+        callback()
+      },
+    })
+  )
+  for (const stream of writable) stream.pipedFrom(ret)
+  return ret
+}
+
+/**
+ * Hashes a [[Readable]] stream.
+ * @param stream The stream to compute the hash of.
+ */
+export async function hashStream(stream: Readable): Promise<string | null> {
+  return new Promise((resolve, reject) => {
+    const hash = new SHA.sha512()
+    stream
+      .on('error', reject)
+      .pipe(
+        new Transform({
+          objectMode: true,
+          transform(data, _, callback) {
+            hash.update(data)
+            callback()
+          },
+        })
+      )
+      .on('error', reject)
+      .on('finish', () => {
+        resolve(hash.digest('hex'))
+      })
+  })
 }

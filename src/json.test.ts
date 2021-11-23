@@ -1,4 +1,4 @@
-import through2 from 'through2'
+import { Transform } from 'stream'
 import StreamTree, { pumpWritable } from 'tree-stream'
 import {
   pipeJSONLinesParser,
@@ -34,9 +34,12 @@ it('Should serialize JSON Object', async () => {
   const streamedObject: Record<string, any> = {}
   const input = pipeJSONParser(await fs.openReadableFile(filename), false)
   const output = StreamTree.writable(
-    through2.obj((data: any, _: string, callback: () => void) => {
-      streamedObject[data.key] = data.value
-      callback()
+    new Transform({
+      objectMode: true,
+      transform(data: any, _: string, callback: () => void) {
+        streamedObject[data.key] = data.value
+        callback()
+      },
     })
   )
   await pumpWritable(output, undefined, input.finish())
@@ -59,9 +62,12 @@ it('Should serialize JSON Array', async () => {
   const streamedObject: unknown[] = []
   const input = pipeJSONParser(await fs.openReadableFile(filename), true)
   const output = StreamTree.writable(
-    through2.obj((data: any, _: string, callback: () => void) => {
-      streamedObject.push(data)
-      callback()
+    new Transform({
+      objectMode: true,
+      transform(data: any, _: string, callback: () => void) {
+        streamedObject.push(data)
+        callback()
+      },
     })
   )
   await pumpWritable(output, undefined, input.finish())
@@ -78,9 +84,12 @@ it('Should serialize JSON Array to JSON-lines', async () => {
   const streamedObject: unknown[] = []
   const input = pipeJSONLinesParser(await fs.openReadableFile(filename))
   const output = StreamTree.writable(
-    through2.obj((data: any, _: string, callback: () => void) => {
-      streamedObject.push(data)
-      callback()
+    new Transform({
+      objectMode: true,
+      transform(data: any, _: string, callback: () => void) {
+        streamedObject.push(data)
+        callback()
+      },
     })
   )
   await pumpWritable(output, undefined, input.finish())

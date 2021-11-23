@@ -1,8 +1,7 @@
-import { PassThrough } from 'stream'
+import { PassThrough, Transform } from 'stream'
 import { createBuilder, Example, Reader, Writer } from 'tfrecord-stream'
 import { RecordReader } from 'tfrecord-stream/lib/record_reader'
 import { RecordWriter } from 'tfrecord-stream/lib/record_writer'
-import through2 from 'through2'
 import StreamTree, { ReadableStreamTree, WritableStreamTree } from 'tree-stream'
 import { TextDecoder, TextEncoder } from 'util'
 import { FileStatus, FileSystem } from './fs'
@@ -57,7 +56,15 @@ export async function pipeTfRecordFormatter(
 ): Promise<WritableStreamTree> {
   const writer = await Writer.createFromStream(stream.finish())
   return StreamTree.writable(
-    through2.obj((data, _, callback) => writer.writeExample(format(data)).then(callback))
+    new Transform({
+      objectMode: true,
+      transform(data, _, callback) {
+        writer
+          .writeExample(format(data))
+          .then(() => callback())
+          .catch((err) => console.log(err))
+      },
+    })
   )
 }
 

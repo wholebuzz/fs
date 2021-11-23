@@ -1,13 +1,12 @@
 import ndjson from 'ndjson'
-import { Readable } from 'stream'
+import { Readable, Transform } from 'stream'
 import { parser } from 'stream-json'
 import { streamArray } from 'stream-json/streamers/StreamArray'
 import { streamObject } from 'stream-json/streamers/StreamObject'
-import through2 from 'through2'
 import { pumpReadable, pumpWritable, ReadableStreamTree, WritableStreamTree } from 'tree-stream'
 import { FileSystem } from './fs'
-import { pipeFilter } from './stream'
-import { hashStream, shardedFilename, shardIndex } from './util'
+import { hashStream, pipeFilter, shardWritables } from './stream'
+import { openWritableFiles, shardIndex } from './util'
 
 export const JSONStream = require('JSONStream')
 
@@ -62,21 +61,8 @@ export async function writeShardedJSONLines(
   shards: number,
   shardFunction = (x: object, modulus: number) => shardIndex((x as any)?.guid ?? '', modulus)
 ) {
-  const streams = await Promise.all(
-    new Array(shards)
-      .fill(undefined)
-      .map((_, index) =>
-        fileSystem.openWritableFile(shardedFilename(url, { index, modulus: shards }))
-      )
-  )
-  const out = await Promise.all(streams.map((stream) => stream.finish()))
-  try {
-    for (const x of obj) {
-      out[shardFunction(x, shards)].write(JSON.stringify(x) + '\n')
-    }
-  } finally {
-    out.forEach((stream) => stream.end())
-  }
+  const streams = await openWritableFiles(fileSystem, url, { shards })
+  return serializeJSONLines(shardWritables(streams, shards, shardFunction), obj)
 }
 
 /**
@@ -87,9 +73,12 @@ export async function parseJSON(stream: ReadableStreamTree) {
   let ret: unknown | undefined
   stream = stream.pipe(JSONStream.parse())
   stream = stream.pipe(
-    through2.obj((data, _, callback) => {
-      ret = data
-      callback()
+    new Transform({
+      objectMode: true,
+      transform(data, _, callback) {
+        ret = data
+        callback()
+      },
     })
   )
   await pumpReadable(stream, undefined)
@@ -104,9 +93,12 @@ export async function parseJSONLines(stream: ReadableStreamTree) {
   const ret: unknown[] = []
   stream = pipeJSONLinesParser(stream)
   stream = stream.pipe(
-    through2.obj((data, _, callback) => {
-      ret.push(data)
-      callback()
+    new Transform({
+      objectMode: true,
+      transform(data, _, callback) {
+        ret.push(data)
+        callback()
+      },
     })
   )
   return pumpReadable(stream, ret)

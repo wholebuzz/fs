@@ -17,7 +17,8 @@ import {
   ReadDirectoryOptions,
   ReplaceFileOptions,
 } from './fs'
-import { hashStream, logger, zlib } from './util'
+import { hashStream } from './stream'
+import { logger, zlib } from './util'
 
 const fsAccess = promisify(fs.access)
 const fsCopyFile = promisify(fs.copyFile)

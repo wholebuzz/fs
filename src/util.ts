@@ -1,9 +1,8 @@
 import * as crypto from 'crypto'
-import SHA from 'sha.js'
-import { Readable } from 'stream'
-import through2 from 'through2'
+import { FileSystem, OpenReadableFileOptions, OpenWritableFileOptions } from './fs'
 
 export const zlib = require('zlib')
+export const md5 = (x: string) => crypto.createHash('md5').update(x).digest('hex')
 
 export const logger = {
   debug: (...args: any[]) => console.log(...args),
@@ -37,26 +36,42 @@ export const shardedFilename = (name: string, shard: Shard) => {
         name.substring(of + 4 + digits)
 }
 
-export const md5 = (x: string) => crypto.createHash('md5').update(x).digest('hex')
-
-/**
- * Hashes a [[Readable]] stream.
- * @param stream The stream to compute the hash of.
- */
-export async function hashStream(stream: Readable): Promise<string | null> {
-  return new Promise((resolve, reject) => {
-    const hash = new SHA.sha512()
-    stream
-      .on('error', reject)
-      .pipe(
-        through2.obj((data, _, callback) => {
-          hash.update(data)
-          callback()
-        })
+export async function openReadableFiles(
+  fileSystem: FileSystem,
+  url: string,
+  options?: OpenReadableFileOptions & { shards?: number }
+) {
+  if (!options?.shards || !isShardedFilename(url)) {
+    return [await fileSystem.openReadableFile(url, options)]
+  }
+  return Promise.all(
+    new Array(options.shards)
+      .fill(undefined)
+      .map((_, index) =>
+        fileSystem.openReadableFile(
+          shardedFilename(url, { index, modulus: options.shards! }),
+          options
+        )
       )
-      .on('error', reject)
-      .on('finish', () => {
-        resolve(hash.digest('hex'))
-      })
-  })
+  )
+}
+
+export async function openWritableFiles(
+  fileSystem: FileSystem,
+  url: string,
+  options?: OpenWritableFileOptions & { shards?: number }
+) {
+  if (!options?.shards || !isShardedFilename(url)) {
+    return [await fileSystem.openWritableFile(url, options)]
+  }
+  return Promise.all(
+    new Array(options.shards)
+      .fill(undefined)
+      .map((_, index) =>
+        fileSystem.openWritableFile(
+          shardedFilename(url, { index, modulus: options.shards! }),
+          options
+        )
+      )
+  )
 }
