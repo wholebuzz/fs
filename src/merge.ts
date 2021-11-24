@@ -3,7 +3,7 @@ import { PassThrough, Transform } from 'stream'
 import StreamTree, { ReadableStreamTree } from 'tree-stream'
 
 export interface MergeStreamsOptions {
-  compare?: (a: unknown, b: unknown) => number
+  compare?: (a: Record<string, any>, b: Record<string, any>) => number
   labelSource?: string
 }
 
@@ -17,12 +17,11 @@ export function mergeStreams(
 
   let finished = 0
   const compare = options?.compare
-  const keys = Object.keys(inputs)
   const heap = new MinHeap<HeapItem>(compare ? (a, b) => compare(a.value, b.value) : undefined)
   const stream = new PassThrough({ objectMode: true })
   const ret = StreamTree.readable(stream)
   const deque = () => {
-    if (heap.size < keys.length - finished) return
+    if (heap.size < entries.length - finished) return
     const item = heap.pop()!
     stream.write(options?.labelSource ? { source: item.source, value: item.value } : item.value)
     item.cb()
@@ -31,6 +30,7 @@ export function mergeStreams(
     input
       .pipe(
         new Transform({
+          objectMode: true,
           transform: (x, _encoding, cb) => {
             heap.push({
               source,
@@ -39,9 +39,9 @@ export function mergeStreams(
             })
             deque()
           },
-        }).on('end', () => {
+        }).on('finish', () => {
           finished++
-          if (finished === Object.keys(inputs).length) stream.write(null)
+          if (finished === entries.length) stream.end()
           else deque()
         })
       )

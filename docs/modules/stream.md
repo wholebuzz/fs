@@ -6,13 +6,33 @@
 
 ### Functions
 
+- [hashStream](stream.md#hashstream)
 - [pipeFilter](stream.md#pipefilter)
 - [pipeFromFilter](stream.md#pipefromfilter)
 - [readableToBuffer](stream.md#readabletobuffer)
 - [readableToString](stream.md#readabletostring)
+- [shardWritables](stream.md#shardwritables)
 - [writableToString](stream.md#writabletostring)
 
 ## Functions
+
+### hashStream
+
+▸ **hashStream**(`stream`: Readable): *Promise*<string \| ``null``\>
+
+Hashes a [[Readable]] stream.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `stream` | Readable | The stream to compute the hash of. |
+
+**Returns:** *Promise*<string \| ``null``\>
+
+Defined in: [src/stream.ts:95](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L95)
+
+___
 
 ### pipeFilter
 
@@ -48,7 +68,7 @@ Create filter stream.
 
 **Returns:** WritableStreamTree
 
-Defined in: [src/stream.ts:46](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L46)
+Defined in: [src/stream.ts:49](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L49)
 
 ___
 
@@ -81,6 +101,26 @@ ___
 **Returns:** *Promise*<string\>
 
 Defined in: [src/stream.ts:5](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L5)
+
+___
+
+### shardWritables
+
+▸ **shardWritables**(`writable`: WritableStreamTree[], `shards?`: *number*, `shardFunction?`: (`x`: *object*, `modulus`: *number*) => *number*): WritableStreamTree
+
+Split input by shardFunction
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `writable` | WritableStreamTree[] |
+| `shards?` | *number* |
+| `shardFunction?` | (`x`: *object*, `modulus`: *number*) => *number* |
+
+**Returns:** WritableStreamTree
+
+Defined in: [src/stream.ts:65](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L65)
 
 ___
 

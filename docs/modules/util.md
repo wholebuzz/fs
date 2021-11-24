@@ -15,12 +15,14 @@
 
 ### Functions
 
-- [hashStream](util.md#hashstream)
 - [isShardedFilename](util.md#isshardedfilename)
 - [md5](util.md#md5)
+- [openReadableFiles](util.md#openreadablefiles)
+- [openWritableFiles](util.md#openwritablefiles)
 - [shardIndex](util.md#shardindex)
 - [shardMatchText](util.md#shardmatchtext)
 - [shardedFilename](util.md#shardedfilename)
+- [shardedFilenames](util.md#shardedfilenames)
 
 ## Variables
 
@@ -36,7 +38,7 @@
 | `error` | (...`args`: *any*[]) => *void* |
 | `info` | (...`args`: *any*[]) => *void* |
 
-Defined in: [src/util.ts:8](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L8)
+Defined in: [src/util.ts:7](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L7)
 
 ___
 
@@ -44,27 +46,9 @@ ___
 
 • `Const` **zlib**: *any*
 
-Defined in: [src/util.ts:6](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L6)
+Defined in: [src/util.ts:4](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L4)
 
 ## Functions
-
-### hashStream
-
-▸ **hashStream**(`stream`: Readable): *Promise*<string \| ``null``\>
-
-Hashes a [[Readable]] stream.
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `stream` | Readable | The stream to compute the hash of. |
-
-**Returns:** *Promise*<string \| ``null``\>
-
-Defined in: [src/util.ts:46](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L46)
-
-___
 
 ### isShardedFilename
 
@@ -78,7 +62,7 @@ ___
 
 **Returns:** *undefined* \| *number*
 
-Defined in: [src/util.ts:25](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L25)
+Defined in: [src/util.ts:24](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L24)
 
 ___
 
@@ -94,7 +78,43 @@ ___
 
 **Returns:** *string*
 
-Defined in: [src/util.ts:40](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L40)
+Defined in: [src/util.ts:5](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L5)
+
+___
+
+### openReadableFiles
+
+▸ **openReadableFiles**(`fileSystem`: [*FileSystem*](../classes/fs.filesystem.md), `url`: *string*, `options?`: [*OpenReadableFileOptions*](../interfaces/fs.openreadablefileoptions.md) & { `shards?`: *number*  }): *Promise*<ReadableStreamTree[]\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `fileSystem` | [*FileSystem*](../classes/fs.filesystem.md) |
+| `url` | *string* |
+| `options?` | [*OpenReadableFileOptions*](../interfaces/fs.openreadablefileoptions.md) & { `shards?`: *number*  } |
+
+**Returns:** *Promise*<ReadableStreamTree[]\>
+
+Defined in: [src/util.ts:44](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L44)
+
+___
+
+### openWritableFiles
+
+▸ **openWritableFiles**(`fileSystem`: [*FileSystem*](../classes/fs.filesystem.md), `url`: *string*, `options?`: [*OpenWritableFileOptions*](../interfaces/fs.openwritablefileoptions.md) & { `shards?`: *number*  }): *Promise*<WritableStreamTree[]\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `fileSystem` | [*FileSystem*](../classes/fs.filesystem.md) |
+| `url` | *string* |
+| `options?` | [*OpenWritableFileOptions*](../interfaces/fs.openwritablefileoptions.md) & { `shards?`: *number*  } |
+
+**Returns:** *Promise*<WritableStreamTree[]\>
+
+Defined in: [src/util.ts:59](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L59)
 
 ___
 
@@ -111,7 +131,7 @@ ___
 
 **Returns:** *number*
 
-Defined in: [src/util.ts:19](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L19)
+Defined in: [src/util.ts:18](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L18)
 
 ___
 
@@ -128,7 +148,7 @@ ___
 
 **Returns:** *boolean*
 
-Defined in: [src/util.ts:22](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L22)
+Defined in: [src/util.ts:21](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L21)
 
 ___
 
@@ -145,4 +165,21 @@ ___
 
 **Returns:** *string*
 
-Defined in: [src/util.ts:27](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L27)
+Defined in: [src/util.ts:26](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L26)
+
+___
+
+### shardedFilenames
+
+▸ `Const` **shardedFilenames**(`name`: *string*, `shards`: *number*): *string*[]
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `name` | *string* |
+| `shards` | *number* |
+
+**Returns:** *string*[]
+
+Defined in: [src/util.ts:39](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L39)

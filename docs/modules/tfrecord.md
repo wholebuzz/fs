@@ -61,7 +61,7 @@ Appends a record to a .tfrecord file.
 
 **Returns:** *Promise*<[*FileStatus*](../interfaces/fs.filestatus.md) \| ``null``\>
 
-Defined in: [src/tfrecord.ts:68](https://github.com/wholebuzz/fs/blob/master/src/tfrecord.ts#L68)
+Defined in: [src/tfrecord.ts:75](https://github.com/wholebuzz/fs/blob/master/src/tfrecord.ts#L75)
 
 ___
 
@@ -80,7 +80,7 @@ Creates a .tfrecord file reader using arbitrary buffers instead of protobuf.
 
 **Returns:** *Promise*<RecordReader\>
 
-Defined in: [src/tfrecord.ts:16](https://github.com/wholebuzz/fs/blob/master/src/tfrecord.ts#L16)
+Defined in: [src/tfrecord.ts:15](https://github.com/wholebuzz/fs/blob/master/src/tfrecord.ts#L15)
 
 ___
 
@@ -99,7 +99,7 @@ Creates a .tfrecord file writer using arbitrary buffers instead of protobuf.
 
 **Returns:** *Promise*<RecordWriter\>
 
-Defined in: [src/tfrecord.ts:24](https://github.com/wholebuzz/fs/blob/master/src/tfrecord.ts#L24)
+Defined in: [src/tfrecord.ts:23](https://github.com/wholebuzz/fs/blob/master/src/tfrecord.ts#L23)
 
 ___
 
@@ -118,7 +118,7 @@ Creates a TF [Example](tfrecord.md#example) from a dictionary.
 
 **Returns:** [*Example*](tfrecord.md#example)
 
-Defined in: [src/tfrecord.ts:107](https://github.com/wholebuzz/fs/blob/master/src/tfrecord.ts#L107)
+Defined in: [src/tfrecord.ts:114](https://github.com/wholebuzz/fs/blob/master/src/tfrecord.ts#L114)
 
 ___
 
@@ -134,7 +134,7 @@ ___
 
 **Returns:** *Record*<string, any\>
 
-Defined in: [src/tfrecord.ts:84](https://github.com/wholebuzz/fs/blob/master/src/tfrecord.ts#L84)
+Defined in: [src/tfrecord.ts:91](https://github.com/wholebuzz/fs/blob/master/src/tfrecord.ts#L91)
 
 ___
 
@@ -153,7 +153,7 @@ Create tfrecord writer stream.
 
 **Returns:** *Promise*<WritableStreamTree\>
 
-Defined in: [src/tfrecord.ts:54](https://github.com/wholebuzz/fs/blob/master/src/tfrecord.ts#L54)
+Defined in: [src/tfrecord.ts:53](https://github.com/wholebuzz/fs/blob/master/src/tfrecord.ts#L53)
 
 ___
 
@@ -172,4 +172,4 @@ Reads records from .tfrecord file.
 
 **Returns:** *Promise*<ReadableStreamTree\>
 
-Defined in: [src/tfrecord.ts:32](https://github.com/wholebuzz/fs/blob/master/src/tfrecord.ts#L32)
+Defined in: [src/tfrecord.ts:31](https://github.com/wholebuzz/fs/blob/master/src/tfrecord.ts#L31)

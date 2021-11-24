@@ -14,6 +14,7 @@
 - [json](modules/json.md)
 - [lines](modules/lines.md)
 - [local](modules/local.md)
+- [merge](modules/merge.md)
 - [parquet](modules/parquet.md)
 - [s3](modules/s3.md)
 - [smb](modules/smb.md)

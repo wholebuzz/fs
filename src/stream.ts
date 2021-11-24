@@ -77,9 +77,14 @@ export function shardWritables(
         writable[shard].node.stream.write(x)
         callback()
       },
+    }).on('finish', () => {
+      for (const stream of writable) stream.node.stream.end()
     })
   )
-  for (const stream of writable) stream.pipedFrom(ret)
+  for (const stream of writable) {
+    stream.pipedFrom(ret)
+    stream.finish()
+  }
   return ret
 }
 

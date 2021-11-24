@@ -4,7 +4,7 @@ import { PassThrough } from 'stream'
 import StreamTree, { ReadableStreamTree, WritableStreamTree } from 'tree-stream'
 import { FileSystem } from './fs'
 import { readableToBuffer } from './stream'
-import { isShardedFilename, shardedFilename } from './util'
+import { isShardedFilename, shardedFilenames } from './util'
 
 export interface OpenParquetFileOptions {
   columnList?: string[][] | string[]
@@ -19,15 +19,9 @@ export async function openParquetFiles(
     return [await openParquetFile(fileSystem, url, options)]
   }
   return Promise.all(
-    new Array(options.shards)
-      .fill(undefined)
-      .map((_, index) =>
-        openParquetFile(
-          fileSystem,
-          shardedFilename(url, { index, modulus: options.shards! }),
-          options
-        )
-      )
+    shardedFilenames(url, options.shards!).map((filename) =>
+      openParquetFile(fileSystem, filename, options)
+    )
   )
 }
 

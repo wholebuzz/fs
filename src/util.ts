@@ -36,6 +36,11 @@ export const shardedFilename = (name: string, shard: Shard) => {
         name.substring(of + 4 + digits)
 }
 
+export const shardedFilenames = (name: string, shards: number) =>
+  new Array(shards)
+    .fill(undefined)
+    .map((_, index) => shardedFilename(name, { index, modulus: shards }))
+
 export async function openReadableFiles(
   fileSystem: FileSystem,
   url: string,
@@ -45,14 +50,9 @@ export async function openReadableFiles(
     return [await fileSystem.openReadableFile(url, options)]
   }
   return Promise.all(
-    new Array(options.shards)
-      .fill(undefined)
-      .map((_, index) =>
-        fileSystem.openReadableFile(
-          shardedFilename(url, { index, modulus: options.shards! }),
-          options
-        )
-      )
+    shardedFilenames(url, options.shards!).map((filename) =>
+      fileSystem.openReadableFile(filename, options)
+    )
   )
 }
 
@@ -65,13 +65,8 @@ export async function openWritableFiles(
     return [await fileSystem.openWritableFile(url, options)]
   }
   return Promise.all(
-    new Array(options.shards)
-      .fill(undefined)
-      .map((_, index) =>
-        fileSystem.openWritableFile(
-          shardedFilename(url, { index, modulus: options.shards! }),
-          options
-        )
-      )
+    shardedFilenames(url, options.shards!).map((filename) =>
+      fileSystem.openWritableFile(filename, options)
+    )
   )
 }
