@@ -2,12 +2,30 @@ import { ParquetEnvelopeReader, ParquetReader, ParquetSchema, ParquetTransformer
 import { RowInterface } from 'parquetjs/lib/row.interface'
 import { PassThrough } from 'stream'
 import StreamTree, { ReadableStreamTree, WritableStreamTree } from 'tree-stream'
-import { FileSystem } from './fs'
+import { FileSystem, OpenReadableFileOptions } from './fs'
 import { readableToBuffer } from './stream'
-import { isShardedFilename, shardedFilenames } from './util'
+import { isShardedFilename, openReadableFiles, ReadableFileSpec, shardedFilenames } from './util'
 
 export interface OpenParquetFileOptions {
   columnList?: string[][] | string[]
+}
+
+export interface ReadableSpec extends ReadableFileSpec {
+  options?: OpenReadableFileOptions & OpenParquetFileOptions & { shards?: number }
+}
+
+export async function openReadableFileSet(
+  fileSystem: FileSystem,
+  fileNames: ReadableFileSpec[] | Record<string, ReadableSpec>
+) {
+  const ret: Record<string, ReadableStreamTree[]> = {}
+  for (const [key, spec] of Object.entries(fileNames)) {
+    ret[key] =
+      spec.format === 'parquet'
+        ? await openParquetFiles(fileSystem, spec.url, spec.options)
+        : await openReadableFiles(fileSystem, spec.url, spec.options)
+  }
+  return ret
 }
 
 export async function openParquetFiles(
