@@ -4,6 +4,7 @@ import StreamTree, { ReadableStreamTree } from 'tree-stream'
 
 export interface MergeStreamsOptions {
   compare?: (a: Record<string, any>, b: Record<string, any>) => number
+  group?: boolean
   labelSource?: string
 }
 
@@ -22,6 +23,7 @@ export function mergeStreams(
   if (!entries.length) throw new Error('No input')
 
   let finished = 0
+  let currentGroup: any[] = []
   const total = entries.reduce((pv, cv) => pv + (Array.isArray(cv[1]) ? cv[1].length : 1), 0)
   const compare = options?.compare
   const heap = new MinHeap<HeapItem>(compare ? (a, b) => compare(a.value, b.value) : undefined)
@@ -30,7 +32,21 @@ export function mergeStreams(
   const deque = () => {
     if (heap.size < total - finished) return
     const item = heap.pop()!
-    stream.write(options?.labelSource ? { source: item.source, value: item.value } : item.value)
+    const out = options?.labelSource ? { source: item.source, value: item.value } : item.value
+    if (compare && options?.group) {
+      if (currentGroup.length > 0) {
+        if (compare(item.value, currentGroup[currentGroup.length - 1]) === 0) {
+          currentGroup.push(out)
+        } else {
+          stream.write(currentGroup)
+          currentGroup = [out]
+        }
+      } else {
+        currentGroup.push(out)
+      }
+    } else {
+      stream.write(out)
+    }
     item.cb()
   }
   for (const [source, inputs] of entries) {
@@ -49,8 +65,12 @@ export function mergeStreams(
             },
           }).on('finish', () => {
             finished++
-            if (finished === total) stream.end()
-            else deque()
+            if (finished === total) {
+              if (currentGroup.length > 0) stream.write(currentGroup)
+              stream.end()
+            } else {
+              deque()
+            }
           })
         )
         .piped(ret)
