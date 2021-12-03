@@ -21,7 +21,7 @@ export async function openReadableFileSet(
   const ret: Record<string, ReadableStreamTree[]> = {}
   for (const [key, spec] of Object.entries(fileNames)) {
     ret[key] =
-      spec.format === 'parquet'
+      spec.format === 'parquet' && !spec.options?.query
         ? await openParquetFiles(fileSystem, spec.url, spec.options)
         : await openReadableFiles(fileSystem, spec.url, spec.options)
   }

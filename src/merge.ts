@@ -3,6 +3,7 @@ import { PassThrough, Transform } from 'stream'
 import StreamTree, { ReadableStreamTree } from 'tree-stream'
 
 export interface MergeStreamsOptions {
+  combine?: (group: any[]) => any
   compare?: (a: Record<string, any>, b: Record<string, any>) => number
   group?: boolean
   labelSource?: string
@@ -38,7 +39,7 @@ export function mergeStreams(
         if (compare(item.value, currentGroup[currentGroup.length - 1]) === 0) {
           currentGroup.push(out)
         } else {
-          stream.write(currentGroup)
+          stream.write(options?.combine ? options.combine(currentGroup) : currentGroup)
           currentGroup = [out]
         }
       } else {
@@ -66,7 +67,9 @@ export function mergeStreams(
           }).on('finish', () => {
             finished++
             if (finished === total) {
-              if (currentGroup.length > 0) stream.write(currentGroup)
+              if (currentGroup.length > 0) {
+                stream.write(options?.combine ? options.combine(currentGroup) : currentGroup)
+              }
               stream.end()
             } else {
               deque()
