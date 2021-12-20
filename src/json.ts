@@ -1,12 +1,12 @@
 import ndjson from 'ndjson'
-import { Readable, Transform } from 'stream'
+import { Readable } from 'stream'
 import { parser } from 'stream-json'
 import { streamArray } from 'stream-json/streamers/StreamArray'
 import { streamObject } from 'stream-json/streamers/StreamObject'
-import { pumpReadable, pumpWritable, ReadableStreamTree, WritableStreamTree } from 'tree-stream'
+import { pumpWritable, ReadableStreamTree, WritableStreamTree } from 'tree-stream'
 import { FileSystem } from './fs'
 import { hashStream, pipeFilter, shardWritables } from './stream'
-import { openWritableFiles, shardIndex } from './util'
+import { openWritableFiles, shardIndex, streamToArray, streamToValue } from './util'
 
 export const JSONStream = require('JSONStream')
 
@@ -70,19 +70,7 @@ export async function writeShardedJSONLines(
  * @param stream The stream to read a JSON object from.
  */
 export async function parseJSON(stream: ReadableStreamTree) {
-  let ret: unknown | undefined
-  stream = stream.pipe(JSONStream.parse())
-  stream = stream.pipe(
-    new Transform({
-      objectMode: true,
-      transform(data, _, callback) {
-        ret = data
-        callback()
-      },
-    })
-  )
-  await pumpReadable(stream, undefined)
-  return ret
+  return streamToValue(stream.pipe(JSONStream.parse()))
 }
 
 /**
@@ -90,18 +78,7 @@ export async function parseJSON(stream: ReadableStreamTree) {
  * @param stream The stream to read a JSON object from.
  */
 export async function parseJSONLines(stream: ReadableStreamTree) {
-  const ret: unknown[] = []
-  stream = pipeJSONLinesParser(stream)
-  stream = stream.pipe(
-    new Transform({
-      objectMode: true,
-      transform(data, _, callback) {
-        ret.push(data)
-        callback()
-      },
-    })
-  )
-  return pumpReadable(stream, ret)
+  return streamToArray(pipeJSONLinesParser(stream))
 }
 
 /**

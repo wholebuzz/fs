@@ -1,6 +1,6 @@
 {
   "name": "@wholebuzz/fs",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "File system interface abstraction with implementations for GCP GCS, AWS S3, Azure, SMB, and Local file systems.",
   "keywords": [
     "file",
@@ -61,6 +61,7 @@
     "@types/uuid": "^8.0.0",
     "aws-sdk": "^2.975.0",
     "axios": "^0.20.0",
+    "csv": "^6.0.4",
     "fs-ext": "^2.0.0",
     "jest": "^26.6.3",
     "mnemonist": "^0.39.0",

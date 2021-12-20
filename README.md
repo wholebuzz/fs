@@ -20,6 +20,16 @@ The `FileSystem` implementations require peer dependencies:
 - S3FileSystem: `aws-sdk` and `s3-stream-upload`
 - SMBFileSystem: `@marsaud/smb2`
 
+## Formats
+
+Provides file format implementations for:
+
+- [CSV](src/csv.ts)
+- [JSON, ND-JSON / JSONL](src/json.ts)
+- [Lines](src/lines.ts)
+- [Parquet](src/parquet.ts)
+- [TFRecord](src/tfrecord.ts)
+
 ## History
 
 The project started to support [@wholebuzz/archive](https://www.npmjs.com/package/@wholebuzz/archive), a terabyte-scale archive for GCS.

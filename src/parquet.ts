@@ -2,16 +2,37 @@ import { ParquetEnvelopeReader, ParquetReader, ParquetSchema, ParquetTransformer
 import { RowInterface } from 'parquetjs/lib/row.interface'
 import { PassThrough } from 'stream'
 import StreamTree, { ReadableStreamTree, WritableStreamTree } from 'tree-stream'
-import { FileSystem, OpenReadableFileOptions } from './fs'
+import { FileSystem } from './fs'
 import { readableToBuffer } from './stream'
-import { isShardedFilename, openReadableFiles, ReadableFileSpec, shardedFilenames } from './util'
+import {
+  isShardedFilename,
+  openReadableFiles,
+  ReadableFileOptions,
+  ReadableFileSpec,
+  shardedFilenames,
+  streamToArray,
+} from './util'
 
 export interface OpenParquetFileOptions {
   columnList?: string[][] | string[]
 }
 
+export interface ParquetFileOptions {
+  columnList?: string[][] | string[]
+  shards?: number
+  shardFilter?: (index: number) => boolean
+}
+
 export interface ReadableSpec extends ReadableFileSpec {
-  options?: OpenReadableFileOptions & OpenParquetFileOptions & { shards?: number }
+  options?: ReadableFileOptions & OpenParquetFileOptions
+}
+
+export async function readParquetFile(
+  fileSystem: FileSystem,
+  url: string,
+  options?: OpenParquetFileOptions
+) {
+  return streamToArray(await openParquetFile(fileSystem, url, options))
 }
 
 export async function openReadableFileSet(
@@ -31,13 +52,13 @@ export async function openReadableFileSet(
 export async function openParquetFiles(
   fileSystem: FileSystem,
   url: string,
-  options?: OpenParquetFileOptions & { shards?: number }
+  options?: ParquetFileOptions
 ): Promise<ReadableStreamTree[]> {
   if (!options?.shards || !isShardedFilename(url)) {
     return [await openParquetFile(fileSystem, url, options)]
   }
   return Promise.all(
-    shardedFilenames(url, options.shards!).map((filename) =>
+    shardedFilenames(url, options.shards!, options.shardFilter).map((filename) =>
       openParquetFile(fileSystem, filename, options)
     )
   )

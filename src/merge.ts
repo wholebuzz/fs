@@ -6,7 +6,7 @@ export interface MergeStreamsOptions {
   combine?: (group: any[]) => any
   compare?: (a: Record<string, any>, b: Record<string, any>) => number
   group?: boolean
-  labelSource?: string
+  labelSource?: boolean
 }
 
 export function mergeStreams(

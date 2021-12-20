@@ -1,5 +1,6 @@
 import * as crypto from 'crypto'
-import { ReadableStreamTree } from 'tree-stream'
+import { Transform } from 'stream'
+import { pumpReadable, ReadableStreamTree } from 'tree-stream'
 import { FileSystem, OpenReadableFileOptions, OpenWritableFileOptions } from './fs'
 
 export const zlib = require('zlib')
@@ -11,10 +12,20 @@ export const logger = {
   info: (...args: any[]) => console.log(...args),
 }
 
+export interface WritableFileOptions extends OpenWritableFileOptions {
+  shards?: number
+  shardFilter?: (index: number) => boolean
+}
+
+export interface ReadableFileOptions extends OpenReadableFileOptions {
+  shards?: number
+  shardFilter?: (index: number) => boolean
+}
+
 export interface ReadableFileSpec {
   url: string
   format?: string
-  options?: OpenReadableFileOptions & { shards?: number }
+  options?: ReadableFileOptions
 }
 
 export interface Shard {
@@ -43,10 +54,15 @@ export const shardedFilename = (name: string, shard: Shard) => {
         name.substring(of + 4 + digits)
 }
 
-export const shardedFilenames = (name: string, shards: number) =>
+export const shardedFilenames = (
+  name: string,
+  shards: number,
+  filter?: (index: number) => boolean
+) =>
   new Array(shards)
     .fill(undefined)
     .map((_, index) => shardedFilename(name, { index, modulus: shards }))
+    .filter(filter ? (_, index) => filter(index) : () => true)
 
 export async function openReadableFileSet(
   fileSystem: FileSystem,
@@ -62,13 +78,13 @@ export async function openReadableFileSet(
 export async function openReadableFiles(
   fileSystem: FileSystem,
   url: string,
-  options?: OpenReadableFileOptions & { shards?: number }
+  options?: ReadableFileOptions
 ) {
   if (!options?.shards || !isShardedFilename(url)) {
     return [await fileSystem.openReadableFile(url, options)]
   }
   return Promise.all(
-    shardedFilenames(url, options.shards!).map((filename) =>
+    shardedFilenames(url, options.shards!, options.shardFilter).map((filename) =>
       fileSystem.openReadableFile(filename, options)
     )
   )
@@ -77,14 +93,43 @@ export async function openReadableFiles(
 export async function openWritableFiles(
   fileSystem: FileSystem,
   url: string,
-  options?: OpenWritableFileOptions & { shards?: number }
+  options?: WritableFileOptions
 ) {
   if (!options?.shards || !isShardedFilename(url)) {
     return [await fileSystem.openWritableFile(url, options)]
   }
   return Promise.all(
-    shardedFilenames(url, options.shards!).map((filename) =>
+    shardedFilenames(url, options.shards!, options.shardFilter).map((filename) =>
       fileSystem.openWritableFile(filename, options)
     )
   )
+}
+
+export async function streamToArray(stream: ReadableStreamTree) {
+  const ret: unknown[] = []
+  stream = stream.pipe(
+    new Transform({
+      objectMode: true,
+      transform(data, _, callback) {
+        ret.push(data)
+        callback()
+      },
+    })
+  )
+  return pumpReadable(stream, ret)
+}
+
+export async function streamToValue(stream: ReadableStreamTree) {
+  let ret: unknown | undefined
+  stream = stream.pipe(
+    new Transform({
+      objectMode: true,
+      transform(data, _, callback) {
+        ret = data
+        callback()
+      },
+    })
+  )
+  await pumpReadable(stream, undefined)
+  return ret
 }
