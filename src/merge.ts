@@ -29,6 +29,7 @@ export function mergeStreams(
   const compare = options?.compare
   const heap = new MinHeap<HeapItem>(compare ? (a, b) => compare(a.value, b.value) : undefined)
   const stream = new PassThrough({ objectMode: true })
+  const getGroupItemValue = (x: any) => (options?.labelSource ? x.value : x)
   const ret = StreamTree.readable(stream)
   const deque = () => {
     if (heap.size < total - finished) return
@@ -36,7 +37,7 @@ export function mergeStreams(
     const out = options?.labelSource ? { source: item.source, value: item.value } : item.value
     if (compare && options?.group) {
       if (currentGroup.length > 0) {
-        if (compare(item.value, currentGroup[currentGroup.length - 1]) === 0) {
+        if (compare(item.value, getGroupItemValue(currentGroup[currentGroup.length - 1])) === 0) {
           currentGroup.push(out)
         } else {
           stream.write(options?.combine ? options.combine(currentGroup) : currentGroup)
