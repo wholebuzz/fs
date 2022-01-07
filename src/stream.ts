@@ -28,6 +28,27 @@ export function writableToString(target: { value: string }): WritableStreamTree 
 }
 
 /**
+ * Create async filter stream.
+ */
+export function pipeAsyncFilter(stream: ReadableStreamTree, filter: (x: any) => any) {
+  return stream.pipe(
+    new Transform({
+      objectMode: true,
+      transform(data, _, callback) {
+        Promise.resolve(filter(data))
+          .then((filtered) => {
+            if (filtered) this.push(filtered)
+            callback()
+          })
+          .catch((err) => {
+            throw err
+          })
+      },
+    })
+  )
+}
+
+/**
  * Create filter stream.
  */
 export function pipeFilter(stream: ReadableStreamTree, filter: (x: any) => any) {
@@ -38,6 +59,27 @@ export function pipeFilter(stream: ReadableStreamTree, filter: (x: any) => any) 
         const filtered = filter(data)
         if (filtered) this.push(filtered)
         callback()
+      },
+    })
+  )
+}
+
+/**
+ * Create async filter stream.
+ */
+export function pipeFromAsyncFilter(stream: WritableStreamTree, filter: (x: any) => any) {
+  return stream.pipeFrom(
+    new Transform({
+      objectMode: true,
+      transform(data, _, callback) {
+        Promise.resolve(filter(data))
+          .then((filtered) => {
+            if (filtered) this.push(filtered)
+            callback()
+          })
+          .catch((err) => {
+            throw err
+          })
       },
     })
   )
