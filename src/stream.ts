@@ -28,77 +28,64 @@ export function writableToString(target: { value: string }): WritableStreamTree 
 }
 
 /**
- * Create async filter stream.
+ * Create filter stream.
  */
-export function pipeAsyncFilter(stream: ReadableStreamTree, filter: (x: any) => any) {
-  return stream.pipe(
-    new Transform({
-      objectMode: true,
-      transform(data, _, callback) {
-        Promise.resolve(filter(data))
-          .then((filtered) => {
-            if (filtered) this.push(filtered)
-            callback()
-          })
-          .catch((err) => {
-            throw err
-          })
-      },
-    })
-  )
+export function streamFilter(filter: (x: any) => any) {
+  return new Transform({
+    objectMode: true,
+    transform(data, _, callback) {
+      const filtered = filter(data)
+      if (filtered) this.push(filtered)
+      callback()
+    },
+  })
 }
 
 /**
- * Create filter stream.
+ * Create async filter stream.
+ */
+export function streamAsyncFilter(filter: (x: any) => any) {
+  return new Transform({
+    objectMode: true,
+    transform(data, _, callback) {
+      Promise.resolve(filter(data))
+        .then((filtered) => {
+          if (filtered) this.push(filtered)
+          callback()
+        })
+        .catch((err) => {
+          throw err
+        })
+    },
+  })
+}
+
+/**
+ * Pipe filter stream.
  */
 export function pipeFilter(stream: ReadableStreamTree, filter: (x: any) => any) {
-  return stream.pipe(
-    new Transform({
-      objectMode: true,
-      transform(data, _, callback) {
-        const filtered = filter(data)
-        if (filtered) this.push(filtered)
-        callback()
-      },
-    })
-  )
+  return stream.pipe(streamFilter(filter))
 }
 
 /**
- * Create async filter stream.
+ * Pipe async filter stream.
  */
-export function pipeFromAsyncFilter(stream: WritableStreamTree, filter: (x: any) => any) {
-  return stream.pipeFrom(
-    new Transform({
-      objectMode: true,
-      transform(data, _, callback) {
-        Promise.resolve(filter(data))
-          .then((filtered) => {
-            if (filtered) this.push(filtered)
-            callback()
-          })
-          .catch((err) => {
-            throw err
-          })
-      },
-    })
-  )
+export function pipeAsyncFilter(stream: ReadableStreamTree, filter: (x: any) => any) {
+  return stream.pipe(streamAsyncFilter(filter))
 }
 
 /**
- * Create filter stream.
+ * Pipe from filter stream.
  */
 export function pipeFromFilter(stream: WritableStreamTree, filter: (x: any) => any) {
-  return stream.pipeFrom(
-    new Transform({
-      objectMode: true,
-      transform(data, _, callback) {
-        const filtered = filter(data)
-        if (filtered) this.push(filtered)
-        callback()
-      },
-    })
-  )
+  return stream.pipeFrom(streamFilter(filter))
+}
+
+/**
+ * Pipe from async filter stream.
+ */
+export function pipeFromAsyncFilter(stream: WritableStreamTree, filter: (x: any) => any) {
+  return stream.pipeFrom(streamAsyncFilter(filter))
 }
 
 /**
