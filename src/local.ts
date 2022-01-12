@@ -1,5 +1,6 @@
 import * as fs from 'fs'
 import { constants as fsConstants, flock, seek } from 'fs-ext'
+import glob from 'glob'
 import * as path from 'path'
 import { Writable } from 'stream'
 import StreamTree, { WritableStreamTree } from 'tree-stream'
@@ -34,6 +35,7 @@ const fsRmdir = promisify(fs.rmdir)
 const fsSeek = promisify(seek)
 const fsStat = promisify(fs.stat)
 const fsUnlink = promisify(fs.unlink)
+const fsGlob = promisify(glob)
 
 /**
  * Local [[FileSystem]] implemented with `fs` and `fs-ext`.
@@ -41,7 +43,11 @@ const fsUnlink = promisify(fs.unlink)
 export class LocalFileSystem extends FileSystem {
   /** @inheritDoc */
   async readDirectory(urlText: string, options?: ReadDirectoryOptions): Promise<DirectoryEntry[]> {
-    let files = await fsReaddir(urlText)
+    let files = options?.recursive
+      ? (await fsGlob(path.join(urlText, '**/*'), { nodir: true })).map((x) =>
+          x.substring(urlText.length + (urlText.endsWith('/') ? 0 : 1))
+        )
+      : await fsReaddir(urlText)
     if (options?.prefix) files = files.filter((x) => x.startsWith(options.prefix ?? ''))
     return files.map((x) => ({ url: path.join(urlText, x) }))
   }

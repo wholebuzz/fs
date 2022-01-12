@@ -16,7 +16,7 @@ The `FileSystem` implementations require peer dependencies:
 - AzureFileShareFileSystem: `@azure/storage-file-share`
 - GoogleCloudFileSystem: `@google-cloud/storage`
 - HTTPFileSystem: `axios`
-- LocalFileSystem: `fs-ext`
+- LocalFileSystem: `fs-ext` and `glob`
 - S3FileSystem: `aws-sdk` and `s3-stream-upload`
 - SMBFileSystem: `@marsaud/smb2`
 

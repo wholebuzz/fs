@@ -69,6 +69,7 @@ export interface GetFileStatusOptions {
 
 export interface ReadDirectoryOptions {
   prefix?: string
+  recursive?: boolean
 }
 
 export interface EnsureDirectoryOptions {
