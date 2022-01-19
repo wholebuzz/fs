@@ -17,7 +17,7 @@ The `FileSystem` implementations require peer dependencies:
 - GoogleCloudFileSystem: `@google-cloud/storage`
 - HTTPFileSystem: `axios`
 - LocalFileSystem: `fs-ext` and `glob`
-- S3FileSystem: `aws-sdk` and `s3-stream-upload`
+- S3FileSystem: `aws-sdk`, `s3-stream-upload`, and `athena-express`
 - SMBFileSystem: `@marsaud/smb2`
 
 ## Formats

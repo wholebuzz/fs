@@ -47,6 +47,7 @@ export interface OpenReadableFileOptions {
   byteOffset?: number
   byteLength?: number
   extra?: Record<string, any>
+  extraOutput?: boolean
   query?: string
   version?: string | number
 }

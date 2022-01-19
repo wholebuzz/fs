@@ -1,7 +1,7 @@
+import { AthenaExpress } from 'athena-express'
 import * as AWS from 'aws-sdk'
 import { PassThrough } from 'stream'
 import StreamTree, { WritableStreamTree } from 'tree-stream'
-
 import {
   AppendOptions,
   CreateOptions,
@@ -24,6 +24,7 @@ const UploadStream = require('s3-stream-upload')
  */
 export class S3FileSystem extends FileSystem {
   s3: AWS.S3
+  athenaExpress: AthenaExpress<Record<string, any>> | undefined
 
   /**
    * The SDK automatically detects AWS credentials set as variables in your
@@ -122,6 +123,19 @@ export class S3FileSystem extends FileSystem {
   async openReadableFile(urlText: string, options?: OpenReadableFileOptions) {
     const gzipped = urlText.endsWith('.gz')
     if (options?.query) {
+      if (urlText === 's3://athena.csv') {
+        if (!this.athenaExpress) {
+          this.athenaExpress = new AthenaExpress<Record<string, any>>({
+            aws: AWS,
+            skipResults: true,
+            ...options.extra,
+          })
+        }
+        const results = await this.athenaExpress.query(options?.query)
+        if (options.extra && options.extraOutput) options.extra.results = results
+        const resultsUrl = this.parseUrl(results.S3Location ?? '')
+        return StreamTree.readable(this.s3.getObject(resultsUrl).createReadStream())
+      }
       const formatSuffix = gzipped ? urlText.substring(0, urlText.length - 3) : urlText
       const inputSerialization: Record<string, any> = {
         CompressionType: gzipped ? 'GZIP' : 'NONE',
