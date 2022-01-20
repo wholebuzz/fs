@@ -6,6 +6,12 @@
 
 Options when opening a Readable file.
 
+## Hierarchy
+
+- **OpenReadableFileOptions**
+
+  ↳ [*ReadableFileOptions*](util.readablefileoptions.md)
+
 ## Table of contents
 
 ### Properties
@@ -13,6 +19,7 @@ Options when opening a Readable file.
 - [byteLength](fs.openreadablefileoptions.md#bytelength)
 - [byteOffset](fs.openreadablefileoptions.md#byteoffset)
 - [extra](fs.openreadablefileoptions.md#extra)
+- [extraOutput](fs.openreadablefileoptions.md#extraoutput)
 - [query](fs.openreadablefileoptions.md#query)
 - [version](fs.openreadablefileoptions.md#version)
 
@@ -42,11 +49,19 @@ Defined in: [src/fs.ts:49](https://github.com/wholebuzz/fs/blob/master/src/fs.ts
 
 ___
 
+### extraOutput
+
+• `Optional` **extraOutput**: *boolean*
+
+Defined in: [src/fs.ts:50](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L50)
+
+___
+
 ### query
 
 • `Optional` **query**: *string*
 
-Defined in: [src/fs.ts:50](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L50)
+Defined in: [src/fs.ts:51](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L51)
 
 ___
 
@@ -54,4 +69,4 @@ ___
 
 • `Optional` **version**: *string* \| *number*
 
-Defined in: [src/fs.ts:51](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L51)
+Defined in: [src/fs.ts:52](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L52)

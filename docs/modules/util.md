@@ -6,7 +6,10 @@
 
 ### Interfaces
 
+- [ReadableFileOptions](../interfaces/util.readablefileoptions.md)
+- [ReadableFileSpec](../interfaces/util.readablefilespec.md)
 - [Shard](../interfaces/util.shard.md)
+- [WritableFileOptions](../interfaces/util.writablefileoptions.md)
 
 ### Variables
 
@@ -17,12 +20,15 @@
 
 - [isShardedFilename](util.md#isshardedfilename)
 - [md5](util.md#md5)
+- [openReadableFileSet](util.md#openreadablefileset)
 - [openReadableFiles](util.md#openreadablefiles)
 - [openWritableFiles](util.md#openwritablefiles)
 - [shardIndex](util.md#shardindex)
 - [shardMatchText](util.md#shardmatchtext)
 - [shardedFilename](util.md#shardedfilename)
 - [shardedFilenames](util.md#shardedfilenames)
+- [streamToArray](util.md#streamtoarray)
+- [streamToValue](util.md#streamtovalue)
 
 ## Variables
 
@@ -38,7 +44,7 @@
 | `error` | (...`args`: *any*[]) => *void* |
 | `info` | (...`args`: *any*[]) => *void* |
 
-Defined in: [src/util.ts:7](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L7)
+Defined in: [src/util.ts:9](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L9)
 
 ___
 
@@ -46,7 +52,7 @@ ___
 
 • `Const` **zlib**: *any*
 
-Defined in: [src/util.ts:4](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L4)
+Defined in: [src/util.ts:6](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L6)
 
 ## Functions
 
@@ -62,7 +68,7 @@ Defined in: [src/util.ts:4](https://github.com/wholebuzz/fs/blob/master/src/util
 
 **Returns:** *undefined* \| *number*
 
-Defined in: [src/util.ts:24](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L24)
+Defined in: [src/util.ts:42](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L42)
 
 ___
 
@@ -78,13 +84,30 @@ ___
 
 **Returns:** *string*
 
-Defined in: [src/util.ts:5](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L5)
+Defined in: [src/util.ts:7](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L7)
+
+___
+
+### openReadableFileSet
+
+▸ **openReadableFileSet**(`fileSystem`: [*FileSystem*](../classes/fs.filesystem.md), `fileNames`: [*ReadableFileSpec*](../interfaces/util.readablefilespec.md)[] \| *Record*<string, [*ReadableFileSpec*](../interfaces/util.readablefilespec.md)\>): *Promise*<Record<string, ReadableStreamTree[]\>\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `fileSystem` | [*FileSystem*](../classes/fs.filesystem.md) |
+| `fileNames` | [*ReadableFileSpec*](../interfaces/util.readablefilespec.md)[] \| *Record*<string, [*ReadableFileSpec*](../interfaces/util.readablefilespec.md)\> |
+
+**Returns:** *Promise*<Record<string, ReadableStreamTree[]\>\>
+
+Defined in: [src/util.ts:67](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L67)
 
 ___
 
 ### openReadableFiles
 
-▸ **openReadableFiles**(`fileSystem`: [*FileSystem*](../classes/fs.filesystem.md), `url`: *string*, `options?`: [*OpenReadableFileOptions*](../interfaces/fs.openreadablefileoptions.md) & { `shards?`: *number*  }): *Promise*<ReadableStreamTree[]\>
+▸ **openReadableFiles**(`fileSystem`: [*FileSystem*](../classes/fs.filesystem.md), `url`: *string*, `options?`: [*ReadableFileOptions*](../interfaces/util.readablefileoptions.md)): *Promise*<ReadableStreamTree[]\>
 
 #### Parameters
 
@@ -92,17 +115,17 @@ ___
 | :------ | :------ |
 | `fileSystem` | [*FileSystem*](../classes/fs.filesystem.md) |
 | `url` | *string* |
-| `options?` | [*OpenReadableFileOptions*](../interfaces/fs.openreadablefileoptions.md) & { `shards?`: *number*  } |
+| `options?` | [*ReadableFileOptions*](../interfaces/util.readablefileoptions.md) |
 
 **Returns:** *Promise*<ReadableStreamTree[]\>
 
-Defined in: [src/util.ts:44](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L44)
+Defined in: [src/util.ts:78](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L78)
 
 ___
 
 ### openWritableFiles
 
-▸ **openWritableFiles**(`fileSystem`: [*FileSystem*](../classes/fs.filesystem.md), `url`: *string*, `options?`: [*OpenWritableFileOptions*](../interfaces/fs.openwritablefileoptions.md) & { `shards?`: *number*  }): *Promise*<WritableStreamTree[]\>
+▸ **openWritableFiles**(`fileSystem`: [*FileSystem*](../classes/fs.filesystem.md), `url`: *string*, `options?`: [*WritableFileOptions*](../interfaces/util.writablefileoptions.md)): *Promise*<WritableStreamTree[]\>
 
 #### Parameters
 
@@ -110,11 +133,11 @@ ___
 | :------ | :------ |
 | `fileSystem` | [*FileSystem*](../classes/fs.filesystem.md) |
 | `url` | *string* |
-| `options?` | [*OpenWritableFileOptions*](../interfaces/fs.openwritablefileoptions.md) & { `shards?`: *number*  } |
+| `options?` | [*WritableFileOptions*](../interfaces/util.writablefileoptions.md) |
 
 **Returns:** *Promise*<WritableStreamTree[]\>
 
-Defined in: [src/util.ts:59](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L59)
+Defined in: [src/util.ts:93](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L93)
 
 ___
 
@@ -131,7 +154,7 @@ ___
 
 **Returns:** *number*
 
-Defined in: [src/util.ts:18](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L18)
+Defined in: [src/util.ts:36](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L36)
 
 ___
 
@@ -148,7 +171,7 @@ ___
 
 **Returns:** *boolean*
 
-Defined in: [src/util.ts:21](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L21)
+Defined in: [src/util.ts:39](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L39)
 
 ___
 
@@ -165,13 +188,13 @@ ___
 
 **Returns:** *string*
 
-Defined in: [src/util.ts:26](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L26)
+Defined in: [src/util.ts:44](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L44)
 
 ___
 
 ### shardedFilenames
 
-▸ `Const` **shardedFilenames**(`name`: *string*, `shards`: *number*): *string*[]
+▸ `Const` **shardedFilenames**(`name`: *string*, `shards`: *number*, `filter?`: (`index`: *number*) => *boolean*): *string*[]
 
 #### Parameters
 
@@ -179,7 +202,40 @@ ___
 | :------ | :------ |
 | `name` | *string* |
 | `shards` | *number* |
+| `filter?` | (`index`: *number*) => *boolean* |
 
 **Returns:** *string*[]
 
-Defined in: [src/util.ts:39](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L39)
+Defined in: [src/util.ts:57](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L57)
+
+___
+
+### streamToArray
+
+▸ **streamToArray**(`stream`: ReadableStreamTree): *Promise*<unknown[]\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `stream` | ReadableStreamTree |
+
+**Returns:** *Promise*<unknown[]\>
+
+Defined in: [src/util.ts:108](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L108)
+
+___
+
+### streamToValue
+
+▸ **streamToValue**(`stream`: ReadableStreamTree): *Promise*<unknown\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `stream` | ReadableStreamTree |
+
+**Returns:** *Promise*<unknown\>
+
+Defined in: [src/util.ts:122](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L122)

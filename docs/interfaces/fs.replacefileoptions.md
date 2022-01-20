@@ -55,4 +55,4 @@ ___
 
 • `Optional` **version**: *string* \| *number*
 
-Defined in: [src/fs.ts:63](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L63)
+Defined in: [src/fs.ts:64](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L64)

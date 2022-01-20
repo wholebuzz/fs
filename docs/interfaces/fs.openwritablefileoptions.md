@@ -12,6 +12,8 @@ Options when opening a Writable file.
 
   ↳ **OpenWritableFileOptions**
 
+  ↳↳ [*WritableFileOptions*](util.writablefileoptions.md)
+
 ## Table of contents
 
 ### Properties
@@ -48,7 +50,7 @@ ___
 
 • `Optional` **extra**: *Record*<string, any\>
 
-Defined in: [src/fs.ts:58](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L58)
+Defined in: [src/fs.ts:59](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L59)
 
 ___
 
@@ -66,4 +68,4 @@ ___
 
 • `Optional` **version**: *string* \| *number*
 
-Defined in: [src/fs.ts:59](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L59)
+Defined in: [src/fs.ts:60](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L60)

@@ -16,15 +16,15 @@
 
 ### mergeStreams
 
-▸ **mergeStreams**(`inputs`: ReadableStreamTree[] \| *Record*<string, ReadableStreamTree\>, `options?`: [*MergeStreamsOptions*](../interfaces/merge.mergestreamsoptions.md)): ReadableStreamTree
+▸ **mergeStreams**(`readable`: ReadableStreamTree[] \| *Record*<string, ReadableStreamTree \| ReadableStreamTree[]\>, `options?`: [*MergeStreamsOptions*](../interfaces/merge.mergestreamsoptions.md)): ReadableStreamTree
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `inputs` | ReadableStreamTree[] \| *Record*<string, ReadableStreamTree\> |
+| `readable` | ReadableStreamTree[] \| *Record*<string, ReadableStreamTree \| ReadableStreamTree[]\> |
 | `options?` | [*MergeStreamsOptions*](../interfaces/merge.mergestreamsoptions.md) |
 
 **Returns:** ReadableStreamTree
 
-Defined in: [src/merge.ts:10](https://github.com/wholebuzz/fs/blob/master/src/merge.ts#L10)
+Defined in: [src/merge.ts:12](https://github.com/wholebuzz/fs/blob/master/src/merge.ts#L12)

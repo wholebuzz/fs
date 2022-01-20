@@ -16,4 +16,4 @@
 
 • `Optional` **mask**: *number*
 
-Defined in: [src/fs.ts:75](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L75)
+Defined in: [src/fs.ts:77](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L77)

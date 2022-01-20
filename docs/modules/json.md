@@ -67,7 +67,7 @@ Parses JSON object from [[stream]].  Used to implement [readJSON](json.md#readjs
 
 **Returns:** *Promise*<unknown[]\>
 
-Defined in: [src/json.ts:92](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L92)
+Defined in: [src/json.ts:80](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L80)
 
 ___
 
@@ -86,7 +86,7 @@ Create JSON formatter stream.
 
 **Returns:** WritableStreamTree
 
-Defined in: [src/json.ts:150](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L150)
+Defined in: [src/json.ts:127](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L127)
 
 ___
 
@@ -104,7 +104,7 @@ Create JSON-lines formatter stream.
 
 **Returns:** WritableStreamTree
 
-Defined in: [src/json.ts:165](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L165)
+Defined in: [src/json.ts:142](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L142)
 
 ___
 
@@ -122,7 +122,7 @@ Create JSON parser stream.
 
 **Returns:** ReadableStreamTree
 
-Defined in: [src/json.ts:142](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L142)
+Defined in: [src/json.ts:119](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L119)
 
 ___
 
@@ -141,7 +141,7 @@ Create JSON parser stream.
 
 **Returns:** ReadableStreamTree
 
-Defined in: [src/json.ts:133](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L133)
+Defined in: [src/json.ts:110](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L110)
 
 ___
 
@@ -217,7 +217,7 @@ Serializes JSON object to [[stream]].  Used to implement [writeJSON](json.md#wri
 
 **Returns:** *Promise*<boolean\>
 
-Defined in: [src/json.ts:111](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L111)
+Defined in: [src/json.ts:88](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L88)
 
 ___
 
@@ -236,7 +236,7 @@ Serializes JSON object to [[stream]].  Used to implement [writeJSONLines](json.m
 
 **Returns:** *Promise*<boolean\>
 
-Defined in: [src/json.ts:126](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L126)
+Defined in: [src/json.ts:103](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L103)
 
 ___
 

@@ -8,6 +8,7 @@
 
 - [azure-blob](modules/azure_blob.md)
 - [cli](modules/cli.md)
+- [csv](modules/csv.md)
 - [fs](modules/fs.md)
 - [gcp](modules/gcp.md)
 - [http](modules/http.md)

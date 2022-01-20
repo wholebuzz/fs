@@ -55,7 +55,7 @@ export class LocalFileSystem extends FileSystem {
   /** @inheritDoc */
   async ensureDirectory(urlText: string, options?: EnsureDirectoryOptions) {
     return new Promise<boolean>((resolve, reject) => {
-      fs.mkdir(urlText, options?.mask ?? 0o755, (err) => {
+      fs.mkdir(urlText, { mode: options?.mask ?? 0o755, recursive: true }, (err) => {
         if (err) {
           if (err.code === 'EEXIST') resolve(true)
           else reject(err)

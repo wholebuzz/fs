@@ -7,11 +7,15 @@
 ### Functions
 
 - [hashStream](stream.md#hashstream)
+- [pipeAsyncFilter](stream.md#pipeasyncfilter)
 - [pipeFilter](stream.md#pipefilter)
+- [pipeFromAsyncFilter](stream.md#pipefromasyncfilter)
 - [pipeFromFilter](stream.md#pipefromfilter)
 - [readableToBuffer](stream.md#readabletobuffer)
 - [readableToString](stream.md#readabletostring)
 - [shardWritables](stream.md#shardwritables)
+- [streamAsyncFilter](stream.md#streamasyncfilter)
+- [streamFilter](stream.md#streamfilter)
 - [writableToString](stream.md#writabletostring)
 
 ## Functions
@@ -30,15 +34,15 @@ Hashes a [[Readable]] stream.
 
 **Returns:** *Promise*<string \| ``null``\>
 
-Defined in: [src/stream.ts:95](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L95)
+Defined in: [src/stream.ts:124](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L124)
 
 ___
 
-### pipeFilter
+### pipeAsyncFilter
 
-▸ **pipeFilter**(`stream`: ReadableStreamTree, `filter`: (`x`: *any*) => *any*): ReadableStreamTree
+▸ **pipeAsyncFilter**(`stream`: ReadableStreamTree, `filter`: (`x`: *any*) => *any*): ReadableStreamTree
 
-Create filter stream.
+Pipe async filter stream.
 
 #### Parameters
 
@@ -49,15 +53,34 @@ Create filter stream.
 
 **Returns:** ReadableStreamTree
 
-Defined in: [src/stream.ts:33](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L33)
+Defined in: [src/stream.ts:73](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L73)
 
 ___
 
-### pipeFromFilter
+### pipeFilter
 
-▸ **pipeFromFilter**(`stream`: WritableStreamTree, `filter`: (`x`: *any*) => *any*): WritableStreamTree
+▸ **pipeFilter**(`stream`: ReadableStreamTree, `filter`: (`x`: *any*) => *any*): ReadableStreamTree
 
-Create filter stream.
+Pipe filter stream.
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `stream` | ReadableStreamTree |
+| `filter` | (`x`: *any*) => *any* |
+
+**Returns:** ReadableStreamTree
+
+Defined in: [src/stream.ts:66](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L66)
+
+___
+
+### pipeFromAsyncFilter
+
+▸ **pipeFromAsyncFilter**(`stream`: WritableStreamTree, `filter`: (`x`: *any*) => *any*): WritableStreamTree
+
+Pipe from async filter stream.
 
 #### Parameters
 
@@ -68,7 +91,26 @@ Create filter stream.
 
 **Returns:** WritableStreamTree
 
-Defined in: [src/stream.ts:49](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L49)
+Defined in: [src/stream.ts:87](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L87)
+
+___
+
+### pipeFromFilter
+
+▸ **pipeFromFilter**(`stream`: WritableStreamTree, `filter`: (`x`: *any*) => *any*): WritableStreamTree
+
+Pipe from filter stream.
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `stream` | WritableStreamTree |
+| `filter` | (`x`: *any*) => *any* |
+
+**Returns:** WritableStreamTree
+
+Defined in: [src/stream.ts:80](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L80)
 
 ___
 
@@ -120,7 +162,43 @@ Split input by shardFunction
 
 **Returns:** WritableStreamTree
 
-Defined in: [src/stream.ts:65](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L65)
+Defined in: [src/stream.ts:94](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L94)
+
+___
+
+### streamAsyncFilter
+
+▸ **streamAsyncFilter**(`filter`: (`x`: *any*) => *any*): *Transform*
+
+Create async filter stream.
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `filter` | (`x`: *any*) => *any* |
+
+**Returns:** *Transform*
+
+Defined in: [src/stream.ts:47](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L47)
+
+___
+
+### streamFilter
+
+▸ **streamFilter**(`filter`: (`x`: *any*) => *any*): *Transform*
+
+Create filter stream.
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `filter` | (`x`: *any*) => *any* |
+
+**Returns:** *Transform*
+
+Defined in: [src/stream.ts:33](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L33)
 
 ___
 
