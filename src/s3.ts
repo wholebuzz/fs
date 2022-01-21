@@ -119,7 +119,12 @@ export class S3FileSystem extends FileSystem {
     }
   }
 
-  /** @inheritDoc */
+  /** 
+   * @inheritDoc
+   * Opens a readable stream to an S3 Bucket's Key.
+   * The special URL `s3://athena.csv` sends `options.query` to AWS Athena and returns CSV data.
+   * Otherwise `options.query` runs an S3 Select on the Key.
+   */
   async openReadableFile(urlText: string, options?: OpenReadableFileOptions) {
     const gzipped = urlText.endsWith('.gz')
     if (options?.query) {
