@@ -39,7 +39,11 @@ export const shardIndex = (text: string, modulus: number) =>
 export const shardMatchText = (text: string, shard: Shard) =>
   shardIndex(text, shard.modulus) === shard.index
 
-export const isShardedFilename = (name: string) => name.match(/\-(S+)\-of\-(N+)/)?.[1].length
+export const shardRegex = /\-(\d+)\-of\-(\d+)/
+export const shardedRegex = /\-(S+)\-of\-(N+)/
+export const isShardFilename = (name: string) => name.match(shardRegex)?.[1].length
+export const isShardedFilename = (name: string) => name.match(shardedRegex)?.[1].length
+export const allShardsFilename = (name: string) => name.replace(shardRegex, '-SSSS-of-NNNN')
 
 export const shardedFilename = (name: string, shard: Shard) => {
   const of = name.lastIndexOf('-of-')
