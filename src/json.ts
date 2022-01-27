@@ -140,5 +140,7 @@ export function pipeJSONFormatter(
  * @param isArray Accept array objects or property tuples.
  */
 export function pipeJSONLinesFormatter(stream: WritableStreamTree): WritableStreamTree {
-  return stream.pipeFrom(ndjson.stringify())
+  return stream.pipeFrom(newJSONLinesFormatter())
 }
+
+export const newJSONLinesFormatter = () => ndjson.stringify()

@@ -119,7 +119,7 @@ export class S3FileSystem extends FileSystem {
     }
   }
 
-  /** 
+  /**
    * @inheritDoc
    * Opens a readable stream to an S3 Bucket's Key.
    * The special URL `s3://athena.csv` sends `options.query` to AWS Athena and returns CSV data.
