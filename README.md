@@ -2,11 +2,21 @@
 
 File system abstraction with implementations for GCP GCS, AWS S3, Azure, SMB, HTTP, and Local file systems. Provides atomic primitives enabling multiple readers and writers.
 
-- `LocalFileSystem` employs content hashing to approximate [GCS Object Versioning](https://cloud.google.com/storage/docs/object-versioning). 
-- `GoogleCloudFileSystem` provides consistent parallel access paterns.
-- `S3FileSystem` provides basic file system primitives.
-- `SMBFileSystem` provides basic file system primitives.
-- `HTTPFileSystem` provides a basic HTTP file system.
+- [LocalFileSystem](src/local.ts) employs content hashing to approximate [GCS Object Versioning](https://cloud.google.com/storage/docs/object-versioning). 
+- [GoogleCloudFileSystem](src/gcp.ts) provides consistent parallel access paterns.
+- [S3FileSystem](src/s3.ts) provides basic file system primitives.
+- [SMBFileSystem](src/smb.ts) provides basic file system primitives.
+- [HTTPFileSystem](src/http.ts) provides a basic HTTP file system.
+
+Provides file format implementations for:
+
+- [CSV](src/csv.ts)
+- [JSON, ND-JSON / JSONL](src/json.ts)
+- [Lines](src/lines.ts)
+- [Parquet](src/parquet.ts)
+- [TFRecord](src/tfrecord.ts)
+
+Additionally provides streaming & sharding utilities.
 
 ## Dependencies
 
@@ -20,17 +30,11 @@ The `FileSystem` implementations require peer dependencies:
 - S3FileSystem: `aws-sdk`, `s3-stream-upload`, and `athena-express`
 - SMBFileSystem: `@marsaud/smb2`
 
-## Formats
+## Credits
 
-Provides file format implementations for:
+Built with the [tree-stream](https://www.npmjs.com/package/tree-stream) primitives `ReadableStreamTree` and `WritableStreamTree`.
 
-- [CSV](src/csv.ts)
-- [JSON, ND-JSON / JSONL](src/json.ts)
-- [Lines](src/lines.ts)
-- [Parquet](src/parquet.ts)
-- [TFRecord](src/tfrecord.ts)
-
-## History
+## Project history
 
 The project started to support [@wholebuzz/archive](https://www.npmjs.com/package/@wholebuzz/archive), a terabyte-scale archive for GCS.
 The focus has since expanded to include powering [dbcp](https://www.npmjs.com/package/dbcp) with a collection of file system implementations under a common interface.
