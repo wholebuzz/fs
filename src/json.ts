@@ -117,7 +117,7 @@ export function pipeJSONParser(stream: ReadableStreamTree, isArray: boolean): Re
  * Create JSON parser stream.
  */
 export function pipeJSONLinesParser(stream: ReadableStreamTree): ReadableStreamTree {
-  return stream.pipe(ndjson.parse())
+  return stream.pipe(newJSONLinesParser())
 }
 
 /**
@@ -144,3 +144,4 @@ export function pipeJSONLinesFormatter(stream: WritableStreamTree): WritableStre
 }
 
 export const newJSONLinesFormatter = () => ndjson.stringify()
+export const newJSONLinesParser = () => ndjson.parse()
