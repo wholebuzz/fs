@@ -41,7 +41,7 @@ export const shardMatchText = (text: string, shard: Shard) =>
 
 export const shardRegex = /\-(\d+)\-of\-(\d+)/
 export const shardedRegex = /\-(S+)\-of\-(N+)/
-export const isShardFilename = (name: string) => name.match(shardRegex)?.[1].length
+export const isShardFilename = (name: string) => parseInt(name.match(shardRegex)?.[2] || '0', 10)
 export const isShardedFilename = (name: string) => name.match(shardedRegex)?.[1].length
 export const allShardsFilename = (name: string) => name.replace(shardRegex, '-SSSS-of-NNNN')
 

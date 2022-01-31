@@ -402,6 +402,8 @@ Defined in: [src/fs.ts:179](https://github.com/wholebuzz/fs/blob/master/src/fs.t
 
 ### Functions
 
+- [newJSONLinesFormatter](json.md#newjsonlinesformatter)
+- [newJSONLinesParser](json.md#newjsonlinesparser)
 - [parseJSON](json.md#parsejson)
 - [parseJSONLines](json.md#parsejsonlines)
 - [pipeJSONFormatter](json.md#pipejsonformatter)
@@ -426,6 +428,26 @@ Defined in: [src/fs.ts:179](https://github.com/wholebuzz/fs/blob/master/src/fs.t
 Defined in: [src/json.ts:11](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L11)
 
 ## Functions
+
+### newJSONLinesFormatter
+
+▸ `Const` **newJSONLinesFormatter**(): *Transform*
+
+**Returns:** *Transform*
+
+Defined in: [src/json.ts:146](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L146)
+
+___
+
+### newJSONLinesParser
+
+▸ `Const` **newJSONLinesParser**(): *ThroughStream*
+
+**Returns:** *ThroughStream*
+
+Defined in: [src/json.ts:147](https://github.com/wholebuzz/fs/blob/master/src/json.ts#L147)
+
+___
 
 ### parseJSON
 
