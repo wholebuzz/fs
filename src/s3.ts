@@ -1,5 +1,6 @@
 import { AthenaExpress } from 'athena-express'
 import * as AWS from 'aws-sdk'
+import { PassThrough } from 'stream'
 import StreamTree, { WritableStreamTree } from 'tree-stream'
 import {
   AppendOptions,
@@ -17,7 +18,6 @@ import {
 import { logger, zlib } from './util'
 
 const UploadStream = require('s3-stream-upload')
-const s3s = require('s3-select-stream')
 
 /**
  * Amazon Web Services S3 [[FileSystem]] implemented with `aws-sdk` and `s3-stream-upload`.
@@ -172,8 +172,25 @@ export class S3FileSystem extends FileSystem {
         },
         ...options.extra,
       }
-      const { Key: selectKey, ...selectOptions } = url
-      return StreamTree.readable(s3s([selectKey], selectOptions))
+      const passThrough = new PassThrough()
+      const ret = StreamTree.readable(passThrough)
+      this.s3.selectObjectContent(url, (error, data) => {
+        if (error || !data || !data.Payload) {
+          passThrough.destroy(error)
+        } else {
+          ;(data.Payload as any)
+            .on('data', (event: any) => {
+              if (event.Records) {
+                passThrough.push(event.Records.Payload)
+              } else if (event.Stats) {
+                // console.log(`selectObjectContent.Stats`, event.Stats)
+              }
+            })
+            .on('error', (err: Error) => passThrough.destroy(err))
+            .on('end', () => passThrough.push(null))
+        }
+      })
+      return ret
     } else {
       const url = {
         ...this.parseUrl(urlText),
