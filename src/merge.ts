@@ -25,6 +25,7 @@ export function mergeStreams(
 
   let finished = 0
   let currentGroup: any[] = []
+  let unPauseCb: (() => void) | undefined
   const total = entries.reduce((pv, cv) => pv + (Array.isArray(cv[1]) ? cv[1].length : 1), 0)
   const compare = options?.compare
   const heap = new MinHeap<HeapItem>(compare ? (a, b) => compare(a.value, b.value) : undefined)
@@ -32,25 +33,41 @@ export function mergeStreams(
   const getGroupItemValue = (x: any) => (options?.labelSource ? x.value : x)
   const ret = StreamTree.readable(stream)
   const deque = () => {
-    if (heap.size < total - finished) return
-    const item = heap.pop()!
-    const out = options?.labelSource ? { source: item.source, value: item.value } : item.value
-    if (compare && options?.group) {
-      if (currentGroup.length > 0) {
-        if (compare(item.value, getGroupItemValue(currentGroup[currentGroup.length - 1])) === 0) {
-          currentGroup.push(out)
+    while (!unPauseCb && heap.size >= total - finished && heap.size > 0) {
+      const item = heap.pop()!
+      const out = options?.labelSource ? { source: item.source, value: item.value } : item.value
+      let paused = false
+      if (compare && options?.group) {
+        if (currentGroup.length > 0) {
+          if (compare(item.value, getGroupItemValue(currentGroup[currentGroup.length - 1])) === 0) {
+            currentGroup.push(out)
+          } else {
+            const wrote = stream.write(
+              options?.combine ? options.combine(currentGroup) : currentGroup
+            )
+            if (!wrote) paused = true
+            currentGroup = [out]
+          }
         } else {
-          stream.write(options?.combine ? options.combine(currentGroup) : currentGroup)
-          currentGroup = [out]
+          currentGroup.push(out)
         }
       } else {
-        currentGroup.push(out)
+        const wrote = stream.write(out)
+        if (!wrote) paused = true
       }
-    } else {
-      stream.write(out)
+      if (paused) {
+        unPauseCb = item.cb
+      } else {
+        item.cb()
+      }
     }
-    item.cb()
   }
+  stream.on('drain', () => {
+    const cb = unPauseCb
+    unPauseCb = undefined
+    if (cb) cb()
+    deque()
+  })
   for (const [source, inputs] of entries) {
     for (const input of Array.isArray(inputs) ? inputs : [inputs]) {
       input

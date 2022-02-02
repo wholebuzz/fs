@@ -22,6 +22,7 @@ Additionally provides streaming & sharding utilities.
 
 The `FileSystem` implementations require peer dependencies:
 
+- AnyFileSystem: None. URL resolution as a `FileSystem`. Files have URLs and HTTP is a file system.
 - AzureBlobStorageFileSystem: `@azure/storage-blob` and `@azure/identity`
 - AzureFileShareFileSystem: `@azure/storage-file-share`
 - GoogleCloudFileSystem: `@google-cloud/storage`
