@@ -26,7 +26,7 @@
 
 Inherited from: [ReadableFileSpec](util.readablefilespec.md).[format](util.readablefilespec.md#format)
 
-Defined in: [src/util.ts:27](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L27)
+Defined in: [src/util.ts:26](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L26)
 
 ___
 
@@ -36,7 +36,7 @@ ___
 
 Overrides: [ReadableFileSpec](util.readablefilespec.md).[options](util.readablefilespec.md#options)
 
-Defined in: [src/parquet.ts:27](https://github.com/wholebuzz/fs/blob/master/src/parquet.ts#L27)
+Defined in: [src/parquet.ts:26](https://github.com/wholebuzz/fs/blob/master/src/parquet.ts#L26)
 
 ___
 
@@ -46,4 +46,4 @@ ___
 
 Inherited from: [ReadableFileSpec](util.readablefilespec.md).[url](util.readablefilespec.md#url)
 
-Defined in: [src/util.ts:26](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L26)
+Defined in: [src/util.ts:25](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L25)

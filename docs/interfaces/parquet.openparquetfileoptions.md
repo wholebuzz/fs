@@ -16,4 +16,4 @@
 
 • `Optional` **columnList**: *string*[] \| *string*[][]
 
-Defined in: [src/parquet.ts:17](https://github.com/wholebuzz/fs/blob/master/src/parquet.ts#L17)
+Defined in: [src/parquet.ts:16](https://github.com/wholebuzz/fs/blob/master/src/parquet.ts#L16)

@@ -18,7 +18,7 @@
 
 • `Optional` **columnList**: *string*[] \| *string*[][]
 
-Defined in: [src/parquet.ts:21](https://github.com/wholebuzz/fs/blob/master/src/parquet.ts#L21)
+Defined in: [src/parquet.ts:20](https://github.com/wholebuzz/fs/blob/master/src/parquet.ts#L20)
 
 ___
 
@@ -38,7 +38,7 @@ ___
 
 **Returns:** *boolean*
 
-Defined in: [src/parquet.ts:23](https://github.com/wholebuzz/fs/blob/master/src/parquet.ts#L23)
+Defined in: [src/parquet.ts:22](https://github.com/wholebuzz/fs/blob/master/src/parquet.ts#L22)
 
 ___
 
@@ -46,4 +46,4 @@ ___
 
 • `Optional` **shards**: *number*
 
-Defined in: [src/parquet.ts:22](https://github.com/wholebuzz/fs/blob/master/src/parquet.ts#L22)
+Defined in: [src/parquet.ts:21](https://github.com/wholebuzz/fs/blob/master/src/parquet.ts#L21)

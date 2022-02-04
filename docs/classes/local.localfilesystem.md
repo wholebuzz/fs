@@ -31,6 +31,7 @@ Local [FileSystem](fs.filesystem.md) implemented with `fs` and `fs-ext`.
 - [openWritableFile](local.localfilesystem.md#openwritablefile)
 - [queueRemoveFile](local.localfilesystem.md#queueremovefile)
 - [readDirectory](local.localfilesystem.md#readdirectory)
+- [readDirectoryStream](local.localfilesystem.md#readdirectorystream)
 - [removeDirectory](local.localfilesystem.md#removedirectory)
 - [removeFile](local.localfilesystem.md#removefile)
 - [replaceFile](local.localfilesystem.md#replacefile)
@@ -67,7 +68,7 @@ Inherited from: [FileSystem](fs.filesystem.md)
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/local.ts:205](https://github.com/wholebuzz/fs/blob/master/src/local.ts#L205)
+Defined in: [src/local.ts:243](https://github.com/wholebuzz/fs/blob/master/src/local.ts#L243)
 
 ___
 
@@ -88,7 +89,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/local.ts:147](https://github.com/wholebuzz/fs/blob/master/src/local.ts#L147)
+Defined in: [src/local.ts:185](https://github.com/wholebuzz/fs/blob/master/src/local.ts#L185)
 
 ___
 
@@ -110,7 +111,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/local.ts:118](https://github.com/wholebuzz/fs/blob/master/src/local.ts#L118)
+Defined in: [src/local.ts:156](https://github.com/wholebuzz/fs/blob/master/src/local.ts#L156)
 
 ___
 
@@ -131,7 +132,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/local.ts:56](https://github.com/wholebuzz/fs/blob/master/src/local.ts#L56)
+Defined in: [src/local.ts:94](https://github.com/wholebuzz/fs/blob/master/src/local.ts#L94)
 
 ___
 
@@ -151,7 +152,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/local.ts:76](https://github.com/wholebuzz/fs/blob/master/src/local.ts#L76)
+Defined in: [src/local.ts:114](https://github.com/wholebuzz/fs/blob/master/src/local.ts#L114)
 
 ___
 
@@ -172,7 +173,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/local.ts:86](https://github.com/wholebuzz/fs/blob/master/src/local.ts#L86)
+Defined in: [src/local.ts:124](https://github.com/wholebuzz/fs/blob/master/src/local.ts#L124)
 
 ___
 
@@ -193,7 +194,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/local.ts:153](https://github.com/wholebuzz/fs/blob/master/src/local.ts#L153)
+Defined in: [src/local.ts:191](https://github.com/wholebuzz/fs/blob/master/src/local.ts#L191)
 
 ___
 
@@ -214,7 +215,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/local.ts:99](https://github.com/wholebuzz/fs/blob/master/src/local.ts#L99)
+Defined in: [src/local.ts:137](https://github.com/wholebuzz/fs/blob/master/src/local.ts#L137)
 
 ___
 
@@ -235,7 +236,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/local.ts:111](https://github.com/wholebuzz/fs/blob/master/src/local.ts#L111)
+Defined in: [src/local.ts:149](https://github.com/wholebuzz/fs/blob/master/src/local.ts#L149)
 
 ___
 
@@ -255,7 +256,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/local.ts:142](https://github.com/wholebuzz/fs/blob/master/src/local.ts#L142)
+Defined in: [src/local.ts:180](https://github.com/wholebuzz/fs/blob/master/src/local.ts#L180)
 
 ___
 
@@ -276,7 +277,28 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/local.ts:45](https://github.com/wholebuzz/fs/blob/master/src/local.ts#L45)
+Defined in: [src/local.ts:47](https://github.com/wholebuzz/fs/blob/master/src/local.ts#L47)
+
+___
+
+### readDirectoryStream
+
+▸ **readDirectoryStream**(`urlText`: *string*, `options?`: [*ReadDirectoryOptions*](../interfaces/fs.readdirectoryoptions.md)): *Promise*<ReadableStreamTree\>
+
+**`inheritdoc`**
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `urlText` | *string* |
+| `options?` | [*ReadDirectoryOptions*](../interfaces/fs.readdirectoryoptions.md) |
+
+**Returns:** *Promise*<ReadableStreamTree\>
+
+Overrides: [FileSystem](fs.filesystem.md)
+
+Defined in: [src/local.ts:58](https://github.com/wholebuzz/fs/blob/master/src/local.ts#L58)
 
 ___
 
@@ -296,7 +318,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/local.ts:70](https://github.com/wholebuzz/fs/blob/master/src/local.ts#L70)
+Defined in: [src/local.ts:108](https://github.com/wholebuzz/fs/blob/master/src/local.ts#L108)
 
 ___
 
@@ -316,7 +338,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/local.ts:136](https://github.com/wholebuzz/fs/blob/master/src/local.ts#L136)
+Defined in: [src/local.ts:174](https://github.com/wholebuzz/fs/blob/master/src/local.ts#L174)
 
 ___
 
@@ -338,4 +360,4 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/local.ts:159](https://github.com/wholebuzz/fs/blob/master/src/local.ts#L159)
+Defined in: [src/local.ts:197](https://github.com/wholebuzz/fs/blob/master/src/local.ts#L197)

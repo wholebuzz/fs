@@ -7,12 +7,16 @@
 ### Functions
 
 - [hashStream](stream.md#hashstream)
+- [openNullReadable](stream.md#opennullreadable)
+- [openNullWritable](stream.md#opennullwritable)
 - [pipeAsyncFilter](stream.md#pipeasyncfilter)
 - [pipeFilter](stream.md#pipefilter)
 - [pipeFromAsyncFilter](stream.md#pipefromasyncfilter)
 - [pipeFromFilter](stream.md#pipefromfilter)
+- [readableToArray](stream.md#readabletoarray)
 - [readableToBuffer](stream.md#readabletobuffer)
 - [readableToString](stream.md#readabletostring)
+- [readableToValue](stream.md#readabletovalue)
 - [shardWritables](stream.md#shardwritables)
 - [streamAsyncFilter](stream.md#streamasyncfilter)
 - [streamFilter](stream.md#streamfilter)
@@ -34,7 +38,27 @@ Hashes a [[Readable]] stream.
 
 **Returns:** *Promise*<string \| ``null``\>
 
-Defined in: [src/stream.ts:124](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L124)
+Defined in: [src/stream.ts:171](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L171)
+
+___
+
+### openNullReadable
+
+▸ `Const` **openNullReadable**(): ReadableStreamTree
+
+**Returns:** ReadableStreamTree
+
+Defined in: [src/stream.ts:5](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L5)
+
+___
+
+### openNullWritable
+
+▸ `Const` **openNullWritable**(): WritableStreamTree
+
+**Returns:** WritableStreamTree
+
+Defined in: [src/stream.ts:14](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L14)
 
 ___
 
@@ -53,7 +77,7 @@ Pipe async filter stream.
 
 **Returns:** ReadableStreamTree
 
-Defined in: [src/stream.ts:73](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L73)
+Defined in: [src/stream.ts:120](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L120)
 
 ___
 
@@ -72,7 +96,7 @@ Pipe filter stream.
 
 **Returns:** ReadableStreamTree
 
-Defined in: [src/stream.ts:66](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L66)
+Defined in: [src/stream.ts:113](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L113)
 
 ___
 
@@ -91,7 +115,7 @@ Pipe from async filter stream.
 
 **Returns:** WritableStreamTree
 
-Defined in: [src/stream.ts:87](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L87)
+Defined in: [src/stream.ts:134](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L134)
 
 ___
 
@@ -110,7 +134,23 @@ Pipe from filter stream.
 
 **Returns:** WritableStreamTree
 
-Defined in: [src/stream.ts:80](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L80)
+Defined in: [src/stream.ts:127](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L127)
+
+___
+
+### readableToArray
+
+▸ **readableToArray**(`stream`: ReadableStreamTree): *Promise*<unknown[]\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `stream` | ReadableStreamTree |
+
+**Returns:** *Promise*<unknown[]\>
+
+Defined in: [src/stream.ts:36](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L36)
 
 ___
 
@@ -126,7 +166,7 @@ ___
 
 **Returns:** *Promise*<Buffer\>
 
-Defined in: [src/stream.ts:9](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L9)
+Defined in: [src/stream.ts:27](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L27)
 
 ___
 
@@ -142,7 +182,23 @@ ___
 
 **Returns:** *Promise*<string\>
 
-Defined in: [src/stream.ts:5](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L5)
+Defined in: [src/stream.ts:23](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L23)
+
+___
+
+### readableToValue
+
+▸ **readableToValue**(`stream`: ReadableStreamTree): *Promise*<unknown\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `stream` | ReadableStreamTree |
+
+**Returns:** *Promise*<unknown\>
+
+Defined in: [src/stream.ts:50](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L50)
 
 ___
 
@@ -162,7 +218,7 @@ Split input by shardFunction
 
 **Returns:** WritableStreamTree
 
-Defined in: [src/stream.ts:94](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L94)
+Defined in: [src/stream.ts:141](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L141)
 
 ___
 
@@ -180,7 +236,7 @@ Create async filter stream.
 
 **Returns:** *Transform*
 
-Defined in: [src/stream.ts:47](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L47)
+Defined in: [src/stream.ts:94](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L94)
 
 ___
 
@@ -198,7 +254,7 @@ Create filter stream.
 
 **Returns:** *Transform*
 
-Defined in: [src/stream.ts:33](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L33)
+Defined in: [src/stream.ts:80](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L80)
 
 ___
 
@@ -215,4 +271,4 @@ ___
 
 **Returns:** WritableStreamTree
 
-Defined in: [src/stream.ts:18](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L18)
+Defined in: [src/stream.ts:65](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L65)

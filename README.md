@@ -107,6 +107,7 @@ node lib/cli.js --help
 - [openWritableFile](fs.filesystem.md#openwritablefile)
 - [queueRemoveFile](fs.filesystem.md#queueremovefile)
 - [readDirectory](fs.filesystem.md#readdirectory)
+- [readDirectoryStream](fs.filesystem.md#readdirectorystream)
 - [removeDirectory](fs.filesystem.md#removedirectory)
 - [removeFile](fs.filesystem.md#removefile)
 - [replaceFile](fs.filesystem.md#replacefile)
@@ -141,7 +142,7 @@ For simple appends, the same paramter can be supplied for both `writeCallback` a
 
 **Returns:** *Promise*<``null`` \| [*FileStatus*](../interfaces/fs.filestatus.md)\>
 
-Defined in: [src/fs.ts:194](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L194)
+Defined in: [src/fs.ts:203](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L203)
 
 ___
 
@@ -160,7 +161,7 @@ Copies the file.
 
 **Returns:** *Promise*<boolean\>
 
-Defined in: [src/fs.ts:163](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L163)
+Defined in: [src/fs.ts:172](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L172)
 
 ___
 
@@ -180,7 +181,7 @@ Creates file, failing if the file already exists.
 
 **Returns:** *Promise*<boolean\>
 
-Defined in: [src/fs.ts:140](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L140)
+Defined in: [src/fs.ts:149](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L149)
 
 ___
 
@@ -199,7 +200,7 @@ Ensures the directory exists
 
 **Returns:** *Promise*<boolean\>
 
-Defined in: [src/fs.ts:94](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L94)
+Defined in: [src/fs.ts:103](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L103)
 
 ___
 
@@ -217,7 +218,7 @@ Returns `true` if the file exists.
 
 **Returns:** *Promise*<boolean\>
 
-Defined in: [src/fs.ts:106](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L106)
+Defined in: [src/fs.ts:115](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L115)
 
 ___
 
@@ -236,7 +237,7 @@ Determines the file status. The file version is used to implement atomic mutatio
 
 **Returns:** *Promise*<[*FileStatus*](../interfaces/fs.filestatus.md)\>
 
-Defined in: [src/fs.ts:112](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L112)
+Defined in: [src/fs.ts:121](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L121)
 
 ___
 
@@ -255,7 +256,7 @@ Moves the file.
 
 **Returns:** *Promise*<boolean\>
 
-Defined in: [src/fs.ts:170](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L170)
+Defined in: [src/fs.ts:179](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L179)
 
 ___
 
@@ -276,7 +277,7 @@ Opens a file for reading.
 
 **Returns:** *Promise*<ReadableStreamTree\>
 
-Defined in: [src/fs.ts:119](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L119)
+Defined in: [src/fs.ts:128](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L128)
 
 ___
 
@@ -297,7 +298,7 @@ Opens a file for writing.
 
 **Returns:** *Promise*<WritableStreamTree\>
 
-Defined in: [src/fs.ts:129](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L129)
+Defined in: [src/fs.ts:138](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L138)
 
 ___
 
@@ -315,7 +316,7 @@ Queues deletion, e.g. after DaysSinceCustomTime.
 
 **Returns:** *Promise*<boolean\>
 
-Defined in: [src/fs.ts:156](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L156)
+Defined in: [src/fs.ts:165](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L165)
 
 ___
 
@@ -338,6 +339,25 @@ Defined in: [src/fs.ts:88](https://github.com/wholebuzz/fs/blob/master/src/fs.ts
 
 ___
 
+### readDirectoryStream
+
+▸ `Abstract` **readDirectoryStream**(`urlText`: *string*, `options?`: [*ReadDirectoryOptions*](../interfaces/fs.readdirectoryoptions.md)): *Promise*<ReadableStreamTree\>
+
+Returns a stream of the URLs of the files in a directory.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `urlText` | *string* | The URL of the directory to list files in. |
+| `options?` | [*ReadDirectoryOptions*](../interfaces/fs.readdirectoryoptions.md) | - |
+
+**Returns:** *Promise*<ReadableStreamTree\>
+
+Defined in: [src/fs.ts:94](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L94)
+
+___
+
 ### removeDirectory
 
 ▸ `Abstract` **removeDirectory**(`urlText`: *string*): *Promise*<boolean\>
@@ -352,7 +372,7 @@ Removes the directory
 
 **Returns:** *Promise*<boolean\>
 
-Defined in: [src/fs.ts:100](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L100)
+Defined in: [src/fs.ts:109](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L109)
 
 ___
 
@@ -370,7 +390,7 @@ Deletes the file.
 
 **Returns:** *Promise*<boolean\>
 
-Defined in: [src/fs.ts:150](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L150)
+Defined in: [src/fs.ts:159](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L159)
 
 ___
 
@@ -390,7 +410,7 @@ Replaces the file, failing if the file version doesn't match.
 
 **Returns:** *Promise*<boolean\>
 
-Defined in: [src/fs.ts:179](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L179)
+Defined in: [src/fs.ts:188](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L188)
 [@wholebuzz/fs](../README.md) / [Exports](../modules.md) / json
 
 # Module: json

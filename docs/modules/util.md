@@ -31,8 +31,6 @@
 - [shardMatchText](util.md#shardmatchtext)
 - [shardedFilename](util.md#shardedfilename)
 - [shardedFilenames](util.md#shardedfilenames)
-- [streamToArray](util.md#streamtoarray)
-- [streamToValue](util.md#streamtovalue)
 
 ## Variables
 
@@ -48,7 +46,7 @@
 | `error` | (...`args`: *any*[]) => *void* |
 | `info` | (...`args`: *any*[]) => *void* |
 
-Defined in: [src/util.ts:9](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L9)
+Defined in: [src/util.ts:8](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L8)
 
 ___
 
@@ -56,7 +54,7 @@ ___
 
 • `Const` **shardRegex**: *RegExp*
 
-Defined in: [src/util.ts:42](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L42)
+Defined in: [src/util.ts:41](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L41)
 
 ___
 
@@ -64,7 +62,7 @@ ___
 
 • `Const` **shardedRegex**: *RegExp*
 
-Defined in: [src/util.ts:43](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L43)
+Defined in: [src/util.ts:42](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L42)
 
 ___
 
@@ -72,7 +70,7 @@ ___
 
 • `Const` **zlib**: *any*
 
-Defined in: [src/util.ts:6](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L6)
+Defined in: [src/util.ts:5](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L5)
 
 ## Functions
 
@@ -88,7 +86,7 @@ Defined in: [src/util.ts:6](https://github.com/wholebuzz/fs/blob/master/src/util
 
 **Returns:** *string*
 
-Defined in: [src/util.ts:46](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L46)
+Defined in: [src/util.ts:45](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L45)
 
 ___
 
@@ -104,7 +102,7 @@ ___
 
 **Returns:** *number*
 
-Defined in: [src/util.ts:44](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L44)
+Defined in: [src/util.ts:43](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L43)
 
 ___
 
@@ -120,7 +118,7 @@ ___
 
 **Returns:** *undefined* \| *number*
 
-Defined in: [src/util.ts:45](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L45)
+Defined in: [src/util.ts:44](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L44)
 
 ___
 
@@ -136,7 +134,7 @@ ___
 
 **Returns:** *string*
 
-Defined in: [src/util.ts:7](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L7)
+Defined in: [src/util.ts:6](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L6)
 
 ___
 
@@ -153,7 +151,7 @@ ___
 
 **Returns:** *Promise*<Record<string, ReadableStreamTree[]\>\>
 
-Defined in: [src/util.ts:71](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L71)
+Defined in: [src/util.ts:70](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L70)
 
 ___
 
@@ -171,7 +169,7 @@ ___
 
 **Returns:** *Promise*<ReadableStreamTree[]\>
 
-Defined in: [src/util.ts:82](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L82)
+Defined in: [src/util.ts:81](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L81)
 
 ___
 
@@ -189,7 +187,7 @@ ___
 
 **Returns:** *Promise*<WritableStreamTree[]\>
 
-Defined in: [src/util.ts:97](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L97)
+Defined in: [src/util.ts:96](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L96)
 
 ___
 
@@ -206,7 +204,7 @@ ___
 
 **Returns:** *number*
 
-Defined in: [src/util.ts:36](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L36)
+Defined in: [src/util.ts:35](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L35)
 
 ___
 
@@ -223,7 +221,7 @@ ___
 
 **Returns:** *boolean*
 
-Defined in: [src/util.ts:39](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L39)
+Defined in: [src/util.ts:38](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L38)
 
 ___
 
@@ -240,7 +238,7 @@ ___
 
 **Returns:** *string*
 
-Defined in: [src/util.ts:48](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L48)
+Defined in: [src/util.ts:47](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L47)
 
 ___
 
@@ -258,36 +256,4 @@ ___
 
 **Returns:** *string*[]
 
-Defined in: [src/util.ts:61](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L61)
-
-___
-
-### streamToArray
-
-▸ **streamToArray**(`stream`: ReadableStreamTree): *Promise*<unknown[]\>
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `stream` | ReadableStreamTree |
-
-**Returns:** *Promise*<unknown[]\>
-
-Defined in: [src/util.ts:112](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L112)
-
-___
-
-### streamToValue
-
-▸ **streamToValue**(`stream`: ReadableStreamTree): *Promise*<unknown\>
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `stream` | ReadableStreamTree |
-
-**Returns:** *Promise*<unknown\>
-
-Defined in: [src/util.ts:126](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L126)
+Defined in: [src/util.ts:60](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L60)
