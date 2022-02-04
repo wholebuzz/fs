@@ -4,7 +4,7 @@ import { Options as CSVFormatOptions } from 'csv-stringify'
 import { Readable } from 'stream'
 import { pumpWritable, ReadableStreamTree, WritableStreamTree } from 'tree-stream'
 import { FileSystem } from './fs'
-import { streamToArray } from './util'
+import { readableToArray } from './stream'
 
 /**
  * Create CSV parser stream.
@@ -31,7 +31,7 @@ export function pipeCSVFormatter(
  * @param stream The stream to read a CSV object from.
  */
 export async function parseCSV(stream: ReadableStreamTree, options?: CSVParseOptions) {
-  return streamToArray(pipeCSVParser(stream, options))
+  return readableToArray(pipeCSVParser(stream, options))
 }
 
 /**

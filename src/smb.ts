@@ -1,4 +1,5 @@
 import SMB2 from '@marsaud/smb2'
+import { Readable } from 'stream'
 import StreamTree, { WritableStreamTree } from 'tree-stream'
 
 import {
@@ -43,6 +44,11 @@ export class SMBFileSystem extends FileSystem {
   /** @inheritDoc */
   async readDirectory(url: string, _options?: ReadDirectoryOptions) {
     return (await this.smb2.readdir(this.parseUrl(url))).map((x) => ({ url: x }))
+  }
+
+  /** @inheritDoc */
+  async readDirectoryStream(url: string, options?: ReadDirectoryOptions) {
+    return StreamTree.readable(Readable.from(await this.readDirectory(url, options)))
   }
 
   /** @inheritDoc */

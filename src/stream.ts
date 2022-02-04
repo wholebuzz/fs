@@ -1,6 +1,24 @@
 import SHA from 'sha.js'
 import { Readable, Transform, Writable } from 'stream'
-import StreamTree, { ReadableStreamTree, WritableStreamTree } from 'tree-stream'
+import StreamTree, { pumpReadable, ReadableStreamTree, WritableStreamTree } from 'tree-stream'
+
+export const openNullReadable = () =>
+  StreamTree.readable(
+    new Readable({
+      read(_size) {
+        this.push(null)
+      },
+    })
+  )
+
+export const openNullWritable = () =>
+  StreamTree.writable(
+    new Writable({
+      write(_chunk, _encoding, done) {
+        done()
+      },
+    })
+  )
 
 export async function readableToString(stream: Readable): Promise<string> {
   return (await readableToBuffer(stream)).toString('utf8')
@@ -13,6 +31,35 @@ export function readableToBuffer(stream: Readable): Promise<Buffer> {
     stream.on('error', (err: Error) => reject(err))
     stream.on('end', () => resolve(Buffer.concat(chunks)))
   })
+}
+
+export async function readableToArray(stream: ReadableStreamTree) {
+  const ret: unknown[] = []
+  stream = stream.pipe(
+    new Transform({
+      objectMode: true,
+      transform(data, _, callback) {
+        ret.push(data)
+        callback()
+      },
+    })
+  )
+  return pumpReadable(stream, ret)
+}
+
+export async function readableToValue(stream: ReadableStreamTree) {
+  let ret: unknown | undefined
+  stream = stream.pipe(
+    new Transform({
+      objectMode: true,
+      transform(data, _, callback) {
+        ret = data
+        callback()
+      },
+    })
+  )
+  await pumpReadable(stream, undefined)
+  return ret
 }
 
 export function writableToString(target: { value: string }): WritableStreamTree {

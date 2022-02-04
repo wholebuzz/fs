@@ -1,7 +1,7 @@
 import { AthenaExpress } from 'athena-express'
 import * as AWS from 'aws-sdk'
 import { PassThrough } from 'stream'
-import StreamTree, { WritableStreamTree } from 'tree-stream'
+import StreamTree, { ReadableStreamTree, WritableStreamTree } from 'tree-stream'
 import {
   AppendOptions,
   CreateOptions,
@@ -52,6 +52,17 @@ export class S3FileSystem extends FileSystem {
     }
   }
 
+  formatDirectoryContents(
+    url: { Bucket: string; Key: string },
+    x: AWS.S3.Types.Object
+  ): DirectoryEntry {
+    return {
+      url: `s3://${url.Bucket}/${x.Key}`,
+      modified: x.LastModified,
+      size: x.Size,
+    }
+  }
+
   /** @inheritDoc */
   async readDirectory(urlText: string, options?: ReadDirectoryOptions): Promise<DirectoryEntry[]> {
     return new Promise((resolve, reject) => {
@@ -64,19 +75,40 @@ export class S3FileSystem extends FileSystem {
             reject(err)
           } else {
             data.Contents?.forEach((x) => {
-              if (x.Key) {
-                ret.push({
-                  url: `s3://${url.Bucket}/${x.Key}`,
-                  modified: x.LastModified,
-                  size: x.Size,
-                })
-              }
+              if (x.Key) ret.push(this.formatDirectoryContents(url, x))
             })
             resolve(ret)
           }
         }
       )
     })
+  }
+
+  /** @inheritDoc */
+  async readDirectoryStream(
+    urlText: string,
+    options?: ReadDirectoryOptions
+  ): Promise<ReadableStreamTree> {
+    const url = this.parseUrl(urlText)
+    const passThrough = new PassThrough()
+    const listObjects = (target: AWS.S3.Types.ListObjectsRequest) => {
+      this.s3.listObjectsV2(target, (err: AWS.AWSError, data: AWS.S3.Types.ListObjectsOutput) => {
+        if (err) {
+          passThrough.destroy(err)
+        } else {
+          data.Contents?.forEach((x) => {
+            if (x.Key) passThrough.push(this.formatDirectoryContents(url, x))
+          })
+          if (data.IsTruncated) {
+            listObjects({ ...target, Marker: data.NextMarker })
+          } else {
+            passThrough.push(null)
+          }
+        }
+      })
+    }
+    listObjects({ Bucket: url.Bucket, Prefix: options?.prefix })
+    return StreamTree.readable(passThrough)
   }
 
   /** @inheritDoc */
@@ -178,9 +210,12 @@ export class S3FileSystem extends FileSystem {
         if (error || !data || !data.Payload) {
           passThrough.destroy(error)
         } else {
-          ;(data.Payload as any)
+          // XXX events has no pause() or resume()
+          const events = data.Payload as any
+          events
             .on('data', (event: any) => {
               if (event.Records) {
+                /// XXX no backpressure is possible
                 passThrough.push(event.Records.Payload)
               } else if (event.Stats) {
                 // console.log(`selectObjectContent.Stats`, event.Stats)

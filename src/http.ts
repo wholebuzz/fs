@@ -14,6 +14,7 @@ import {
   ReadDirectoryOptions,
   ReplaceFileOptions,
 } from './fs'
+import { openNullReadable } from './stream'
 import { zlib } from './util'
 
 /**
@@ -27,6 +28,11 @@ export class HTTPFileSystem extends FileSystem {
   /** @inheritDoc */
   async readDirectory(_urlText: string, _options?: ReadDirectoryOptions) {
     return []
+  }
+
+  /** @inheritDoc */
+  async readDirectoryStream(_urlText: string, _options?: ReadDirectoryOptions) {
+    return openNullReadable()
   }
 
   /** @inheritDoc */

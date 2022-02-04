@@ -5,8 +5,8 @@ import { streamArray } from 'stream-json/streamers/StreamArray'
 import { streamObject } from 'stream-json/streamers/StreamObject'
 import { pumpWritable, ReadableStreamTree, WritableStreamTree } from 'tree-stream'
 import { FileSystem } from './fs'
-import { hashStream, pipeFilter, shardWritables } from './stream'
-import { openWritableFiles, shardIndex, streamToArray, streamToValue } from './util'
+import { hashStream, pipeFilter, readableToArray, readableToValue, shardWritables } from './stream'
+import { openWritableFiles, shardIndex } from './util'
 
 export const JSONStream = require('JSONStream')
 
@@ -70,7 +70,7 @@ export async function writeShardedJSONLines(
  * @param stream The stream to read a JSON object from.
  */
 export async function parseJSON(stream: ReadableStreamTree) {
-  return streamToValue(stream.pipe(JSONStream.parse()))
+  return readableToValue(stream.pipe(JSONStream.parse()))
 }
 
 /**
@@ -78,7 +78,7 @@ export async function parseJSON(stream: ReadableStreamTree) {
  * @param stream The stream to read a JSON object from.
  */
 export async function parseJSONLines(stream: ReadableStreamTree) {
-  return streamToArray(pipeJSONLinesParser(stream))
+  return readableToArray(pipeJSONLinesParser(stream))
 }
 
 /**

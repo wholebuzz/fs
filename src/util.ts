@@ -1,6 +1,5 @@
 import * as crypto from 'crypto'
-import { Transform } from 'stream'
-import { pumpReadable, ReadableStreamTree } from 'tree-stream'
+import { ReadableStreamTree } from 'tree-stream'
 import { FileSystem, OpenReadableFileOptions, OpenWritableFileOptions } from './fs'
 
 export const zlib = require('zlib')
@@ -107,33 +106,4 @@ export async function openWritableFiles(
       fileSystem.openWritableFile(filename, options)
     )
   )
-}
-
-export async function streamToArray(stream: ReadableStreamTree) {
-  const ret: unknown[] = []
-  stream = stream.pipe(
-    new Transform({
-      objectMode: true,
-      transform(data, _, callback) {
-        ret.push(data)
-        callback()
-      },
-    })
-  )
-  return pumpReadable(stream, ret)
-}
-
-export async function streamToValue(stream: ReadableStreamTree) {
-  let ret: unknown | undefined
-  stream = stream.pipe(
-    new Transform({
-      objectMode: true,
-      transform(data, _, callback) {
-        ret = data
-        callback()
-      },
-    })
-  )
-  await pumpReadable(stream, undefined)
-  return ret
 }

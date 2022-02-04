@@ -1,6 +1,6 @@
 import { Storage as CloudStorage } from '@google-cloud/storage'
-import { Writable } from 'stream'
-import StreamTree, { WritableStreamTree } from 'tree-stream'
+import { Transform, Writable } from 'stream'
+import StreamTree, { ReadableStreamTree, WritableStreamTree } from 'tree-stream'
 import { v4 as uuidv4 } from 'uuid'
 
 import {
@@ -70,6 +70,24 @@ export class GoogleCloudFileSystem extends FileSystem {
         .on('data', (f: any) => ret.push({ url: `gs://${bucket.name}/${f.name}` }))
         .on('end', () => resolve(ret))
     })
+  }
+
+  /** @inheritDoc */
+  async readDirectoryStream(
+    urlText: string,
+    options?: ReadDirectoryOptions
+  ): Promise<ReadableStreamTree> {
+    const bucket = this.getBucket(urlText)
+    const stream = StreamTree.readable(bucket.getFilesStream({ prefix: options?.prefix }))
+    return stream.pipe(
+      new Transform({
+        objectMode: true,
+        transform(data, _, callback) {
+          this.push({ url: `gs://${bucket.name}/${data}` })
+          callback()
+        },
+      })
+    )
   }
 
   /** @inheritDoc */

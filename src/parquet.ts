@@ -3,14 +3,13 @@ import { RowInterface } from 'parquetjs/lib/row.interface'
 import { PassThrough } from 'stream'
 import StreamTree, { ReadableStreamTree, WritableStreamTree } from 'tree-stream'
 import { FileSystem } from './fs'
-import { readableToBuffer } from './stream'
+import { readableToArray, readableToBuffer } from './stream'
 import {
   isShardedFilename,
   openReadableFiles,
   ReadableFileOptions,
   ReadableFileSpec,
   shardedFilenames,
-  streamToArray,
 } from './util'
 
 export interface OpenParquetFileOptions {
@@ -32,7 +31,7 @@ export async function readParquetFile(
   url: string,
   options?: OpenParquetFileOptions
 ) {
-  return streamToArray(await openParquetFile(fileSystem, url, options))
+  return readableToArray(await openParquetFile(fileSystem, url, options))
 }
 
 export async function openReadableFileSet(

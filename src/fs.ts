@@ -88,6 +88,15 @@ export abstract class FileSystem {
   abstract readDirectory(urlText: string, options?: ReadDirectoryOptions): Promise<DirectoryEntry[]>
 
   /**
+   * Returns a stream of the URLs of the files in a directory.
+   * @param urlText The URL of the directory to list files in.
+   */
+  abstract readDirectoryStream(
+    urlText: string,
+    options?: ReadDirectoryOptions
+  ): Promise<ReadableStreamTree>
+
+  /**
    * Ensures the directory exists
    * @param urlText The URL of the directory.
    */
@@ -224,6 +233,11 @@ export class AnyFileSystem extends FileSystem {
   /** @inheritDoc */
   async readDirectory(urlText: string, options?: ReadDirectoryOptions) {
     return this.getFs(urlText).readDirectory(urlText, options)
+  }
+
+  /** @inheritDoc */
+  async readDirectoryStream(urlText: string, options?: ReadDirectoryOptions) {
+    return this.getFs(urlText).readDirectoryStream(urlText, options)
   }
 
   /** @inheritDoc */

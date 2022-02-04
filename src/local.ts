@@ -2,8 +2,8 @@ import * as fs from 'fs'
 import { constants as fsConstants, flock, seek } from 'fs-ext'
 import glob from 'glob'
 import * as path from 'path'
-import { Writable } from 'stream'
-import StreamTree, { WritableStreamTree } from 'tree-stream'
+import { Readable, Transform, Writable } from 'stream'
+import StreamTree, { ReadableStreamTree, WritableStreamTree } from 'tree-stream'
 import { promisify } from 'util'
 import {
   AppendOptions,
@@ -30,12 +30,14 @@ const fsFstat = promisify(fs.fstat)
 const fsFtruncate = promisify(fs.ftruncate)
 const fsOpen = promisify(fs.open)
 const fsReaddir = promisify(fs.readdir)
+const fsOpendir = promisify(fs.opendir)
 const fsRename = promisify(fs.rename)
 const fsRmdir = promisify(fs.rmdir)
 const fsSeek = promisify(seek)
 const fsStat = promisify(fs.stat)
 const fsUnlink = promisify(fs.unlink)
 const fsGlob = promisify(glob)
+const globStream = require('glob-stream')
 
 /**
  * Local [[FileSystem]] implemented with `fs` and `fs-ext`.
@@ -50,6 +52,42 @@ export class LocalFileSystem extends FileSystem {
       : await fsReaddir(urlText)
     if (options?.prefix) files = files.filter((x) => x.startsWith(options.prefix ?? ''))
     return files.map((x) => ({ url: path.join(urlText, x) }))
+  }
+
+  /** @inheritDoc */
+  async readDirectoryStream(
+    urlText: string,
+    options?: ReadDirectoryOptions
+  ): Promise<ReadableStreamTree> {
+    let stream
+    if (options?.recursive) {
+      stream = StreamTree.readable(globStream(path.join(urlText, '**/*'), { nodir: true })).pipe(
+        new Transform({
+          objectMode: true,
+          transform(x, _, callback) {
+            this.push({
+              url: path.join(
+                urlText,
+                x.path.substring(urlText.length + (urlText.endsWith('/') ? 0 : 1))
+              ),
+            })
+            callback()
+          },
+        })
+      )
+    } else {
+      const dir = await fsOpendir(urlText)
+      stream = StreamTree.readable(Readable.from(dir)).pipe(
+        new Transform({
+          objectMode: true,
+          transform(x, _, callback) {
+            this.push({ url: path.join(urlText, x.name) })
+            callback()
+          },
+        })
+      )
+    }
+    return stream
   }
 
   /** @inheritDoc */
