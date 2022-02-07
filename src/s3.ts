@@ -90,7 +90,7 @@ export class S3FileSystem extends FileSystem {
     options?: ReadDirectoryOptions
   ): Promise<ReadableStreamTree> {
     const url = this.parseUrl(urlText)
-    const passThrough = new PassThrough()
+    const passThrough = new PassThrough({ objectMode: true })
     const listObjects = (target: AWS.S3.Types.ListObjectsRequest) => {
       this.s3.listObjectsV2(target, (err: AWS.AWSError, data: AWS.S3.Types.ListObjectsOutput) => {
         if (err) {

@@ -1,4 +1,4 @@
-# @wholebuzz/fs ![image](https://img.shields.io/npm/v/@wholebuzz/fs) [![test](https://github.com/wholebuzz/dbcp/actions/workflows/test.yaml/badge.svg)](https://github.com/wholebuzz/fs/actions/workflows/test.yaml)
+# @wholebuzz/fs ![image](https://img.shields.io/npm/v/@wholebuzz/fs) [![test](https://github.com/wholebuzz/fs/actions/workflows/test.yaml/badge.svg)](https://github.com/wholebuzz/fs/actions/workflows/test.yaml)
 
 File system abstraction with implementations for GCP GCS, AWS S3, Azure, SMB, HTTP, and Local file systems. Provides atomic primitives enabling multiple readers and writers.
 
@@ -27,7 +27,7 @@ The `FileSystem` implementations require peer dependencies:
 - AzureFileShareFileSystem: `@azure/storage-file-share`
 - GoogleCloudFileSystem: `@google-cloud/storage`
 - HTTPFileSystem: `axios`
-- LocalFileSystem: `fs-ext` and `glob`
+- LocalFileSystem: `fs-ext`, `glob`, and `glob-stream`
 - S3FileSystem: `aws-sdk`, `s3-stream-upload`, and `athena-express`
 - SMBFileSystem: `@marsaud/smb2`
 
