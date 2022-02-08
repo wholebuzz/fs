@@ -129,4 +129,4 @@ Serializes object or array to a CSV file.
 
 **Returns:** *Promise*<boolean\>
 
-Defined in: [src/csv.ts:62](https://github.com/wholebuzz/fs/blob/master/src/csv.ts#L62)
+Defined in: [src/csv.ts:66](https://github.com/wholebuzz/fs/blob/master/src/csv.ts#L66)

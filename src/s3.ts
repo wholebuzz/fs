@@ -254,10 +254,23 @@ export class S3FileSystem extends FileSystem {
 
   /** @inheritDoc */
   async createFile(
-    _urlText: string,
+    urlText: string,
     _createCallback?: (stream: WritableStreamTree) => Promise<boolean>,
-    _options?: CreateOptions
+    options?: CreateOptions
   ) {
+    const url = this.parseUrl(urlText)
+    try {
+      await this.s3
+        .putObject({
+          ...url,
+          Body: '',
+          ContentType: options?.contentType,
+        })
+        .promise()
+      return true
+    } catch (err) {
+      logger.error(`Error while creating file on s3`, { error: err })
+    }
     return false
   }
 

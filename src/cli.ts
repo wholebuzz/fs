@@ -73,6 +73,16 @@ async function main() {
       }
     )
     .command(
+      'touch <path>',
+      'create empty output file',
+      () => {
+        /* */
+      },
+      async (args: Record<string, any>) => {
+        await fs.createFile(args.path)
+      }
+    )
+    .command(
       'write <path>',
       'write stdin to output file',
       () => {

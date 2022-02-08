@@ -51,7 +51,11 @@ export async function serializeCSV(
   obj: any[],
   options?: CSVFormatOptions
 ): Promise<boolean> {
-  return pumpWritable(pipeCSVFormatter(stream, options), true, StreamTree.readable(Readable.from(obj)))
+  return pumpWritable(
+    pipeCSVFormatter(stream, options),
+    true,
+    StreamTree.readable(Readable.from(obj))
+  )
 }
 
 /**
