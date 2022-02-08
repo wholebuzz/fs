@@ -1,4 +1,4 @@
-# @wholebuzz/fs ![image](https://img.shields.io/npm/v/@wholebuzz/fs) [![test](https://github.com/wholebuzz/fs/actions/workflows/test.yaml/badge.svg)](https://github.com/wholebuzz/fs/actions/workflows/test.yaml)
+# @wholebuzz/fs [![image](https://img.shields.io/npm/v/@wholebuzz/fs)](https://www.npmjs.com/package/@wholebuzz/fs) [![test](https://github.com/wholebuzz/fs/actions/workflows/test.yaml/badge.svg)](https://github.com/wholebuzz/fs/actions/workflows/test.yaml)
 
 File system abstraction with implementations for GCP GCS, AWS S3, Azure, SMB, HTTP, and Local file systems. Provides atomic primitives enabling multiple readers and writers.
 

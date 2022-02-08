@@ -3,7 +3,7 @@ import { Readable } from 'stream'
 import { parser } from 'stream-json'
 import { streamArray } from 'stream-json/streamers/StreamArray'
 import { streamObject } from 'stream-json/streamers/StreamObject'
-import { pumpWritable, ReadableStreamTree, WritableStreamTree } from 'tree-stream'
+import StreamTree, { pumpWritable, ReadableStreamTree, WritableStreamTree } from 'tree-stream'
 import { FileSystem } from './fs'
 import { hashStream, pipeFilter, readableToArray, readableToValue, shardWritables } from './stream'
 import { openWritableFiles, shardIndex } from './util'
@@ -92,7 +92,7 @@ export async function serializeJSON(
   return pumpWritable(
     pipeJSONFormatter(stream, Array.isArray(obj)),
     true,
-    Readable.from(Array.isArray(obj) ? obj : Object.entries(obj))
+    StreamTree.readable(Readable.from(Array.isArray(obj) ? obj : Object.entries(obj)))
   )
 }
 
@@ -101,7 +101,7 @@ export async function serializeJSON(
  * @param stream The stream to write a JSON object to.
  */
 export async function serializeJSONLines(stream: WritableStreamTree, obj: any[]): Promise<boolean> {
-  return pumpWritable(pipeJSONLinesFormatter(stream), true, Readable.from(obj))
+  return pumpWritable(pipeJSONLinesFormatter(stream), true, StreamTree.readable(Readable.from(obj)))
 }
 
 /**

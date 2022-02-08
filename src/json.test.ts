@@ -42,7 +42,7 @@ it('Should serialize JSON Object', async () => {
       },
     })
   )
-  await pumpWritable(output, undefined, input.finish())
+  await pumpWritable(output, undefined, input)
   expect(streamedObject).toEqual(testObject)
 })
 
@@ -70,7 +70,7 @@ it('Should serialize JSON Array', async () => {
       },
     })
   )
-  await pumpWritable(output, undefined, input.finish())
+  await pumpWritable(output, undefined, input)
   expect(streamedObject).toEqual(testArray)
 })
 
@@ -92,6 +92,6 @@ it('Should serialize JSON Array to JSON-lines', async () => {
       },
     })
   )
-  await pumpWritable(output, undefined, input.finish())
+  await pumpWritable(output, undefined, input)
   expect(streamedObject).toEqual(testArray)
 })

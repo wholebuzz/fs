@@ -24,7 +24,7 @@ async function main() {
       async (args: Record<string, any>) => {
         const input = await fs.openReadableFile(args.path)
         const output = StreamTree.writable(process.stdout)
-        return pumpWritable(output, undefined, input.finish())
+        return pumpWritable(output, undefined, input)
       }
     )
     .command(
@@ -36,7 +36,7 @@ async function main() {
       async (args: Record<string, any>) => {
         const input = await fs.openReadableFile(args.source)
         const output = await fs.openWritableFile(args.target)
-        return pumpWritable(output, undefined, input.finish())
+        return pumpWritable(output, undefined, input)
       }
     )
     .command(
@@ -80,7 +80,7 @@ async function main() {
       },
       async (args: Record<string, any>) => {
         const stream = await fs.openWritableFile(args.path)
-        return pumpWritable(stream, undefined, process.stdin)
+        return pumpWritable(stream, undefined, StreamTree.readable(process.stdin))
       }
     ).argv
 }

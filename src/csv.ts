@@ -2,7 +2,7 @@ import * as csv from 'csv'
 import { Options as CSVParseOptions } from 'csv-parse'
 import { Options as CSVFormatOptions } from 'csv-stringify'
 import { Readable } from 'stream'
-import { pumpWritable, ReadableStreamTree, WritableStreamTree } from 'tree-stream'
+import StreamTree, { pumpWritable, ReadableStreamTree, WritableStreamTree } from 'tree-stream'
 import { FileSystem } from './fs'
 import { readableToArray } from './stream'
 
@@ -51,7 +51,7 @@ export async function serializeCSV(
   obj: any[],
   options?: CSVFormatOptions
 ): Promise<boolean> {
-  return pumpWritable(pipeCSVFormatter(stream, options), true, Readable.from(obj))
+  return pumpWritable(pipeCSVFormatter(stream, options), true, StreamTree.readable(Readable.from(obj)))
 }
 
 /**
