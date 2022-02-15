@@ -22,9 +22,10 @@ export interface ReadableFileOptions extends OpenReadableFileOptions {
 }
 
 export interface ReadableFileSpec {
-  url: string
+  url?: string
   format?: string
   options?: ReadableFileOptions
+  stream?: ReadableStreamTree[]
 }
 
 export interface Shard {
@@ -73,7 +74,9 @@ export async function openReadableFileSet(
 ) {
   const ret: Record<string, ReadableStreamTree[]> = {}
   for (const [key, spec] of Object.entries(fileNames)) {
-    ret[key] = await openReadableFiles(fileSystem, spec.url, spec.options)
+    ret[key] = spec.stream
+      ? spec.stream
+      : await openReadableFiles(fileSystem, spec.url!, spec.options)
   }
   return ret
 }
