@@ -2,18 +2,20 @@ import SHA from 'sha.js'
 import { Readable, Transform, Writable } from 'stream'
 import StreamTree, { pumpReadable, ReadableStreamTree, WritableStreamTree } from 'tree-stream'
 
-export const openNullReadable = () =>
+export const openNullReadable = (options?: { objectMode?: boolean }) =>
   StreamTree.readable(
     new Readable({
+      objectMode: options?.objectMode,
       read(_size) {
         this.push(null)
       },
     })
   )
 
-export const openNullWritable = () =>
+export const openNullWritable = (options?: { objectMode?: boolean }) =>
   StreamTree.writable(
     new Writable({
+      objectMode: options?.objectMode,
       write(_chunk, _encoding, done) {
         done()
       },
