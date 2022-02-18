@@ -51,7 +51,7 @@ import {
   LocalFileSystem,
   S3FileSystem
 } from '@wholebuzz/fs'
-import { readJSON, writeJSON } from '@whilebuzz/fs/lib/json'
+import { readJSON, writeJSON } from '@wholebuzz/fs/lib/json'
 
 const httpFileSystem = new HTTPFileSystem()
 const fs = new AnyFileSystem([
