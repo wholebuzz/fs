@@ -68,9 +68,9 @@ export class HTTPFileSystem extends FileSystem {
   }
 
   /** @inheritDoc */
-  async openReadableFile(url: string, options: OpenReadableFileOptions) {
+  async openReadableFile(url: string, options?: OpenReadableFileOptions) {
     const headers = { 'Accept-Encoding': 'gzip', ...this.options?.headers }
-    if (options.byteLength != null) {
+    if (options?.byteLength != null) {
       const offset = options.byteOffset || 0
       headers.range = `bytes=${offset}-${offset + options.byteLength - 1}`
     }
@@ -79,6 +79,7 @@ export class HTTPFileSystem extends FileSystem {
       url,
       method: 'get',
       headers,
+      ...options?.extra,
       responseType: 'stream',
     })
     let stream = StreamTree.readable(res.data)
