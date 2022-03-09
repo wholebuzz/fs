@@ -69,7 +69,7 @@ export class S3FileSystem extends FileSystem {
       const ret: DirectoryEntry[] = []
       const url = this.parseUrl(urlText)
       this.s3.listObjectsV2(
-        { Bucket: url.Bucket, Prefix: options?.prefix },
+        { Bucket: url.Bucket, Prefix: url.Key + (options?.prefix ?? '') || undefined },
         (err: AWS.AWSError, data: AWS.S3.Types.ListObjectsOutput) => {
           if (err) {
             reject(err)
@@ -107,7 +107,7 @@ export class S3FileSystem extends FileSystem {
         }
       })
     }
-    listObjects({ Bucket: url.Bucket, Prefix: options?.prefix })
+    listObjects({ Bucket: url.Bucket, Prefix: url.Key + (options?.prefix ?? '') || undefined })
     return StreamTree.readable(passThrough)
   }
 

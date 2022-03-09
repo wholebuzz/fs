@@ -1,4 +1,5 @@
 import * as crypto from 'crypto'
+import * as path from 'path'
 import { ReadableStreamTree } from 'tree-stream'
 import { FileSystem, OpenReadableFileOptions, OpenWritableFileOptions } from './fs'
 
@@ -46,7 +47,8 @@ export const isShardedFilename = (name: string) => name.match(shardedRegex)?.[1]
 export const allShardsFilename = (name: string) => name.replace(shardRegex, '-SSSS-of-NNNN')
 
 export const shardedFilename = (name: string, shard: Shard) => {
-  const of = name.lastIndexOf('-of-')
+  const sharded = name.match(shardedRegex)
+  const of = sharded ? name.indexOf('-of-', sharded.index) : name.lastIndexOf('-of-')
   const leading = name.lastIndexOf('-', of - 1)
   const digits = of - leading - 1
   return digits <= 0
@@ -67,6 +69,29 @@ export const shardedFilenames = (
     .fill(undefined)
     .map((_, index) => shardedFilename(name, { index, modulus: shards }))
     .filter(filter ? (_, index) => filter(index) : () => true)
+
+export async function readShardFilenames(fileSystem: FileSystem, url: string) {
+  const dirname = path.dirname(url) + '/'
+  const filename = path.basename(url)
+  const shardedFilenameMatch = filename.match(shardedRegex)
+  const prefix = filename.substring(0, shardedFilenameMatch?.index ?? -1)
+  const entries = await fileSystem.readDirectory(dirname, { prefix })
+  if (!entries.length) {
+    throw new Error(`readShardFilenames: no files in ${dirname} matching ${prefix}`)
+  }
+  let numShards = 0
+  for (const entry of entries) {
+    const urlNumShards = isShardFilename(entry.url)
+    if (!numShards) numShards = urlNumShards
+    if (!urlNumShards || urlNumShards !== numShards) {
+      throw new Error(`readShardFilenames: mismatching shard ${url}`)
+    }
+  }
+  if (numShards !== entries.length) {
+    throw new Error(`readShardFilenames: too many ${dirname} matching ${prefix}`)
+  }
+  return { numShards, entries }
+}
 
 export async function openReadableFileSet(
   fileSystem: FileSystem,

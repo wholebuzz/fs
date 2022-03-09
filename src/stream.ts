@@ -140,6 +140,23 @@ export function pipeFromAsyncFilter(stream: WritableStreamTree, filter: (x: any)
 /**
  * Split input by shardFunction
  */
+export function shardReadable(
+  input: ReadableStreamTree,
+  shards?: number,
+  shardFunction?: (x: object, modulus: number) => number
+) {
+  if (!shards || shards === 1) return [input]
+  if (!shardFunction) throw new Error('No shards')
+  return input
+    .split(shards)
+    .map((stream, i) =>
+      stream.pipe(streamFilter((x) => (shardFunction(x, shards) === i ? x : undefined)))
+    )
+}
+
+/**
+ * Split input by shardFunction
+ */
 export function shardWritables(
   writable: WritableStreamTree[],
   shards?: number,
@@ -147,13 +164,24 @@ export function shardWritables(
 ) {
   if (writable.length === 1) return writable[0]
   if (!writable.length || !shards || !shardFunction) throw new Error('No shards')
+  const waiting: Array<(() => void) | undefined> = new Array(writable.length).fill(undefined)
+  for (let i = 0; i < writable.length; i++) {
+    writable[i].node.stream.on('drain', () => {
+      const cb = waiting[i]
+      waiting[i] = undefined
+      if (cb) cb()
+    })
+  }
   const ret = StreamTree.writable(
     new Writable({
       objectMode: true,
       write(x: object, _encoding, callback: () => void) {
         const shard = shardFunction(x, shards)
-        writable[shard].node.stream.write(x)
-        callback()
+        if (writable[shard].node.stream.write(x)) {
+          callback()
+        } else {
+          waiting[shard] = callback
+        }
       },
     }).on('finish', () => {
       for (const stream of writable) stream.node.stream.end()

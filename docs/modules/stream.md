@@ -17,6 +17,7 @@
 - [readableToBuffer](stream.md#readabletobuffer)
 - [readableToString](stream.md#readabletostring)
 - [readableToValue](stream.md#readabletovalue)
+- [shardReadable](stream.md#shardreadable)
 - [shardWritables](stream.md#shardwritables)
 - [streamAsyncFilter](stream.md#streamasyncfilter)
 - [streamFilter](stream.md#streamfilter)
@@ -38,13 +39,20 @@ Hashes a [[Readable]] stream.
 
 **Returns:** *Promise*<string \| ``null``\>
 
-Defined in: [src/stream.ts:171](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L171)
+Defined in: [src/stream.ts:201](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L201)
 
 ___
 
 ### openNullReadable
 
-▸ `Const` **openNullReadable**(): ReadableStreamTree
+▸ `Const` **openNullReadable**(`options?`: { `objectMode?`: *boolean*  }): ReadableStreamTree
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `options?` | *object* |
+| `options.objectMode?` | *boolean* |
 
 **Returns:** ReadableStreamTree
 
@@ -54,11 +62,18 @@ ___
 
 ### openNullWritable
 
-▸ `Const` **openNullWritable**(): WritableStreamTree
+▸ `Const` **openNullWritable**(`options?`: { `objectMode?`: *boolean*  }): WritableStreamTree
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `options?` | *object* |
+| `options.objectMode?` | *boolean* |
 
 **Returns:** WritableStreamTree
 
-Defined in: [src/stream.ts:14](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L14)
+Defined in: [src/stream.ts:15](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L15)
 
 ___
 
@@ -77,7 +92,7 @@ Pipe async filter stream.
 
 **Returns:** ReadableStreamTree
 
-Defined in: [src/stream.ts:120](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L120)
+Defined in: [src/stream.ts:122](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L122)
 
 ___
 
@@ -96,7 +111,7 @@ Pipe filter stream.
 
 **Returns:** ReadableStreamTree
 
-Defined in: [src/stream.ts:113](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L113)
+Defined in: [src/stream.ts:115](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L115)
 
 ___
 
@@ -115,7 +130,7 @@ Pipe from async filter stream.
 
 **Returns:** WritableStreamTree
 
-Defined in: [src/stream.ts:134](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L134)
+Defined in: [src/stream.ts:136](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L136)
 
 ___
 
@@ -134,7 +149,7 @@ Pipe from filter stream.
 
 **Returns:** WritableStreamTree
 
-Defined in: [src/stream.ts:127](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L127)
+Defined in: [src/stream.ts:129](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L129)
 
 ___
 
@@ -150,7 +165,7 @@ ___
 
 **Returns:** *Promise*<unknown[]\>
 
-Defined in: [src/stream.ts:36](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L36)
+Defined in: [src/stream.ts:38](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L38)
 
 ___
 
@@ -166,7 +181,7 @@ ___
 
 **Returns:** *Promise*<Buffer\>
 
-Defined in: [src/stream.ts:27](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L27)
+Defined in: [src/stream.ts:29](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L29)
 
 ___
 
@@ -182,7 +197,7 @@ ___
 
 **Returns:** *Promise*<string\>
 
-Defined in: [src/stream.ts:23](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L23)
+Defined in: [src/stream.ts:25](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L25)
 
 ___
 
@@ -198,7 +213,27 @@ ___
 
 **Returns:** *Promise*<unknown\>
 
-Defined in: [src/stream.ts:50](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L50)
+Defined in: [src/stream.ts:52](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L52)
+
+___
+
+### shardReadable
+
+▸ **shardReadable**(`input`: ReadableStreamTree, `shards?`: *number*, `shardFunction?`: (`x`: *object*, `modulus`: *number*) => *number*): ReadableStreamTree[]
+
+Split input by shardFunction
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `input` | ReadableStreamTree |
+| `shards?` | *number* |
+| `shardFunction?` | (`x`: *object*, `modulus`: *number*) => *number* |
+
+**Returns:** ReadableStreamTree[]
+
+Defined in: [src/stream.ts:143](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L143)
 
 ___
 
@@ -218,7 +253,7 @@ Split input by shardFunction
 
 **Returns:** WritableStreamTree
 
-Defined in: [src/stream.ts:141](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L141)
+Defined in: [src/stream.ts:160](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L160)
 
 ___
 
@@ -236,7 +271,7 @@ Create async filter stream.
 
 **Returns:** *Transform*
 
-Defined in: [src/stream.ts:94](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L94)
+Defined in: [src/stream.ts:96](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L96)
 
 ___
 
@@ -254,7 +289,7 @@ Create filter stream.
 
 **Returns:** *Transform*
 
-Defined in: [src/stream.ts:80](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L80)
+Defined in: [src/stream.ts:82](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L82)
 
 ___
 
@@ -271,4 +306,4 @@ ___
 
 **Returns:** WritableStreamTree
 
-Defined in: [src/stream.ts:65](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L65)
+Defined in: [src/stream.ts:67](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L67)

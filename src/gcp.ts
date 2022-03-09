@@ -65,7 +65,9 @@ export class GoogleCloudFileSystem extends FileSystem {
       const ret: DirectoryEntry[] = []
       const bucket = this.getBucket(urlText)
       bucket
-        .getFilesStream({ prefix: options?.prefix })
+        .getFilesStream({
+          prefix: this.parseUrl(urlText).filename + (options?.prefix ?? '') || undefined,
+        })
         .on('error', reject)
         .on('data', (f: any) => ret.push({ url: `gs://${bucket.name}/${f.name}` }))
         .on('end', () => resolve(ret))
@@ -78,7 +80,11 @@ export class GoogleCloudFileSystem extends FileSystem {
     options?: ReadDirectoryOptions
   ): Promise<ReadableStreamTree> {
     const bucket = this.getBucket(urlText)
-    const stream = StreamTree.readable(bucket.getFilesStream({ prefix: options?.prefix }))
+    const stream = StreamTree.readable(
+      bucket.getFilesStream({
+        prefix: this.parseUrl(urlText).filename + (options?.prefix ?? '') || undefined,
+      })
+    )
     return stream.pipe(
       new Transform({
         objectMode: true,

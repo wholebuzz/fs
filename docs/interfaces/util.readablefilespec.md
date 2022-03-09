@@ -16,6 +16,7 @@
 
 - [format](util.readablefilespec.md#format)
 - [options](util.readablefilespec.md#options)
+- [stream](util.readablefilespec.md#stream)
 - [url](util.readablefilespec.md#url)
 
 ## Properties
@@ -24,7 +25,7 @@
 
 • `Optional` **format**: *string*
 
-Defined in: [src/util.ts:26](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L26)
+Defined in: [src/util.ts:27](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L27)
 
 ___
 
@@ -32,12 +33,20 @@ ___
 
 • `Optional` **options**: [*ReadableFileOptions*](util.readablefileoptions.md)
 
-Defined in: [src/util.ts:27](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L27)
+Defined in: [src/util.ts:28](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L28)
+
+___
+
+### stream
+
+• `Optional` **stream**: ReadableStreamTree[]
+
+Defined in: [src/util.ts:29](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L29)
 
 ___
 
 ### url
 
-• **url**: *string*
+• `Optional` **url**: *string*
 
-Defined in: [src/util.ts:25](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L25)
+Defined in: [src/util.ts:26](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L26)

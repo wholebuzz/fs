@@ -86,7 +86,7 @@ Defined in: [src/http.ts:23](https://github.com/wholebuzz/fs/blob/master/src/htt
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/http.ts:146](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L146)
+Defined in: [src/http.ts:147](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L147)
 
 ___
 
@@ -107,7 +107,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/http.ts:127](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L127)
+Defined in: [src/http.ts:128](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L128)
 
 ___
 
@@ -129,7 +129,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/http.ts:103](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L103)
+Defined in: [src/http.ts:104](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L104)
 
 ___
 
@@ -212,13 +212,13 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/http.ts:132](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L132)
+Defined in: [src/http.ts:133](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L133)
 
 ___
 
 ### openReadableFile
 
-▸ **openReadableFile**(`url`: *string*, `options`: [*OpenReadableFileOptions*](../interfaces/fs.openreadablefileoptions.md)): *Promise*<ReadableStreamTree\>
+▸ **openReadableFile**(`url`: *string*, `options?`: [*OpenReadableFileOptions*](../interfaces/fs.openreadablefileoptions.md)): *Promise*<ReadableStreamTree\>
 
 **`inheritdoc`**
 
@@ -227,7 +227,7 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `url` | *string* |
-| `options` | [*OpenReadableFileOptions*](../interfaces/fs.openreadablefileoptions.md) |
+| `options?` | [*OpenReadableFileOptions*](../interfaces/fs.openreadablefileoptions.md) |
 
 **Returns:** *Promise*<ReadableStreamTree\>
 
@@ -254,7 +254,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/http.ts:92](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L92)
+Defined in: [src/http.ts:93](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L93)
 
 ___
 
@@ -274,7 +274,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/http.ts:122](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L122)
+Defined in: [src/http.ts:123](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L123)
 
 ___
 
@@ -356,7 +356,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/http.ts:112](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L112)
+Defined in: [src/http.ts:113](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L113)
 
 ___
 
@@ -378,4 +378,4 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/http.ts:137](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L137)
+Defined in: [src/http.ts:138](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L138)

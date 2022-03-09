@@ -16,6 +16,7 @@
 
 - [format](parquet.readablespec.md#format)
 - [options](parquet.readablespec.md#options)
+- [stream](parquet.readablespec.md#stream)
 - [url](parquet.readablespec.md#url)
 
 ## Properties
@@ -26,7 +27,7 @@
 
 Inherited from: [ReadableFileSpec](util.readablefilespec.md).[format](util.readablefilespec.md#format)
 
-Defined in: [src/util.ts:26](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L26)
+Defined in: [src/util.ts:27](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L27)
 
 ___
 
@@ -40,10 +41,20 @@ Defined in: [src/parquet.ts:26](https://github.com/wholebuzz/fs/blob/master/src/
 
 ___
 
+### stream
+
+• `Optional` **stream**: ReadableStreamTree[]
+
+Inherited from: [ReadableFileSpec](util.readablefilespec.md).[stream](util.readablefilespec.md#stream)
+
+Defined in: [src/util.ts:29](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L29)
+
+___
+
 ### url
 
-• **url**: *string*
+• `Optional` **url**: *string*
 
 Inherited from: [ReadableFileSpec](util.readablefilespec.md).[url](util.readablefilespec.md#url)
 
-Defined in: [src/util.ts:25](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L25)
+Defined in: [src/util.ts:26](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L26)
