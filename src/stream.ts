@@ -77,9 +77,23 @@ export function writableToString(target: { value: string }): WritableStreamTree 
 }
 
 /**
- * Create filter stream.
+ * Create sync or async filter stream.
  */
 export function streamFilter(filter: (x: any) => any) {
+  return new Transform({
+    objectMode: true,
+    transform(data, _, callback) {
+      handleAsyncFunctionCallback(filter(data), callback, (filtered) => {
+        if (filtered) this.push(filtered)
+      })
+    },
+  })
+}
+
+/**
+ * Create sync filter stream.
+ */
+export function streamSyncFilter(filter: (x: any) => any) {
   return new Transform({
     objectMode: true,
     transform(data, _, callback) {
@@ -117,6 +131,13 @@ export function pipeFilter(stream: ReadableStreamTree, filter: (x: any) => any) 
 }
 
 /**
+ * Pipe sync filter stream.
+ */
+export function pipeSyncFilter(stream: ReadableStreamTree, filter: (x: any) => any) {
+  return stream.pipe(streamSyncFilter(filter))
+}
+
+/**
  * Pipe async filter stream.
  */
 export function pipeAsyncFilter(stream: ReadableStreamTree, filter: (x: any) => any) {
@@ -128,6 +149,13 @@ export function pipeAsyncFilter(stream: ReadableStreamTree, filter: (x: any) => 
  */
 export function pipeFromFilter(stream: WritableStreamTree, filter: (x: any) => any) {
   return stream.pipeFrom(streamFilter(filter))
+}
+
+/**
+ * Pipe from sync filter stream.
+ */
+export function pipeFromSyncFilter(stream: WritableStreamTree, filter: (x: any) => any) {
+  return stream.pipeFrom(streamSyncFilter(filter))
 }
 
 /**
@@ -217,4 +245,22 @@ export async function hashStream(stream: Readable): Promise<string | null> {
         resolve(hash.digest('hex'))
       })
   })
+}
+
+export function handleAsyncFunctionCallback<X>(
+  running: X | Promise<X>,
+  callback: (err?: Error) => void,
+  success?: (x: X) => void
+) {
+  if (running && (running as any).then) {
+    ;(running as Promise<X>)
+      .then((x) => {
+        success?.(x)
+        callback()
+      })
+      .catch((err) => callback(err))
+  } else {
+    success?.(running as X)
+    callback()
+  }
 }

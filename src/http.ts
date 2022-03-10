@@ -82,6 +82,7 @@ export class HTTPFileSystem extends FileSystem {
       ...options?.extra,
       responseType: 'stream',
     })
+    if (options?.extra && options.extraOutput) options.extra.headers = res.headers
     let stream = StreamTree.readable(res.data)
     if (res.headers['content-type'] === 'application/gzip' || url.endsWith('.gz')) {
       stream = stream.pipe(zlib.createGunzip())

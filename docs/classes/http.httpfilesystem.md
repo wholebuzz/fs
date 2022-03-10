@@ -86,7 +86,7 @@ Defined in: [src/http.ts:23](https://github.com/wholebuzz/fs/blob/master/src/htt
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/http.ts:147](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L147)
+Defined in: [src/http.ts:148](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L148)
 
 ___
 
@@ -107,7 +107,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/http.ts:128](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L128)
+Defined in: [src/http.ts:129](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L129)
 
 ___
 
@@ -129,7 +129,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/http.ts:104](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L104)
+Defined in: [src/http.ts:105](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L105)
 
 ___
 
@@ -212,7 +212,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/http.ts:133](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L133)
+Defined in: [src/http.ts:134](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L134)
 
 ___
 
@@ -254,7 +254,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/http.ts:93](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L93)
+Defined in: [src/http.ts:94](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L94)
 
 ___
 
@@ -274,7 +274,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/http.ts:123](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L123)
+Defined in: [src/http.ts:124](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L124)
 
 ___
 
@@ -356,7 +356,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/http.ts:113](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L113)
+Defined in: [src/http.ts:114](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L114)
 
 ___
 
@@ -378,4 +378,4 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/http.ts:138](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L138)
+Defined in: [src/http.ts:139](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L139)

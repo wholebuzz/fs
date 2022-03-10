@@ -74,7 +74,7 @@ export async function readShardFilenames(fileSystem: FileSystem, url: string) {
   const dirname = path.dirname(url) + '/'
   const filename = path.basename(url)
   const shardedFilenameMatch = filename.match(shardedRegex)
-  const prefix = filename.substring(0, shardedFilenameMatch?.index ?? -1)
+  const prefix = filename.substring(0, (shardedFilenameMatch?.index ?? -2) + 1)
   const entries = await fileSystem.readDirectory(dirname, { prefix })
   if (!entries.length) {
     throw new Error(`readShardFilenames: no files in ${dirname} matching ${prefix}`)
