@@ -17,7 +17,7 @@
 
 • `Optional` **prefix**: *string*
 
-Defined in: [src/fs.ts:72](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L72)
+Defined in: [src/fs.ts:74](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L74)
 
 ___
 
@@ -25,4 +25,4 @@ ___
 
 • `Optional` **recursive**: *boolean*
 
-Defined in: [src/fs.ts:73](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L73)
+Defined in: [src/fs.ts:75](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L75)

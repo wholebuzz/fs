@@ -64,6 +64,7 @@ export class HTTPFileSystem extends FileSystem {
       inode: 0,
       size: res.headers['content-length'] ?? 0,
       version: 0,
+      extra: { headers: res.headers },
     }
   }
 

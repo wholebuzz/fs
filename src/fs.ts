@@ -17,6 +17,8 @@ export interface FileStatus {
 
   /** Content hash for local file, and `metadata.generation` for GCP */
   version: string | number
+
+  extra?: Record<string, any>
 }
 
 export interface DirectoryEntry extends Partial<FileStatus> {

@@ -32,7 +32,7 @@ Options when opening a Writable file.
 
 Inherited from: [CreateOptions](fs.createoptions.md).[contentType](fs.createoptions.md#contenttype)
 
-Defined in: [src/fs.ts:30](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L30)
+Defined in: [src/fs.ts:32](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L32)
 
 ___
 
@@ -42,7 +42,7 @@ ___
 
 Inherited from: [CreateOptions](fs.createoptions.md).[debug](fs.createoptions.md#debug)
 
-Defined in: [src/fs.ts:31](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L31)
+Defined in: [src/fs.ts:33](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L33)
 
 ___
 
@@ -50,7 +50,7 @@ ___
 
 • `Optional` **extra**: *Record*<string, any\>
 
-Defined in: [src/fs.ts:59](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L59)
+Defined in: [src/fs.ts:61](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L61)
 
 ___
 
@@ -60,7 +60,7 @@ ___
 
 Inherited from: [CreateOptions](fs.createoptions.md).[gzip](fs.createoptions.md#gzip)
 
-Defined in: [src/fs.ts:32](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L32)
+Defined in: [src/fs.ts:34](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L34)
 
 ___
 
@@ -68,4 +68,4 @@ ___
 
 • `Optional` **version**: *string* \| *number*
 
-Defined in: [src/fs.ts:60](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L60)
+Defined in: [src/fs.ts:62](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L62)

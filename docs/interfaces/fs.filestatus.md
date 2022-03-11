@@ -10,6 +10,7 @@ File status like `struct stat` with added versioning.
 
 ### Properties
 
+- [extra](fs.filestatus.md#extra)
 - [inode](fs.filestatus.md#inode)
 - [modified](fs.filestatus.md#modified)
 - [size](fs.filestatus.md#size)
@@ -17,6 +18,14 @@ File status like `struct stat` with added versioning.
 - [version](fs.filestatus.md#version)
 
 ## Properties
+
+### extra
+
+• `Optional` **extra**: *Record*<string, any\>
+
+Defined in: [src/fs.ts:21](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L21)
+
+___
 
 ### inode
 

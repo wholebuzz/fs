@@ -86,7 +86,7 @@ Defined in: [src/http.ts:23](https://github.com/wholebuzz/fs/blob/master/src/htt
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/http.ts:148](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L148)
+Defined in: [src/http.ts:149](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L149)
 
 ___
 
@@ -107,7 +107,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/http.ts:129](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L129)
+Defined in: [src/http.ts:130](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L130)
 
 ___
 
@@ -129,7 +129,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/http.ts:105](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L105)
+Defined in: [src/http.ts:106](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L106)
 
 ___
 
@@ -176,7 +176,7 @@ ___
 
 ### getFileStatus
 
-▸ **getFileStatus**(`url`: *string*, `_options?`: [*GetFileStatusOptions*](../interfaces/fs.getfilestatusoptions.md)): *Promise*<{ `inode`: *number* = 0; `modified`: Date ; `size`: *any* ; `url`: *string* ; `version`: *number* = 0 }\>
+▸ **getFileStatus**(`url`: *string*, `_options?`: [*GetFileStatusOptions*](../interfaces/fs.getfilestatusoptions.md)): *Promise*<{ `extra`: { `headers`: *any*  } ; `inode`: *number* = 0; `modified`: Date ; `size`: *any* ; `url`: *string* ; `version`: *number* = 0 }\>
 
 **`inheritdoc`**
 
@@ -187,7 +187,7 @@ ___
 | `url` | *string* |
 | `_options?` | [*GetFileStatusOptions*](../interfaces/fs.getfilestatusoptions.md) |
 
-**Returns:** *Promise*<{ `inode`: *number* = 0; `modified`: Date ; `size`: *any* ; `url`: *string* ; `version`: *number* = 0 }\>
+**Returns:** *Promise*<{ `extra`: { `headers`: *any*  } ; `inode`: *number* = 0; `modified`: Date ; `size`: *any* ; `url`: *string* ; `version`: *number* = 0 }\>
 
 Overrides: [FileSystem](fs.filesystem.md)
 
@@ -212,7 +212,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/http.ts:134](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L134)
+Defined in: [src/http.ts:135](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L135)
 
 ___
 
@@ -233,7 +233,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/http.ts:71](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L71)
+Defined in: [src/http.ts:72](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L72)
 
 ___
 
@@ -254,7 +254,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/http.ts:94](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L94)
+Defined in: [src/http.ts:95](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L95)
 
 ___
 
@@ -274,7 +274,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/http.ts:124](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L124)
+Defined in: [src/http.ts:125](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L125)
 
 ___
 
@@ -356,7 +356,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/http.ts:114](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L114)
+Defined in: [src/http.ts:115](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L115)
 
 ___
 
@@ -378,4 +378,4 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/http.ts:139](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L139)
+Defined in: [src/http.ts:140](https://github.com/wholebuzz/fs/blob/master/src/http.ts#L140)

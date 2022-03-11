@@ -19,7 +19,7 @@ Options when appending to a file.
 
 • `Optional` **returnVersion**: *boolean*
 
-Defined in: [src/fs.ts:39](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L39)
+Defined in: [src/fs.ts:41](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L41)
 
 ___
 
@@ -27,4 +27,4 @@ ___
 
 • `Optional` **version**: *string* \| *number*
 
-Defined in: [src/fs.ts:40](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L40)
+Defined in: [src/fs.ts:42](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L42)

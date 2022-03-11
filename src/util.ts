@@ -6,7 +6,13 @@ import { FileSystem, OpenReadableFileOptions, OpenWritableFileOptions } from './
 export const zlib = require('zlib')
 export const md5 = (x: string) => crypto.createHash('md5').update(x).digest('hex')
 
-export const logger = {
+export interface Logger {
+  debug: (...args: any[]) => void
+  error: (...args: any[]) => void
+  info: (...args: any[]) => void
+}
+
+export const logger: Logger = {
   debug: (...args: any[]) => console.log(...args),
   error: (...args: any[]) => console.log(...args),
   info: (...args: any[]) => console.log(...args),

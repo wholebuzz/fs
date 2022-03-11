@@ -17,7 +17,7 @@
 
 • **index**: *number*
 
-Defined in: [src/util.ts:33](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L33)
+Defined in: [src/util.ts:39](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L39)
 
 ___
 
@@ -25,4 +25,4 @@ ___
 
 • **modulus**: *number*
 
-Defined in: [src/util.ts:34](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L34)
+Defined in: [src/util.ts:40](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L40)

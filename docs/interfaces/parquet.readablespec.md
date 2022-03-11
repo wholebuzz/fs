@@ -27,7 +27,7 @@
 
 Inherited from: [ReadableFileSpec](util.readablefilespec.md).[format](util.readablefilespec.md#format)
 
-Defined in: [src/util.ts:27](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L27)
+Defined in: [src/util.ts:33](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L33)
 
 ___
 
@@ -47,7 +47,7 @@ ___
 
 Inherited from: [ReadableFileSpec](util.readablefilespec.md).[stream](util.readablefilespec.md#stream)
 
-Defined in: [src/util.ts:29](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L29)
+Defined in: [src/util.ts:35](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L35)
 
 ___
 
@@ -57,4 +57,4 @@ ___
 
 Inherited from: [ReadableFileSpec](util.readablefilespec.md).[url](util.readablefilespec.md#url)
 
-Defined in: [src/util.ts:26](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L26)
+Defined in: [src/util.ts:32](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L32)

@@ -29,7 +29,7 @@ Options when opening a Readable file.
 
 • `Optional` **byteLength**: *number*
 
-Defined in: [src/fs.ts:48](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L48)
+Defined in: [src/fs.ts:50](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L50)
 
 ___
 
@@ -37,7 +37,7 @@ ___
 
 • `Optional` **byteOffset**: *number*
 
-Defined in: [src/fs.ts:47](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L47)
+Defined in: [src/fs.ts:49](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L49)
 
 ___
 
@@ -45,7 +45,7 @@ ___
 
 • `Optional` **extra**: *Record*<string, any\>
 
-Defined in: [src/fs.ts:49](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L49)
+Defined in: [src/fs.ts:51](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L51)
 
 ___
 
@@ -53,7 +53,7 @@ ___
 
 • `Optional` **extraOutput**: *boolean*
 
-Defined in: [src/fs.ts:50](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L50)
+Defined in: [src/fs.ts:52](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L52)
 
 ___
 
@@ -61,7 +61,7 @@ ___
 
 • `Optional` **query**: *string*
 
-Defined in: [src/fs.ts:51](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L51)
+Defined in: [src/fs.ts:53](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L53)
 
 ___
 
@@ -69,4 +69,4 @@ ___
 
 • `Optional` **version**: *string* \| *number*
 
-Defined in: [src/fs.ts:52](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L52)
+Defined in: [src/fs.ts:54](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L54)

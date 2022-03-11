@@ -14,6 +14,7 @@
 
 ### Properties
 
+- [extra](fs.directoryentry.md#extra)
 - [inode](fs.directoryentry.md#inode)
 - [modified](fs.directoryentry.md#modified)
 - [size](fs.directoryentry.md#size)
@@ -21,6 +22,16 @@
 - [version](fs.directoryentry.md#version)
 
 ## Properties
+
+### extra
+
+• `Optional` **extra**: *Record*<string, any\>
+
+Inherited from: Partial.extra
+
+Defined in: [src/fs.ts:21](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L21)
+
+___
 
 ### inode
 
@@ -64,7 +75,7 @@ ___
 
 Overrides: Partial.url
 
-Defined in: [src/fs.ts:23](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L23)
+Defined in: [src/fs.ts:25](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L25)
 
 ___
 

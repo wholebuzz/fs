@@ -30,7 +30,7 @@
 
 Inherited from: [OpenWritableFileOptions](fs.openwritablefileoptions.md).[contentType](fs.openwritablefileoptions.md#contenttype)
 
-Defined in: [src/fs.ts:30](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L30)
+Defined in: [src/fs.ts:32](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L32)
 
 ___
 
@@ -40,7 +40,7 @@ ___
 
 Inherited from: [OpenWritableFileOptions](fs.openwritablefileoptions.md).[debug](fs.openwritablefileoptions.md#debug)
 
-Defined in: [src/fs.ts:31](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L31)
+Defined in: [src/fs.ts:33](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L33)
 
 ___
 
@@ -50,7 +50,7 @@ ___
 
 Inherited from: [OpenWritableFileOptions](fs.openwritablefileoptions.md).[extra](fs.openwritablefileoptions.md#extra)
 
-Defined in: [src/fs.ts:59](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L59)
+Defined in: [src/fs.ts:61](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L61)
 
 ___
 
@@ -60,7 +60,7 @@ ___
 
 Inherited from: [OpenWritableFileOptions](fs.openwritablefileoptions.md).[gzip](fs.openwritablefileoptions.md#gzip)
 
-Defined in: [src/fs.ts:32](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L32)
+Defined in: [src/fs.ts:34](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L34)
 
 ___
 
@@ -80,7 +80,7 @@ ___
 
 **Returns:** *boolean*
 
-Defined in: [src/util.ts:17](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L17)
+Defined in: [src/util.ts:23](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L23)
 
 ___
 
@@ -88,7 +88,7 @@ ___
 
 • `Optional` **shards**: *number*
 
-Defined in: [src/util.ts:16](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L16)
+Defined in: [src/util.ts:22](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L22)
 
 ___
 
@@ -98,4 +98,4 @@ ___
 
 Inherited from: [OpenWritableFileOptions](fs.openwritablefileoptions.md).[version](fs.openwritablefileoptions.md#version)
 
-Defined in: [src/fs.ts:60](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L60)
+Defined in: [src/fs.ts:62](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L62)

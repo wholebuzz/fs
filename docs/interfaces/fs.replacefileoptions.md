@@ -27,7 +27,7 @@
 
 Inherited from: [CreateOptions](fs.createoptions.md).[contentType](fs.createoptions.md#contenttype)
 
-Defined in: [src/fs.ts:30](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L30)
+Defined in: [src/fs.ts:32](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L32)
 
 ___
 
@@ -37,7 +37,7 @@ ___
 
 Inherited from: [CreateOptions](fs.createoptions.md).[debug](fs.createoptions.md#debug)
 
-Defined in: [src/fs.ts:31](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L31)
+Defined in: [src/fs.ts:33](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L33)
 
 ___
 
@@ -47,7 +47,7 @@ ___
 
 Inherited from: [CreateOptions](fs.createoptions.md).[gzip](fs.createoptions.md#gzip)
 
-Defined in: [src/fs.ts:32](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L32)
+Defined in: [src/fs.ts:34](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L34)
 
 ___
 
@@ -55,4 +55,4 @@ ___
 
 • `Optional` **version**: *string* \| *number*
 
-Defined in: [src/fs.ts:64](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L64)
+Defined in: [src/fs.ts:66](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L66)

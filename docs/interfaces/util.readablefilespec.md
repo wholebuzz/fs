@@ -25,7 +25,7 @@
 
 • `Optional` **format**: *string*
 
-Defined in: [src/util.ts:27](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L27)
+Defined in: [src/util.ts:33](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L33)
 
 ___
 
@@ -33,7 +33,7 @@ ___
 
 • `Optional` **options**: [*ReadableFileOptions*](util.readablefileoptions.md)
 
-Defined in: [src/util.ts:28](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L28)
+Defined in: [src/util.ts:34](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L34)
 
 ___
 
@@ -41,7 +41,7 @@ ___
 
 • `Optional` **stream**: ReadableStreamTree[]
 
-Defined in: [src/util.ts:29](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L29)
+Defined in: [src/util.ts:35](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L35)
 
 ___
 
@@ -49,4 +49,4 @@ ___
 
 • `Optional` **url**: *string*
 
-Defined in: [src/util.ts:26](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L26)
+Defined in: [src/util.ts:32](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L32)

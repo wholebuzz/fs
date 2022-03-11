@@ -6,6 +6,7 @@
 
 ### Interfaces
 
+- [Logger](../interfaces/util.logger.md)
 - [ReadableFileOptions](../interfaces/util.readablefileoptions.md)
 - [ReadableFileSpec](../interfaces/util.readablefilespec.md)
 - [Shard](../interfaces/util.shard.md)
@@ -37,17 +38,9 @@
 
 ### logger
 
-• `Const` **logger**: *object*
+• `Const` **logger**: [*Logger*](../interfaces/util.logger.md)
 
-#### Type declaration
-
-| Name | Type |
-| :------ | :------ |
-| `debug` | (...`args`: *any*[]) => *void* |
-| `error` | (...`args`: *any*[]) => *void* |
-| `info` | (...`args`: *any*[]) => *void* |
-
-Defined in: [src/util.ts:9](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L9)
+Defined in: [src/util.ts:15](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L15)
 
 ___
 
@@ -55,7 +48,7 @@ ___
 
 • `Const` **shardRegex**: *RegExp*
 
-Defined in: [src/util.ts:43](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L43)
+Defined in: [src/util.ts:49](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L49)
 
 ___
 
@@ -63,7 +56,7 @@ ___
 
 • `Const` **shardedRegex**: *RegExp*
 
-Defined in: [src/util.ts:44](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L44)
+Defined in: [src/util.ts:50](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L50)
 
 ___
 
@@ -87,7 +80,7 @@ Defined in: [src/util.ts:6](https://github.com/wholebuzz/fs/blob/master/src/util
 
 **Returns:** *string*
 
-Defined in: [src/util.ts:47](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L47)
+Defined in: [src/util.ts:53](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L53)
 
 ___
 
@@ -103,7 +96,7 @@ ___
 
 **Returns:** *number*
 
-Defined in: [src/util.ts:45](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L45)
+Defined in: [src/util.ts:51](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L51)
 
 ___
 
@@ -119,7 +112,7 @@ ___
 
 **Returns:** *undefined* \| *number*
 
-Defined in: [src/util.ts:46](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L46)
+Defined in: [src/util.ts:52](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L52)
 
 ___
 
@@ -152,7 +145,7 @@ ___
 
 **Returns:** *Promise*<Record<string, ReadableStreamTree[]\>\>
 
-Defined in: [src/util.ts:96](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L96)
+Defined in: [src/util.ts:102](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L102)
 
 ___
 
@@ -170,7 +163,7 @@ ___
 
 **Returns:** *Promise*<ReadableStreamTree[]\>
 
-Defined in: [src/util.ts:109](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L109)
+Defined in: [src/util.ts:115](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L115)
 
 ___
 
@@ -188,7 +181,7 @@ ___
 
 **Returns:** *Promise*<WritableStreamTree[]\>
 
-Defined in: [src/util.ts:124](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L124)
+Defined in: [src/util.ts:130](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L130)
 
 ___
 
@@ -205,7 +198,7 @@ ___
 
 **Returns:** *Promise*<{ `entries`: [*DirectoryEntry*](../interfaces/fs.directoryentry.md)[] ; `numShards`: *number*  }\>
 
-Defined in: [src/util.ts:73](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L73)
+Defined in: [src/util.ts:79](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L79)
 
 ___
 
@@ -222,7 +215,7 @@ ___
 
 **Returns:** *number*
 
-Defined in: [src/util.ts:37](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L37)
+Defined in: [src/util.ts:43](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L43)
 
 ___
 
@@ -239,7 +232,7 @@ ___
 
 **Returns:** *boolean*
 
-Defined in: [src/util.ts:40](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L40)
+Defined in: [src/util.ts:46](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L46)
 
 ___
 
@@ -256,7 +249,7 @@ ___
 
 **Returns:** *string*
 
-Defined in: [src/util.ts:49](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L49)
+Defined in: [src/util.ts:55](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L55)
 
 ___
 
@@ -274,4 +267,4 @@ ___
 
 **Returns:** *string*[]
 
-Defined in: [src/util.ts:63](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L63)
+Defined in: [src/util.ts:69](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L69)

@@ -31,7 +31,7 @@
 
 Inherited from: [OpenReadableFileOptions](fs.openreadablefileoptions.md).[byteLength](fs.openreadablefileoptions.md#bytelength)
 
-Defined in: [src/fs.ts:48](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L48)
+Defined in: [src/fs.ts:50](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L50)
 
 ___
 
@@ -41,7 +41,7 @@ ___
 
 Inherited from: [OpenReadableFileOptions](fs.openreadablefileoptions.md).[byteOffset](fs.openreadablefileoptions.md#byteoffset)
 
-Defined in: [src/fs.ts:47](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L47)
+Defined in: [src/fs.ts:49](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L49)
 
 ___
 
@@ -51,7 +51,7 @@ ___
 
 Inherited from: [OpenReadableFileOptions](fs.openreadablefileoptions.md).[extra](fs.openreadablefileoptions.md#extra)
 
-Defined in: [src/fs.ts:49](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L49)
+Defined in: [src/fs.ts:51](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L51)
 
 ___
 
@@ -61,7 +61,7 @@ ___
 
 Inherited from: [OpenReadableFileOptions](fs.openreadablefileoptions.md).[extraOutput](fs.openreadablefileoptions.md#extraoutput)
 
-Defined in: [src/fs.ts:50](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L50)
+Defined in: [src/fs.ts:52](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L52)
 
 ___
 
@@ -71,7 +71,7 @@ ___
 
 Inherited from: [OpenReadableFileOptions](fs.openreadablefileoptions.md).[query](fs.openreadablefileoptions.md#query)
 
-Defined in: [src/fs.ts:51](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L51)
+Defined in: [src/fs.ts:53](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L53)
 
 ___
 
@@ -91,7 +91,7 @@ ___
 
 **Returns:** *boolean*
 
-Defined in: [src/util.ts:22](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L22)
+Defined in: [src/util.ts:28](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L28)
 
 ___
 
@@ -99,7 +99,7 @@ ___
 
 • `Optional` **shards**: *number*
 
-Defined in: [src/util.ts:21](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L21)
+Defined in: [src/util.ts:27](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L27)
 
 ___
 
@@ -109,4 +109,4 @@ ___
 
 Inherited from: [OpenReadableFileOptions](fs.openreadablefileoptions.md).[version](fs.openreadablefileoptions.md#version)
 
-Defined in: [src/fs.ts:52](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L52)
+Defined in: [src/fs.ts:54](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L54)
