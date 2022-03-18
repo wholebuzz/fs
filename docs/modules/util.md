@@ -48,7 +48,7 @@ ___
 
 • `Const` **shardRegex**: *RegExp*
 
-Defined in: [src/util.ts:49](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L49)
+Defined in: [src/util.ts:55](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L55)
 
 ___
 
@@ -56,7 +56,7 @@ ___
 
 • `Const` **shardedRegex**: *RegExp*
 
-Defined in: [src/util.ts:50](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L50)
+Defined in: [src/util.ts:56](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L56)
 
 ___
 
@@ -80,7 +80,7 @@ Defined in: [src/util.ts:6](https://github.com/wholebuzz/fs/blob/master/src/util
 
 **Returns:** *string*
 
-Defined in: [src/util.ts:53](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L53)
+Defined in: [src/util.ts:59](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L59)
 
 ___
 
@@ -96,7 +96,7 @@ ___
 
 **Returns:** *number*
 
-Defined in: [src/util.ts:51](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L51)
+Defined in: [src/util.ts:57](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L57)
 
 ___
 
@@ -112,7 +112,7 @@ ___
 
 **Returns:** *undefined* \| *number*
 
-Defined in: [src/util.ts:52](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L52)
+Defined in: [src/util.ts:58](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L58)
 
 ___
 
@@ -145,7 +145,7 @@ ___
 
 **Returns:** *Promise*<Record<string, ReadableStreamTree[]\>\>
 
-Defined in: [src/util.ts:102](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L102)
+Defined in: [src/util.ts:108](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L108)
 
 ___
 
@@ -163,7 +163,7 @@ ___
 
 **Returns:** *Promise*<ReadableStreamTree[]\>
 
-Defined in: [src/util.ts:115](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L115)
+Defined in: [src/util.ts:121](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L121)
 
 ___
 
@@ -181,7 +181,7 @@ ___
 
 **Returns:** *Promise*<WritableStreamTree[]\>
 
-Defined in: [src/util.ts:130](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L130)
+Defined in: [src/util.ts:136](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L136)
 
 ___
 
@@ -198,13 +198,13 @@ ___
 
 **Returns:** *Promise*<{ `entries`: [*DirectoryEntry*](../interfaces/fs.directoryentry.md)[] ; `numShards`: *number*  }\>
 
-Defined in: [src/util.ts:79](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L79)
+Defined in: [src/util.ts:85](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L85)
 
 ___
 
 ### shardIndex
 
-▸ `Const` **shardIndex**(`text`: *string*, `modulus`: *number*): *number*
+▸ `Const` **shardIndex**(`text`: *string*, `modulus`: *number*, `shardFunction?`: (`key`: *string*) => *string*): *number*
 
 #### Parameters
 
@@ -212,6 +212,7 @@ ___
 | :------ | :------ |
 | `text` | *string* |
 | `modulus` | *number* |
+| `shardFunction?` | (`key`: *string*) => *string* |
 
 **Returns:** *number*
 
@@ -221,7 +222,7 @@ ___
 
 ### shardMatchText
 
-▸ `Const` **shardMatchText**(`text`: *string*, `shard`: [*Shard*](../interfaces/util.shard.md)): *boolean*
+▸ `Const` **shardMatchText**(`text`: *string*, `shard`: [*Shard*](../interfaces/util.shard.md), `shardFunction?`: (`key`: *string*) => *string*): *boolean*
 
 #### Parameters
 
@@ -229,10 +230,11 @@ ___
 | :------ | :------ |
 | `text` | *string* |
 | `shard` | [*Shard*](../interfaces/util.shard.md) |
+| `shardFunction?` | (`key`: *string*) => *string* |
 
 **Returns:** *boolean*
 
-Defined in: [src/util.ts:46](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L46)
+Defined in: [src/util.ts:49](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L49)
 
 ___
 
@@ -249,7 +251,7 @@ ___
 
 **Returns:** *string*
 
-Defined in: [src/util.ts:55](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L55)
+Defined in: [src/util.ts:61](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L61)
 
 ___
 
@@ -267,4 +269,4 @@ ___
 
 **Returns:** *string*[]
 
-Defined in: [src/util.ts:69](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L69)
+Defined in: [src/util.ts:75](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L75)
