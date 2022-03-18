@@ -40,11 +40,14 @@ export interface Shard {
   modulus: number
 }
 
-export const shardIndex = (text: string, modulus: number) =>
-  parseInt(md5(text ?? '').slice(-4), 16) % modulus
+export const shardIndex = (
+  text: string,
+  modulus: number,
+  shardFunction?: (key: string) => string,
+) => parseInt((shardFunction ?? md5)(text ?? '').slice(-4), 16) % modulus
 
-export const shardMatchText = (text: string, shard: Shard) =>
-  shardIndex(text, shard.modulus) === shard.index
+export const shardMatchText = (text: string, shard: Shard, shardFunction?: (key: string) => string) =>
+  shardIndex(text, shard.modulus, shardFunction) === shard.index
 
 export const shardRegex = /\-(\d+)\-of\-(\d+)/
 export const shardedRegex = /\-(S+)\-of\-(N+)/

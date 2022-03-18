@@ -38,7 +38,7 @@ Built with the [tree-stream](https://www.npmjs.com/package/tree-stream) primitiv
 ## Project history
 
 The project started to support [@wholebuzz/archive](https://www.npmjs.com/package/@wholebuzz/archive), a terabyte-scale archive for GCS.
-The focus has since expanded to include powering [dbcp](https://www.npmjs.com/package/dbcp) with a collection of file system implementations under a common interface.
+The focus has since expanded to include powering [dbcp](https://www.npmjs.com/package/dbcp) and [@wholebuzz/mapreduce](https://www.npmjs.com/package/@wholebuzz/mapreduce) with a collection of file system implementations under a common interface.
 The atomic primitives are only available for Google Cloud Storage and local.
 
 ## Example
