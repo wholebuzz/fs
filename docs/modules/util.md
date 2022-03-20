@@ -30,9 +30,11 @@
 - [openWritableFiles](util.md#openwritablefiles)
 - [readShardFilenames](util.md#readshardfilenames)
 - [shardIndex](util.md#shardindex)
+- [shardIndexOfFilename](util.md#shardindexoffilename)
 - [shardMatchText](util.md#shardmatchtext)
 - [shardedFilename](util.md#shardedfilename)
 - [shardedFilenames](util.md#shardedfilenames)
+- [waitForCompleteShardedInput](util.md#waitforcompleteshardedinput)
 
 ## Variables
 
@@ -48,7 +50,7 @@ ___
 
 • `Const` **shardRegex**: *RegExp*
 
-Defined in: [src/util.ts:55](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L55)
+Defined in: [src/util.ts:56](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L56)
 
 ___
 
@@ -56,7 +58,7 @@ ___
 
 • `Const` **shardedRegex**: *RegExp*
 
-Defined in: [src/util.ts:56](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L56)
+Defined in: [src/util.ts:55](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L55)
 
 ___
 
@@ -70,7 +72,7 @@ Defined in: [src/util.ts:6](https://github.com/wholebuzz/fs/blob/master/src/util
 
 ### allShardsFilename
 
-▸ `Const` **allShardsFilename**(`name`: *string*): *string*
+▸ **allShardsFilename**(`name`: *string*): *string*
 
 #### Parameters
 
@@ -80,7 +82,7 @@ Defined in: [src/util.ts:6](https://github.com/wholebuzz/fs/blob/master/src/util
 
 **Returns:** *string*
 
-Defined in: [src/util.ts:59](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L59)
+Defined in: [src/util.ts:63](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L63)
 
 ___
 
@@ -96,7 +98,7 @@ ___
 
 **Returns:** *number*
 
-Defined in: [src/util.ts:57](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L57)
+Defined in: [src/util.ts:58](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L58)
 
 ___
 
@@ -112,7 +114,7 @@ ___
 
 **Returns:** *undefined* \| *number*
 
-Defined in: [src/util.ts:58](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L58)
+Defined in: [src/util.ts:57](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L57)
 
 ___
 
@@ -145,7 +147,7 @@ ___
 
 **Returns:** *Promise*<Record<string, ReadableStreamTree[]\>\>
 
-Defined in: [src/util.ts:108](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L108)
+Defined in: [src/util.ts:147](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L147)
 
 ___
 
@@ -163,7 +165,7 @@ ___
 
 **Returns:** *Promise*<ReadableStreamTree[]\>
 
-Defined in: [src/util.ts:121](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L121)
+Defined in: [src/util.ts:160](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L160)
 
 ___
 
@@ -181,7 +183,7 @@ ___
 
 **Returns:** *Promise*<WritableStreamTree[]\>
 
-Defined in: [src/util.ts:136](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L136)
+Defined in: [src/util.ts:175](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L175)
 
 ___
 
@@ -198,7 +200,7 @@ ___
 
 **Returns:** *Promise*<{ `entries`: [*DirectoryEntry*](../interfaces/fs.directoryentry.md)[] ; `numShards`: *number*  }\>
 
-Defined in: [src/util.ts:85](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L85)
+Defined in: [src/util.ts:94](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L94)
 
 ___
 
@@ -217,6 +219,22 @@ ___
 **Returns:** *number*
 
 Defined in: [src/util.ts:43](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L43)
+
+___
+
+### shardIndexOfFilename
+
+▸ `Const` **shardIndexOfFilename**(`name`: *string*): *number*
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `name` | *string* |
+
+**Returns:** *number*
+
+Defined in: [src/util.ts:60](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L60)
 
 ___
 
@@ -251,7 +269,7 @@ ___
 
 **Returns:** *string*
 
-Defined in: [src/util.ts:61](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L61)
+Defined in: [src/util.ts:70](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L70)
 
 ___
 
@@ -269,4 +287,25 @@ ___
 
 **Returns:** *string*[]
 
-Defined in: [src/util.ts:75](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L75)
+Defined in: [src/util.ts:84](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L84)
+
+___
+
+### waitForCompleteShardedInput
+
+▸ **waitForCompleteShardedInput**(`fileSystem`: [*FileSystem*](../classes/fs.filesystem.md), `url`: *string*, `args`: { `delay?`: (`trys`: *number*) => *number* ; `maxTrys?`: *number* ; `shards?`: *number*  }): *Promise*<void\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `fileSystem` | [*FileSystem*](../classes/fs.filesystem.md) |
+| `url` | *string* |
+| `args` | *object* |
+| `args.delay?` | (`trys`: *number*) => *number* |
+| `args.maxTrys?` | *number* |
+| `args.shards?` | *number* |
+
+**Returns:** *Promise*<void\>
+
+Defined in: [src/util.ts:125](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L125)

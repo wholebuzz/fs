@@ -52,11 +52,20 @@ export const shardMatchText = (
   shardFunction?: (key: string) => string
 ) => shardIndex(text, shard.modulus, shardFunction) === shard.index
 
-export const shardRegex = /\-(\d+)\-of\-(\d+)/
 export const shardedRegex = /\-(S+)\-of\-(N+)/
-export const isShardFilename = (name: string) => parseInt(name.match(shardRegex)?.[2] || '0', 10)
+export const shardRegex = /\-(\d+)\-of\-(\d+)/g
 export const isShardedFilename = (name: string) => name.match(shardedRegex)?.[1].length
-export const allShardsFilename = (name: string) => name.replace(shardRegex, '-SSSS-of-NNNN')
+export const isShardFilename = (name: string) =>
+  parseInt(name.match(shardRegex)?.pop()?.split('-')?.pop() || '0', 10)
+export const shardIndexOfFilename = (name: string) =>
+  parseInt(name.match(shardRegex)?.pop()?.split('-')?.[1] || '0', 10)
+
+export function allShardsFilename(name: string) {
+  const lastMatch = name.match(shardRegex)?.pop()
+  if (!lastMatch) return name
+  const index = name.lastIndexOf(lastMatch)
+  return name.substring(0, index) + '-SSSS-of-NNNN' + name.substring(index + lastMatch.length)
+}
 
 export const shardedFilename = (name: string, shard: Shard) => {
   const sharded = name.match(shardedRegex)
@@ -100,9 +109,39 @@ export async function readShardFilenames(fileSystem: FileSystem, url: string) {
     }
   }
   if (numShards !== entries.length) {
-    throw new Error(`readShardFilenames: too many ${dirname} matching ${prefix}`)
+    throw new Error(`readShardFilenames: wrong number ${dirname} matching ${prefix}`)
+  }
+  const haveEntry = entries.map(() => false)
+  entries.forEach((x) => {
+    const index = shardIndexOfFilename(x.url)
+    if (index >= 0 && index < haveEntry.length) haveEntry[index] = true
+  })
+  if (!entries.every((x) => !!x)) {
+    throw new Error(`readShardFilenames: corrupt ${dirname} matching ${prefix}`)
   }
   return { numShards, entries }
+}
+
+export async function waitForCompleteShardedInput(
+  fileSystem: FileSystem,
+  url: string,
+  args: {
+    shards?: number
+    maxTrys?: number
+    delay?: (trys: number) => number
+  }
+) {
+  for (let trys = 1; trys < (args.maxTrys ?? 100); trys++) {
+    try {
+      const shuffleShards = await readShardFilenames(fileSystem, url)
+      if (!args.shards || shuffleShards.numShards === args.shards) return
+    } catch (err) {
+      /* */
+    }
+    const delay = args.delay ? args.delay(trys) : 1000
+    await new Promise((resolve) => setTimeout(resolve, delay))
+  }
+  throw new Error(`waitForCompleteShardedInput timeout $url`)
 }
 
 export async function openReadableFileSet(
