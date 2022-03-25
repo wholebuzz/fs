@@ -58,7 +58,7 @@ https://cloud.google.com/docs/authentication/production#providing_credentials_to
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/gcp.ts:25](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L25)
+Defined in: [src/gcp.ts:26](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L26)
 
 ## Properties
 
@@ -66,7 +66,7 @@ Defined in: [src/gcp.ts:25](https://github.com/wholebuzz/fs/blob/master/src/gcp.
 
 • **storage**: *Storage*
 
-Defined in: [src/gcp.ts:25](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L25)
+Defined in: [src/gcp.ts:26](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L26)
 
 ## Methods
 
@@ -90,7 +90,7 @@ Defined in: [src/gcp.ts:25](https://github.com/wholebuzz/fs/blob/master/src/gcp.
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/gcp.ts:215](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L215)
+Defined in: [src/gcp.ts:216](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L216)
 
 ___
 
@@ -111,7 +111,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/gcp.ts:182](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L182)
+Defined in: [src/gcp.ts:183](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L183)
 
 ___
 
@@ -133,7 +133,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/gcp.ts:151](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L151)
+Defined in: [src/gcp.ts:152](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L152)
 
 ___
 
@@ -154,7 +154,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/gcp.ts:100](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L100)
+Defined in: [src/gcp.ts:101](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L101)
 
 ___
 
@@ -174,7 +174,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/gcp.ts:110](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L110)
+Defined in: [src/gcp.ts:111](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L111)
 
 ___
 
@@ -190,7 +190,7 @@ ___
 
 **Returns:** *Bucket*
 
-Defined in: [src/gcp.ts:51](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L51)
+Defined in: [src/gcp.ts:52](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L52)
 
 ___
 
@@ -207,7 +207,7 @@ ___
 
 **Returns:** *File*
 
-Defined in: [src/gcp.ts:56](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L56)
+Defined in: [src/gcp.ts:57](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L57)
 
 ___
 
@@ -228,7 +228,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/gcp.ts:117](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L117)
+Defined in: [src/gcp.ts:118](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L118)
 
 ___
 
@@ -249,7 +249,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/gcp.ts:190](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L190)
+Defined in: [src/gcp.ts:191](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L191)
 
 ___
 
@@ -270,7 +270,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/gcp.ts:130](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L130)
+Defined in: [src/gcp.ts:131](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L131)
 
 ___
 
@@ -291,7 +291,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/gcp.ts:144](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L144)
+Defined in: [src/gcp.ts:145](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L145)
 
 ___
 
@@ -314,7 +314,7 @@ Parse a `gs://bucket/file/name.txt` URL into `bucket` and `file/name.txt`.
 | `bucket` | *string* |
 | `filename` | *string* |
 
-Defined in: [src/gcp.ts:42](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L42)
+Defined in: [src/gcp.ts:43](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L43)
 
 ___
 
@@ -334,7 +334,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/gcp.ts:176](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L176)
+Defined in: [src/gcp.ts:177](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L177)
 
 ___
 
@@ -355,7 +355,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/gcp.ts:63](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L63)
+Defined in: [src/gcp.ts:64](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L64)
 
 ___
 
@@ -376,13 +376,13 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/gcp.ts:78](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L78)
+Defined in: [src/gcp.ts:79](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L79)
 
 ___
 
 ### removeDirectory
 
-▸ **removeDirectory**(`_urlText`: *string*): *Promise*<boolean\>
+▸ **removeDirectory**(`_urlText`: *string*, `_options?`: [*RemoveDirectoryOptions*](../interfaces/fs.removedirectoryoptions.md)): *Promise*<boolean\>
 
 **`inheritdoc`**
 
@@ -391,12 +391,13 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `_urlText` | *string* |
+| `_options?` | [*RemoveDirectoryOptions*](../interfaces/fs.removedirectoryoptions.md) |
 
 **Returns:** *Promise*<boolean\>
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/gcp.ts:105](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L105)
+Defined in: [src/gcp.ts:106](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L106)
 
 ___
 
@@ -416,7 +417,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/gcp.ts:170](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L170)
+Defined in: [src/gcp.ts:171](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L171)
 
 ___
 
@@ -438,4 +439,4 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/gcp.ts:195](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L195)
+Defined in: [src/gcp.ts:196](https://github.com/wholebuzz/fs/blob/master/src/gcp.ts#L196)

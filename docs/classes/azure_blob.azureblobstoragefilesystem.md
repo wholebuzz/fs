@@ -60,7 +60,7 @@ Azure Blob Storage [FileSystem](fs.filesystem.md) implemented with `@azure/stora
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/azure-blob.ts:25](https://github.com/wholebuzz/fs/blob/master/src/azure-blob.ts#L25)
+Defined in: [src/azure-blob.ts:26](https://github.com/wholebuzz/fs/blob/master/src/azure-blob.ts#L26)
 
 ## Properties
 
@@ -74,7 +74,7 @@ ___
 
 • **blobServiceClient**: *BlobServiceClient*
 
-Defined in: [src/azure-blob.ts:25](https://github.com/wholebuzz/fs/blob/master/src/azure-blob.ts#L25)
+Defined in: [src/azure-blob.ts:26](https://github.com/wholebuzz/fs/blob/master/src/azure-blob.ts#L26)
 
 ___
 
@@ -104,7 +104,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/azure-blob.ts:153](https://github.com/wholebuzz/fs/blob/master/src/azure-blob.ts#L153)
+Defined in: [src/azure-blob.ts:154](https://github.com/wholebuzz/fs/blob/master/src/azure-blob.ts#L154)
 
 ___
 
@@ -125,7 +125,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/azure-blob.ts:134](https://github.com/wholebuzz/fs/blob/master/src/azure-blob.ts#L134)
+Defined in: [src/azure-blob.ts:135](https://github.com/wholebuzz/fs/blob/master/src/azure-blob.ts#L135)
 
 ___
 
@@ -147,7 +147,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/azure-blob.ts:115](https://github.com/wholebuzz/fs/blob/master/src/azure-blob.ts#L115)
+Defined in: [src/azure-blob.ts:116](https://github.com/wholebuzz/fs/blob/master/src/azure-blob.ts#L116)
 
 ___
 
@@ -168,7 +168,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/azure-blob.ts:60](https://github.com/wholebuzz/fs/blob/master/src/azure-blob.ts#L60)
+Defined in: [src/azure-blob.ts:61](https://github.com/wholebuzz/fs/blob/master/src/azure-blob.ts#L61)
 
 ___
 
@@ -188,7 +188,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/azure-blob.ts:70](https://github.com/wholebuzz/fs/blob/master/src/azure-blob.ts#L70)
+Defined in: [src/azure-blob.ts:71](https://github.com/wholebuzz/fs/blob/master/src/azure-blob.ts#L71)
 
 ___
 
@@ -209,7 +209,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/azure-blob.ts:75](https://github.com/wholebuzz/fs/blob/master/src/azure-blob.ts#L75)
+Defined in: [src/azure-blob.ts:76](https://github.com/wholebuzz/fs/blob/master/src/azure-blob.ts#L76)
 
 ___
 
@@ -230,7 +230,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/azure-blob.ts:139](https://github.com/wholebuzz/fs/blob/master/src/azure-blob.ts#L139)
+Defined in: [src/azure-blob.ts:140](https://github.com/wholebuzz/fs/blob/master/src/azure-blob.ts#L140)
 
 ___
 
@@ -251,7 +251,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/azure-blob.ts:86](https://github.com/wholebuzz/fs/blob/master/src/azure-blob.ts#L86)
+Defined in: [src/azure-blob.ts:87](https://github.com/wholebuzz/fs/blob/master/src/azure-blob.ts#L87)
 
 ___
 
@@ -272,7 +272,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/azure-blob.ts:103](https://github.com/wholebuzz/fs/blob/master/src/azure-blob.ts#L103)
+Defined in: [src/azure-blob.ts:104](https://github.com/wholebuzz/fs/blob/master/src/azure-blob.ts#L104)
 
 ___
 
@@ -295,7 +295,7 @@ Parse an `azure-blob://bucket/file/name.txt` URL into `bucket` and `file/name.tx
 | `blobName` | *string* |
 | `containerName` | *string* |
 
-Defined in: [src/azure-blob.ts:40](https://github.com/wholebuzz/fs/blob/master/src/azure-blob.ts#L40)
+Defined in: [src/azure-blob.ts:41](https://github.com/wholebuzz/fs/blob/master/src/azure-blob.ts#L41)
 
 ___
 
@@ -315,7 +315,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/azure-blob.ts:129](https://github.com/wholebuzz/fs/blob/master/src/azure-blob.ts#L129)
+Defined in: [src/azure-blob.ts:130](https://github.com/wholebuzz/fs/blob/master/src/azure-blob.ts#L130)
 
 ___
 
@@ -336,7 +336,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/azure-blob.ts:50](https://github.com/wholebuzz/fs/blob/master/src/azure-blob.ts#L50)
+Defined in: [src/azure-blob.ts:51](https://github.com/wholebuzz/fs/blob/master/src/azure-blob.ts#L51)
 
 ___
 
@@ -357,13 +357,13 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/azure-blob.ts:55](https://github.com/wholebuzz/fs/blob/master/src/azure-blob.ts#L55)
+Defined in: [src/azure-blob.ts:56](https://github.com/wholebuzz/fs/blob/master/src/azure-blob.ts#L56)
 
 ___
 
 ### removeDirectory
 
-▸ **removeDirectory**(`_urlText`: *string*): *Promise*<boolean\>
+▸ **removeDirectory**(`_urlText`: *string*, `_options?`: [*RemoveDirectoryOptions*](../interfaces/fs.removedirectoryoptions.md)): *Promise*<boolean\>
 
 **`inheritdoc`**
 
@@ -372,12 +372,13 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `_urlText` | *string* |
+| `_options?` | [*RemoveDirectoryOptions*](../interfaces/fs.removedirectoryoptions.md) |
 
 **Returns:** *Promise*<boolean\>
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/azure-blob.ts:65](https://github.com/wholebuzz/fs/blob/master/src/azure-blob.ts#L65)
+Defined in: [src/azure-blob.ts:66](https://github.com/wholebuzz/fs/blob/master/src/azure-blob.ts#L66)
 
 ___
 
@@ -397,7 +398,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/azure-blob.ts:124](https://github.com/wholebuzz/fs/blob/master/src/azure-blob.ts#L124)
+Defined in: [src/azure-blob.ts:125](https://github.com/wholebuzz/fs/blob/master/src/azure-blob.ts#L125)
 
 ___
 
@@ -419,4 +420,4 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/azure-blob.ts:144](https://github.com/wholebuzz/fs/blob/master/src/azure-blob.ts#L144)
+Defined in: [src/azure-blob.ts:145](https://github.com/wholebuzz/fs/blob/master/src/azure-blob.ts#L145)

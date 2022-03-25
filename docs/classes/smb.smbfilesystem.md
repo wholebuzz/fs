@@ -64,7 +64,7 @@ SMB [FileSystem](fs.filesystem.md) implemented with `@marsaud/smb2`.
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/smb.ts:23](https://github.com/wholebuzz/fs/blob/master/src/smb.ts#L23)
+Defined in: [src/smb.ts:24](https://github.com/wholebuzz/fs/blob/master/src/smb.ts#L24)
 
 ## Properties
 
@@ -72,7 +72,7 @@ Defined in: [src/smb.ts:23](https://github.com/wholebuzz/fs/blob/master/src/smb.
 
 • **smb2**: *SMB2*
 
-Defined in: [src/smb.ts:23](https://github.com/wholebuzz/fs/blob/master/src/smb.ts#L23)
+Defined in: [src/smb.ts:24](https://github.com/wholebuzz/fs/blob/master/src/smb.ts#L24)
 
 ___
 
@@ -102,7 +102,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/smb.ts:149](https://github.com/wholebuzz/fs/blob/master/src/smb.ts#L149)
+Defined in: [src/smb.ts:150](https://github.com/wholebuzz/fs/blob/master/src/smb.ts#L150)
 
 ___
 
@@ -123,7 +123,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/smb.ts:129](https://github.com/wholebuzz/fs/blob/master/src/smb.ts#L129)
+Defined in: [src/smb.ts:130](https://github.com/wholebuzz/fs/blob/master/src/smb.ts#L130)
 
 ___
 
@@ -145,7 +145,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/smb.ts:109](https://github.com/wholebuzz/fs/blob/master/src/smb.ts#L109)
+Defined in: [src/smb.ts:110](https://github.com/wholebuzz/fs/blob/master/src/smb.ts#L110)
 
 ___
 
@@ -166,7 +166,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/smb.ts:55](https://github.com/wholebuzz/fs/blob/master/src/smb.ts#L55)
+Defined in: [src/smb.ts:56](https://github.com/wholebuzz/fs/blob/master/src/smb.ts#L56)
 
 ___
 
@@ -186,7 +186,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/smb.ts:67](https://github.com/wholebuzz/fs/blob/master/src/smb.ts#L67)
+Defined in: [src/smb.ts:68](https://github.com/wholebuzz/fs/blob/master/src/smb.ts#L68)
 
 ___
 
@@ -207,7 +207,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/smb.ts:77](https://github.com/wholebuzz/fs/blob/master/src/smb.ts#L77)
+Defined in: [src/smb.ts:78](https://github.com/wholebuzz/fs/blob/master/src/smb.ts#L78)
 
 ___
 
@@ -228,7 +228,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/smb.ts:134](https://github.com/wholebuzz/fs/blob/master/src/smb.ts#L134)
+Defined in: [src/smb.ts:135](https://github.com/wholebuzz/fs/blob/master/src/smb.ts#L135)
 
 ___
 
@@ -249,7 +249,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/smb.ts:89](https://github.com/wholebuzz/fs/blob/master/src/smb.ts#L89)
+Defined in: [src/smb.ts:90](https://github.com/wholebuzz/fs/blob/master/src/smb.ts#L90)
 
 ___
 
@@ -270,7 +270,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/smb.ts:102](https://github.com/wholebuzz/fs/blob/master/src/smb.ts#L102)
+Defined in: [src/smb.ts:103](https://github.com/wholebuzz/fs/blob/master/src/smb.ts#L103)
 
 ___
 
@@ -286,7 +286,7 @@ ___
 
 **Returns:** *string*
 
-Defined in: [src/smb.ts:39](https://github.com/wholebuzz/fs/blob/master/src/smb.ts#L39)
+Defined in: [src/smb.ts:40](https://github.com/wholebuzz/fs/blob/master/src/smb.ts#L40)
 
 ___
 
@@ -306,7 +306,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/smb.ts:124](https://github.com/wholebuzz/fs/blob/master/src/smb.ts#L124)
+Defined in: [src/smb.ts:125](https://github.com/wholebuzz/fs/blob/master/src/smb.ts#L125)
 
 ___
 
@@ -327,7 +327,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/smb.ts:45](https://github.com/wholebuzz/fs/blob/master/src/smb.ts#L45)
+Defined in: [src/smb.ts:46](https://github.com/wholebuzz/fs/blob/master/src/smb.ts#L46)
 
 ___
 
@@ -348,13 +348,13 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/smb.ts:50](https://github.com/wholebuzz/fs/blob/master/src/smb.ts#L50)
+Defined in: [src/smb.ts:51](https://github.com/wholebuzz/fs/blob/master/src/smb.ts#L51)
 
 ___
 
 ### removeDirectory
 
-▸ **removeDirectory**(`url`: *string*): *Promise*<boolean\>
+▸ **removeDirectory**(`url`: *string*, `_options?`: [*RemoveDirectoryOptions*](../interfaces/fs.removedirectoryoptions.md)): *Promise*<boolean\>
 
 **`inheritdoc`**
 
@@ -363,12 +363,13 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `url` | *string* |
+| `_options?` | [*RemoveDirectoryOptions*](../interfaces/fs.removedirectoryoptions.md) |
 
 **Returns:** *Promise*<boolean\>
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/smb.ts:61](https://github.com/wholebuzz/fs/blob/master/src/smb.ts#L61)
+Defined in: [src/smb.ts:62](https://github.com/wholebuzz/fs/blob/master/src/smb.ts#L62)
 
 ___
 
@@ -388,7 +389,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/smb.ts:118](https://github.com/wholebuzz/fs/blob/master/src/smb.ts#L118)
+Defined in: [src/smb.ts:119](https://github.com/wholebuzz/fs/blob/master/src/smb.ts#L119)
 
 ___
 
@@ -410,4 +411,4 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/smb.ts:140](https://github.com/wholebuzz/fs/blob/master/src/smb.ts#L140)
+Defined in: [src/smb.ts:141](https://github.com/wholebuzz/fs/blob/master/src/smb.ts#L141)

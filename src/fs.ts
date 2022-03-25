@@ -79,6 +79,10 @@ export interface EnsureDirectoryOptions {
   mask?: number
 }
 
+export interface RemoveDirectoryOptions {
+  recursive?: boolean
+}
+
 /**
  * File system interface for atomic primitives enabling multiple readers and writers.
  */
@@ -108,7 +112,7 @@ export abstract class FileSystem {
    * Removes the directory
    * @param urlText The URL of the directory.
    */
-  abstract removeDirectory(urlText: string): Promise<boolean>
+  abstract removeDirectory(urlText: string, options?: RemoveDirectoryOptions): Promise<boolean>
 
   /**
    * Returns `true` if the file exists.
@@ -248,8 +252,8 @@ export class AnyFileSystem extends FileSystem {
   }
 
   /** @inheritDoc */
-  async removeDirectory(urlText: string) {
-    return this.getFs(urlText).removeDirectory(urlText)
+  async removeDirectory(urlText: string, options?: RemoveDirectoryOptions) {
+    return this.getFs(urlText).removeDirectory(urlText, options)
   }
 
   /** @inheritDoc */

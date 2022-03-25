@@ -13,6 +13,7 @@ import {
   OpenReadableFileOptions,
   OpenWritableFileOptions,
   ReadDirectoryOptions,
+  RemoveDirectoryOptions,
   ReplaceFileOptions,
 } from './fs'
 import { logger, zlib } from './util'
@@ -117,7 +118,7 @@ export class S3FileSystem extends FileSystem {
   }
 
   /** @inheritDoc */
-  async removeDirectory(_urlText: string) {
+  async removeDirectory(_urlText: string, _options?: RemoveDirectoryOptions) {
     return true
   }
 

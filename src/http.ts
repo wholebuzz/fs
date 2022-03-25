@@ -12,6 +12,7 @@ import {
   OpenReadableFileOptions,
   OpenWritableFileOptions,
   ReadDirectoryOptions,
+  RemoveDirectoryOptions,
   ReplaceFileOptions,
 } from './fs'
 import { openNullReadable } from './stream'
@@ -41,7 +42,7 @@ export class HTTPFileSystem extends FileSystem {
   }
 
   /** @inheritDoc */
-  async removeDirectory(_urlText: string) {
+  async removeDirectory(_urlText: string, _options?: RemoveDirectoryOptions) {
     return true
   }
 

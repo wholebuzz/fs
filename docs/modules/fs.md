@@ -20,4 +20,5 @@
 - [OpenReadableFileOptions](../interfaces/fs.openreadablefileoptions.md)
 - [OpenWritableFileOptions](../interfaces/fs.openwritablefileoptions.md)
 - [ReadDirectoryOptions](../interfaces/fs.readdirectoryoptions.md)
+- [RemoveDirectoryOptions](../interfaces/fs.removedirectoryoptions.md)
 - [ReplaceFileOptions](../interfaces/fs.replacefileoptions.md)

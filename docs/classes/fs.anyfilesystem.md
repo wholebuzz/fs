@@ -59,7 +59,7 @@ Construct an [AnyFileSystem](fs.anyfilesystem.md) wrapping the provided [FileSys
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/fs.ts:217](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L217)
+Defined in: [src/fs.ts:221](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L221)
 
 ## Properties
 
@@ -89,7 +89,7 @@ Defined in: [src/fs.ts:217](https://github.com/wholebuzz/fs/blob/master/src/fs.t
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/fs.ts:314](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L314)
+Defined in: [src/fs.ts:318](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L318)
 
 ___
 
@@ -110,7 +110,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/fs.ts:295](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L295)
+Defined in: [src/fs.ts:299](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L299)
 
 ___
 
@@ -132,7 +132,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/fs.ts:276](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L276)
+Defined in: [src/fs.ts:280](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L280)
 
 ___
 
@@ -153,7 +153,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/fs.ts:246](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L246)
+Defined in: [src/fs.ts:250](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L250)
 
 ___
 
@@ -173,7 +173,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/fs.ts:256](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L256)
+Defined in: [src/fs.ts:260](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L260)
 
 ___
 
@@ -194,7 +194,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/fs.ts:261](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L261)
+Defined in: [src/fs.ts:265](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L265)
 
 ___
 
@@ -212,7 +212,7 @@ Returns the [FileSystem](fs.filesystem.md) provider for `url`.
 
 **Returns:** [*FileSystem*](fs.filesystem.md)
 
-Defined in: [src/fs.ts:230](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L230)
+Defined in: [src/fs.ts:234](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L234)
 
 ___
 
@@ -233,7 +233,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/fs.ts:300](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L300)
+Defined in: [src/fs.ts:304](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L304)
 
 ___
 
@@ -254,7 +254,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/fs.ts:266](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L266)
+Defined in: [src/fs.ts:270](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L270)
 
 ___
 
@@ -275,7 +275,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/fs.ts:271](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L271)
+Defined in: [src/fs.ts:275](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L275)
 
 ___
 
@@ -295,7 +295,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/fs.ts:290](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L290)
+Defined in: [src/fs.ts:294](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L294)
 
 ___
 
@@ -316,7 +316,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/fs.ts:236](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L236)
+Defined in: [src/fs.ts:240](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L240)
 
 ___
 
@@ -337,13 +337,13 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/fs.ts:241](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L241)
+Defined in: [src/fs.ts:245](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L245)
 
 ___
 
 ### removeDirectory
 
-▸ **removeDirectory**(`urlText`: *string*): *Promise*<boolean\>
+▸ **removeDirectory**(`urlText`: *string*, `options?`: [*RemoveDirectoryOptions*](../interfaces/fs.removedirectoryoptions.md)): *Promise*<boolean\>
 
 **`inheritdoc`**
 
@@ -352,12 +352,13 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `urlText` | *string* |
+| `options?` | [*RemoveDirectoryOptions*](../interfaces/fs.removedirectoryoptions.md) |
 
 **Returns:** *Promise*<boolean\>
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/fs.ts:251](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L251)
+Defined in: [src/fs.ts:255](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L255)
 
 ___
 
@@ -377,7 +378,7 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/fs.ts:285](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L285)
+Defined in: [src/fs.ts:289](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L289)
 
 ___
 
@@ -399,4 +400,4 @@ ___
 
 Overrides: [FileSystem](fs.filesystem.md)
 
-Defined in: [src/fs.ts:305](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L305)
+Defined in: [src/fs.ts:309](https://github.com/wholebuzz/fs/blob/master/src/fs.ts#L309)

@@ -12,6 +12,7 @@ import {
   OpenReadableFileOptions,
   OpenWritableFileOptions,
   ReadDirectoryOptions,
+  RemoveDirectoryOptions,
   ReplaceFileOptions,
 } from './fs'
 import { zlib } from './util'
@@ -58,7 +59,7 @@ export class SMBFileSystem extends FileSystem {
   }
 
   /** @inheritDoc */
-  async removeDirectory(url: string) {
+  async removeDirectory(url: string, _options?: RemoveDirectoryOptions) {
     await this.smb2.rmdir(this.parseUrl(url))
     return true
   }

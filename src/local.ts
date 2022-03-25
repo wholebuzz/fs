@@ -2,6 +2,7 @@ import * as fs from 'fs'
 import { constants as fsConstants, flock, seek } from 'fs-ext'
 import glob from 'glob'
 import * as path from 'path'
+import rimraf from 'rimraf'
 import { Readable, Transform, Writable } from 'stream'
 import StreamTree, { ReadableStreamTree, WritableStreamTree } from 'tree-stream'
 import { promisify } from 'util'
@@ -16,10 +17,13 @@ import {
   OpenReadableFileOptions,
   OpenWritableFileOptions,
   ReadDirectoryOptions,
+  RemoveDirectoryOptions,
   ReplaceFileOptions,
 } from './fs'
 import { hashStream } from './stream'
 import { logger, zlib } from './util'
+
+export const rmrf = promisify(rimraf)
 
 const fsAccess = promisify(fs.access)
 const fsCopyFile = promisify(fs.copyFile)
@@ -105,8 +109,12 @@ export class LocalFileSystem extends FileSystem {
   }
 
   /** @inheritDoc */
-  async removeDirectory(urlText: string) {
-    await fsRmdir(urlText)
+  async removeDirectory(urlText: string, options?: RemoveDirectoryOptions) {
+    if (options?.recursive) {
+      await rmrf(urlText)
+    } else {
+      await fsRmdir(urlText)
+    }
     return true
   }
 
