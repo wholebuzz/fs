@@ -90,7 +90,7 @@ export class S3FileSystem extends FileSystem {
     urlText: string,
     options?: ReadDirectoryOptions
   ): Promise<ReadableStreamTree> {
-    let done = false;
+    let done = false
     const url = this.parseUrl(urlText)
     const passThrough = new PassThrough({ objectMode: true })
     const listObjects = (target: AWS.S3.Types.ListObjectsV2Request) => {
@@ -109,7 +109,7 @@ export class S3FileSystem extends FileSystem {
         }
       })
     }
-    passThrough.on('close', () => done = true)
+    passThrough.on('close', () => (done = true))
     listObjects({ Bucket: url.Bucket, Prefix: url.Key + (options?.prefix ?? '') || undefined })
     return StreamTree.readable(passThrough)
   }
