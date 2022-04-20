@@ -9,6 +9,7 @@
 ### Properties
 
 - [columnList](parquet.openparquetfileoptions.md#columnlist)
+- [streamingParquet](parquet.openparquetfileoptions.md#streamingparquet)
 
 ## Properties
 
@@ -16,4 +17,12 @@
 
 • `Optional` **columnList**: *string*[] \| *string*[][]
 
-Defined in: [src/parquet.ts:16](https://github.com/wholebuzz/fs/blob/master/src/parquet.ts#L16)
+Defined in: [src/parquet.ts:26](https://github.com/wholebuzz/fs/blob/master/src/parquet.ts#L26)
+
+___
+
+### streamingParquet
+
+• `Optional` **streamingParquet**: *boolean*
+
+Defined in: [src/parquet.ts:27](https://github.com/wholebuzz/fs/blob/master/src/parquet.ts#L27)

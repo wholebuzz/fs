@@ -4,6 +4,8 @@ import { ReadableStreamTree } from 'tree-stream'
 import { FileSystem, OpenReadableFileOptions, OpenWritableFileOptions } from './fs'
 
 export const zlib = require('zlib')
+export const lastItem = <X>(x: X[]): X => x[x.length - 1]
+export const lastItemOrNull = <X>(x: X[]): X | null => (x.length > 0 ? x[x.length - 1] : null)
 export const md5 = (x: string) => crypto.createHash('md5').update(x).digest('hex')
 
 export interface Logger {

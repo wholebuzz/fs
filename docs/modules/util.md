@@ -24,6 +24,8 @@
 - [allShardsFilename](util.md#allshardsfilename)
 - [isShardFilename](util.md#isshardfilename)
 - [isShardedFilename](util.md#isshardedfilename)
+- [lastItem](util.md#lastitem)
+- [lastItemOrNull](util.md#lastitemornull)
 - [md5](util.md#md5)
 - [openReadableFileSet](util.md#openreadablefileset)
 - [openReadableFiles](util.md#openreadablefiles)
@@ -42,7 +44,7 @@
 
 • `Const` **logger**: [*Logger*](../interfaces/util.logger.md)
 
-Defined in: [src/util.ts:15](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L15)
+Defined in: [src/util.ts:17](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L17)
 
 ___
 
@@ -50,7 +52,7 @@ ___
 
 • `Const` **shardRegex**: *RegExp*
 
-Defined in: [src/util.ts:56](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L56)
+Defined in: [src/util.ts:58](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L58)
 
 ___
 
@@ -58,7 +60,7 @@ ___
 
 • `Const` **shardedRegex**: *RegExp*
 
-Defined in: [src/util.ts:55](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L55)
+Defined in: [src/util.ts:57](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L57)
 
 ___
 
@@ -82,7 +84,7 @@ Defined in: [src/util.ts:6](https://github.com/wholebuzz/fs/blob/master/src/util
 
 **Returns:** *string*
 
-Defined in: [src/util.ts:63](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L63)
+Defined in: [src/util.ts:65](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L65)
 
 ___
 
@@ -98,7 +100,7 @@ ___
 
 **Returns:** *number*
 
-Defined in: [src/util.ts:58](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L58)
+Defined in: [src/util.ts:60](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L60)
 
 ___
 
@@ -114,7 +116,51 @@ ___
 
 **Returns:** *undefined* \| *number*
 
-Defined in: [src/util.ts:57](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L57)
+Defined in: [src/util.ts:59](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L59)
+
+___
+
+### lastItem
+
+▸ `Const` **lastItem**<X\>(`x`: X[]): X
+
+#### Type parameters
+
+| Name |
+| :------ |
+| `X` |
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `x` | X[] |
+
+**Returns:** X
+
+Defined in: [src/util.ts:7](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L7)
+
+___
+
+### lastItemOrNull
+
+▸ `Const` **lastItemOrNull**<X\>(`x`: X[]): ``null`` \| X
+
+#### Type parameters
+
+| Name |
+| :------ |
+| `X` |
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `x` | X[] |
+
+**Returns:** ``null`` \| X
+
+Defined in: [src/util.ts:8](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L8)
 
 ___
 
@@ -130,7 +176,7 @@ ___
 
 **Returns:** *string*
 
-Defined in: [src/util.ts:7](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L7)
+Defined in: [src/util.ts:9](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L9)
 
 ___
 
@@ -147,7 +193,7 @@ ___
 
 **Returns:** *Promise*<Record<string, ReadableStreamTree[]\>\>
 
-Defined in: [src/util.ts:147](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L147)
+Defined in: [src/util.ts:149](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L149)
 
 ___
 
@@ -165,7 +211,7 @@ ___
 
 **Returns:** *Promise*<ReadableStreamTree[]\>
 
-Defined in: [src/util.ts:160](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L160)
+Defined in: [src/util.ts:162](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L162)
 
 ___
 
@@ -183,7 +229,7 @@ ___
 
 **Returns:** *Promise*<WritableStreamTree[]\>
 
-Defined in: [src/util.ts:175](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L175)
+Defined in: [src/util.ts:177](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L177)
 
 ___
 
@@ -200,7 +246,7 @@ ___
 
 **Returns:** *Promise*<{ `entries`: [*DirectoryEntry*](../interfaces/fs.directoryentry.md)[] ; `numShards`: *number*  }\>
 
-Defined in: [src/util.ts:94](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L94)
+Defined in: [src/util.ts:96](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L96)
 
 ___
 
@@ -218,7 +264,7 @@ ___
 
 **Returns:** *number*
 
-Defined in: [src/util.ts:43](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L43)
+Defined in: [src/util.ts:45](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L45)
 
 ___
 
@@ -234,7 +280,7 @@ ___
 
 **Returns:** *number*
 
-Defined in: [src/util.ts:60](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L60)
+Defined in: [src/util.ts:62](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L62)
 
 ___
 
@@ -252,7 +298,7 @@ ___
 
 **Returns:** *boolean*
 
-Defined in: [src/util.ts:49](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L49)
+Defined in: [src/util.ts:51](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L51)
 
 ___
 
@@ -269,7 +315,7 @@ ___
 
 **Returns:** *string*
 
-Defined in: [src/util.ts:70](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L70)
+Defined in: [src/util.ts:72](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L72)
 
 ___
 
@@ -287,7 +333,7 @@ ___
 
 **Returns:** *string*[]
 
-Defined in: [src/util.ts:84](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L84)
+Defined in: [src/util.ts:86](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L86)
 
 ___
 
@@ -308,4 +354,4 @@ ___
 
 **Returns:** *Promise*<void\>
 
-Defined in: [src/util.ts:125](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L125)
+Defined in: [src/util.ts:127](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L127)

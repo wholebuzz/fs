@@ -80,7 +80,7 @@ ___
 
 **Returns:** *boolean*
 
-Defined in: [src/util.ts:23](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L23)
+Defined in: [src/util.ts:25](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L25)
 
 ___
 
@@ -88,7 +88,7 @@ ___
 
 • `Optional` **shards**: *number*
 
-Defined in: [src/util.ts:22](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L22)
+Defined in: [src/util.ts:24](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L24)
 
 ___
 

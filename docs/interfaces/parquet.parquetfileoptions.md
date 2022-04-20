@@ -11,6 +11,7 @@
 - [columnList](parquet.parquetfileoptions.md#columnlist)
 - [shardFilter](parquet.parquetfileoptions.md#shardfilter)
 - [shards](parquet.parquetfileoptions.md#shards)
+- [streamingParquet](parquet.parquetfileoptions.md#streamingparquet)
 
 ## Properties
 
@@ -18,7 +19,7 @@
 
 • `Optional` **columnList**: *string*[] \| *string*[][]
 
-Defined in: [src/parquet.ts:20](https://github.com/wholebuzz/fs/blob/master/src/parquet.ts#L20)
+Defined in: [src/parquet.ts:31](https://github.com/wholebuzz/fs/blob/master/src/parquet.ts#L31)
 
 ___
 
@@ -38,7 +39,7 @@ ___
 
 **Returns:** *boolean*
 
-Defined in: [src/parquet.ts:22](https://github.com/wholebuzz/fs/blob/master/src/parquet.ts#L22)
+Defined in: [src/parquet.ts:33](https://github.com/wholebuzz/fs/blob/master/src/parquet.ts#L33)
 
 ___
 
@@ -46,4 +47,12 @@ ___
 
 • `Optional` **shards**: *number*
 
-Defined in: [src/parquet.ts:21](https://github.com/wholebuzz/fs/blob/master/src/parquet.ts#L21)
+Defined in: [src/parquet.ts:32](https://github.com/wholebuzz/fs/blob/master/src/parquet.ts#L32)
+
+___
+
+### streamingParquet
+
+• `Optional` **streamingParquet**: *boolean*
+
+Defined in: [src/parquet.ts:34](https://github.com/wholebuzz/fs/blob/master/src/parquet.ts#L34)

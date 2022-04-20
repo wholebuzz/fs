@@ -10,6 +10,11 @@
 - [ParquetFileOptions](../interfaces/parquet.parquetfileoptions.md)
 - [ReadableSpec](../interfaces/parquet.readablespec.md)
 
+### Variables
+
+- [parquet\_thrift](parquet.md#parquet_thrift)
+- [parquet\_util](parquet.md#parquet_util)
+
 ### Functions
 
 - [newParquetEnvelopeReader](parquet.md#newparquetenvelopereader)
@@ -19,6 +24,22 @@
 - [openReadableFileSet](parquet.md#openreadablefileset)
 - [pipeParquetFormatter](parquet.md#pipeparquetformatter)
 - [readParquetFile](parquet.md#readparquetfile)
+
+## Variables
+
+### parquet\_thrift
+
+• `Const` **parquet\_thrift**: *any*
+
+Defined in: [src/parquet.ts:23](https://github.com/wholebuzz/fs/blob/master/src/parquet.ts#L23)
+
+___
+
+### parquet\_util
+
+• `Const` **parquet\_util**: *any*
+
+Defined in: [src/parquet.ts:22](https://github.com/wholebuzz/fs/blob/master/src/parquet.ts#L22)
 
 ## Functions
 
@@ -35,13 +56,13 @@
 
 **Returns:** *ParquetEnvelopeReader*
 
-Defined in: [src/parquet.ts:93](https://github.com/wholebuzz/fs/blob/master/src/parquet.ts#L93)
+Defined in: [src/parquet.ts:213](https://github.com/wholebuzz/fs/blob/master/src/parquet.ts#L213)
 
 ___
 
 ### newParquetReader
 
-▸ **newParquetReader**(`fileSystem`: [*FileSystem*](../classes/fs.filesystem.md), `url`: *string*): *Promise*<any\>
+▸ **newParquetReader**(`fileSystem`: [*FileSystem*](../classes/fs.filesystem.md), `url`: *string*): *Promise*<ParquetReader\>
 
 #### Parameters
 
@@ -50,9 +71,9 @@ ___
 | `fileSystem` | [*FileSystem*](../classes/fs.filesystem.md) |
 | `url` | *string* |
 
-**Returns:** *Promise*<any\>
+**Returns:** *Promise*<ParquetReader\>
 
-Defined in: [src/parquet.ts:88](https://github.com/wholebuzz/fs/blob/master/src/parquet.ts#L88)
+Defined in: [src/parquet.ts:205](https://github.com/wholebuzz/fs/blob/master/src/parquet.ts#L205)
 
 ___
 
@@ -70,7 +91,7 @@ ___
 
 **Returns:** *Promise*<ReadableStreamTree\>
 
-Defined in: [src/parquet.ts:67](https://github.com/wholebuzz/fs/blob/master/src/parquet.ts#L67)
+Defined in: [src/parquet.ts:79](https://github.com/wholebuzz/fs/blob/master/src/parquet.ts#L79)
 
 ___
 
@@ -88,7 +109,7 @@ ___
 
 **Returns:** *Promise*<ReadableStreamTree[]\>
 
-Defined in: [src/parquet.ts:52](https://github.com/wholebuzz/fs/blob/master/src/parquet.ts#L52)
+Defined in: [src/parquet.ts:64](https://github.com/wholebuzz/fs/blob/master/src/parquet.ts#L64)
 
 ___
 
@@ -105,7 +126,7 @@ ___
 
 **Returns:** *Promise*<Record<string, ReadableStreamTree[]\>\>
 
-Defined in: [src/parquet.ts:37](https://github.com/wholebuzz/fs/blob/master/src/parquet.ts#L37)
+Defined in: [src/parquet.ts:49](https://github.com/wholebuzz/fs/blob/master/src/parquet.ts#L49)
 
 ___
 
@@ -122,7 +143,7 @@ ___
 
 **Returns:** WritableStreamTree
 
-Defined in: [src/parquet.ts:105](https://github.com/wholebuzz/fs/blob/master/src/parquet.ts#L105)
+Defined in: [src/parquet.ts:225](https://github.com/wholebuzz/fs/blob/master/src/parquet.ts#L225)
 
 ___
 
@@ -140,4 +161,4 @@ ___
 
 **Returns:** *Promise*<unknown[]\>
 
-Defined in: [src/parquet.ts:29](https://github.com/wholebuzz/fs/blob/master/src/parquet.ts#L29)
+Defined in: [src/parquet.ts:41](https://github.com/wholebuzz/fs/blob/master/src/parquet.ts#L41)

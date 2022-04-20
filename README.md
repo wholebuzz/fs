@@ -13,7 +13,7 @@ Provides file format implementations for:
 - [CSV](src/csv.ts)
 - [JSON, ND-JSON / JSONL](src/json.ts)
 - [Lines](src/lines.ts)
-- [Parquet](src/parquet.ts)
+- [Parquet](src/parquet.ts) including custom `streamingParquet` codec.
 - [TFRecord](src/tfrecord.ts)
 
 Additionally provides streaming & sharding utilities.
