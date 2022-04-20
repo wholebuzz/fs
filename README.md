@@ -10,13 +10,13 @@ File system abstraction with implementations for GCP GCS, AWS S3, Azure, SMB, HT
 
 Provides file format implementations for:
 
-- [CSV](src/csv.ts)
-- [JSON, ND-JSON / JSONL](src/json.ts)
 - [Lines](src/lines.ts)
-- [Parquet](src/parquet.ts) including custom `streamingParquet` codec.
-- [TFRecord](src/tfrecord.ts)
+- [CSV](src/csv.ts) (via [csv](https://www.npmjs.com/package/csv))
+- [JSON, ND-JSON / JSONL](src/json.ts) (via [JSONStream](https://www.npmjs.com/package/JSONStream) and [ndjson](https://www.npmjs.com/package/ndjson))
+- [Parquet](src/parquet.ts) including `streamingParquet` codec and [parquetjs](https://www.npmjs.com/package/@entitycs/parquetjs-micro).
+- [TFRecord](src/tfrecord.ts) including [tfrecord-stream](https://www.npmjs.com/package/tfrecord-stream).
 
-Additionally provides streaming & sharding utilities.
+Additionally provides sharding & merging utilities.
 
 ## Dependencies
 
