@@ -12,8 +12,8 @@
 
 ### Variables
 
-- [parquet\_thrift](parquet.md#parquet_thrift)
-- [parquet\_util](parquet.md#parquet_util)
+- [parquetThrift](parquet.md#parquetthrift)
+- [parquetUtil](parquet.md#parquetutil)
 
 ### Functions
 
@@ -27,17 +27,17 @@
 
 ## Variables
 
-### parquet\_thrift
+### parquetThrift
 
-• `Const` **parquet\_thrift**: *any*
+• `Const` **parquetThrift**: *any*
 
 Defined in: [src/parquet.ts:23](https://github.com/wholebuzz/fs/blob/master/src/parquet.ts#L23)
 
 ___
 
-### parquet\_util
+### parquetUtil
 
-• `Const` **parquet\_util**: *any*
+• `Const` **parquetUtil**: *any*
 
 Defined in: [src/parquet.ts:22](https://github.com/wholebuzz/fs/blob/master/src/parquet.ts#L22)
 
@@ -56,7 +56,7 @@ Defined in: [src/parquet.ts:22](https://github.com/wholebuzz/fs/blob/master/src/
 
 **Returns:** *ParquetEnvelopeReader*
 
-Defined in: [src/parquet.ts:213](https://github.com/wholebuzz/fs/blob/master/src/parquet.ts#L213)
+Defined in: [src/parquet.ts:234](https://github.com/wholebuzz/fs/blob/master/src/parquet.ts#L234)
 
 ___
 
@@ -73,7 +73,7 @@ ___
 
 **Returns:** *Promise*<ParquetReader\>
 
-Defined in: [src/parquet.ts:205](https://github.com/wholebuzz/fs/blob/master/src/parquet.ts#L205)
+Defined in: [src/parquet.ts:226](https://github.com/wholebuzz/fs/blob/master/src/parquet.ts#L226)
 
 ___
 
@@ -143,7 +143,7 @@ ___
 
 **Returns:** WritableStreamTree
 
-Defined in: [src/parquet.ts:225](https://github.com/wholebuzz/fs/blob/master/src/parquet.ts#L225)
+Defined in: [src/parquet.ts:246](https://github.com/wholebuzz/fs/blob/master/src/parquet.ts#L246)
 
 ___
 

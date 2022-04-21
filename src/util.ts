@@ -103,9 +103,11 @@ export async function readShardFilenames(fileSystem: FileSystem, url: string) {
       ? filename.substring(shardedFilenameMatch[0].length + shardedFilenameMatch.index)
       : undefined
   let entries = await fileSystem.readDirectory(dirname, { prefix })
-  if (suffix) entries = entries.filter(entry => entry.url.endsWith(suffix))
+  if (suffix) entries = entries.filter((entry) => entry.url.endsWith(suffix))
   if (!entries.length) {
-    throw new Error(`readShardFilenames: no files in ${dirname} matching ${prefix}`)
+    throw new Error(
+      `readShardFilenames: no files in ${dirname} matching ${JSON.stringify({ prefix, suffix })}`
+    )
   }
   let numShards = 0
   for (const entry of entries) {
@@ -116,7 +118,9 @@ export async function readShardFilenames(fileSystem: FileSystem, url: string) {
     }
   }
   if (numShards !== entries.length) {
-    throw new Error(`readShardFilenames: wrong number ${dirname} matching ${prefix}`)
+    throw new Error(
+      `readShardFilenames: wrong number ${dirname} matching ${JSON.stringify({ prefix, suffix })}`
+    )
   }
   const haveEntry = entries.map(() => false)
   entries.forEach((x) => {
@@ -124,7 +128,9 @@ export async function readShardFilenames(fileSystem: FileSystem, url: string) {
     if (index >= 0 && index < haveEntry.length) haveEntry[index] = true
   })
   if (!entries.every((x) => !!x)) {
-    throw new Error(`readShardFilenames: corrupt ${dirname} matching ${prefix}`)
+    throw new Error(
+      `readShardFilenames: corrupt ${dirname} matching ${JSON.stringify({ prefix, suffix })}`
+    )
   }
   return { numShards, entries }
 }

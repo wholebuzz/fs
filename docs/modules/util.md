@@ -193,7 +193,7 @@ ___
 
 **Returns:** *Promise*<Record<string, ReadableStreamTree[]\>\>
 
-Defined in: [src/util.ts:149](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L149)
+Defined in: [src/util.ts:160](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L160)
 
 ___
 
@@ -211,7 +211,7 @@ ___
 
 **Returns:** *Promise*<ReadableStreamTree[]\>
 
-Defined in: [src/util.ts:162](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L162)
+Defined in: [src/util.ts:173](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L173)
 
 ___
 
@@ -229,7 +229,7 @@ ___
 
 **Returns:** *Promise*<WritableStreamTree[]\>
 
-Defined in: [src/util.ts:177](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L177)
+Defined in: [src/util.ts:188](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L188)
 
 ___
 
@@ -354,4 +354,4 @@ ___
 
 **Returns:** *Promise*<void\>
 
-Defined in: [src/util.ts:127](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L127)
+Defined in: [src/util.ts:138](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L138)
