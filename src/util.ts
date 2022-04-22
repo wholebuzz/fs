@@ -6,6 +6,7 @@ import { FileSystem, OpenReadableFileOptions, OpenWritableFileOptions } from './
 export const zlib = require('zlib')
 export const lastItem = <X>(x: X[]): X => x[x.length - 1]
 export const lastItemOrNull = <X>(x: X[]): X | null => (x.length > 0 ? x[x.length - 1] : null)
+export const take = <X, Y>(x: X, f: (x: X) => Y): Y => f(x)
 export const md5 = (x: string) => crypto.createHash('md5').update(x).digest('hex')
 
 export interface Logger {

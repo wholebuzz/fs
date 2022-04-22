@@ -17,6 +17,7 @@ import {
   ReadableFileOptions,
   ReadableFileSpec,
   shardedFilenames,
+  take,
 } from './util'
 
 export const parquetUtil = require('parquetjs/lib/util')
@@ -24,11 +25,13 @@ export const parquetThrift = require('parquetjs/gen-nodejs/parquet_types')
 
 export interface OpenParquetFileOptions {
   columnList?: string[][] | string[]
+  rowGroupRange?: [number, number]
   streamingParquet?: boolean
 }
 
 export interface ParquetFileOptions {
   columnList?: string[][] | string[]
+  rowGroupRange?: [number, number]
   shards?: number
   shardFilter?: (index: number) => boolean
   streamingParquet?: boolean
@@ -85,13 +88,16 @@ export async function openParquetFile(
     const reader = await newParquetReader(fileSystem, url)
     const { metadata, schema } = reader
     const columnList = (options?.columnList ?? []).map((x: any) => (Array.isArray(x) ? x : [x]))
+    const rowGroupRange = options?.rowGroupRange ?? [0, metadata.row_groups.length]
 
-    let currentRowGroup = 0
-    let buffersCurrentOffset = 0
+    let currentRowGroup = rowGroupRange[0]
+    let buffersCurrentOffset = options?.rowGroupRange
+      ? metadata.row_groups[currentRowGroup].columns[0].meta_data.data_page_offset!.valueOf()
+      : 0
     let buffersCurrentLengthSum = 0
     const buffers: Buffer[] = []
     const isRowGroupReady = () => {
-      if (currentRowGroup >= metadata.row_groups.length) return false
+      if (currentRowGroup >= rowGroupRange[1]) return false
       const lastColChunk = lastItem(metadata.row_groups[currentRowGroup].columns)
       const lastColChunkOffset = lastColChunk.meta_data.data_page_offset?.valueOf()
       const lastColChunkLength = lastColChunk.meta_data.total_compressed_size?.valueOf()
@@ -102,11 +108,24 @@ export async function openParquetFile(
       )
     }
 
-    return (await fileSystem.openReadableFile(url)).pipe(
+    return (
+      await fileSystem.openReadableFile(url, {
+        byteOffset: options?.rowGroupRange ? buffersCurrentOffset : undefined,
+        byteLength: options?.rowGroupRange
+          ? take(
+              lastItem(metadata.row_groups[rowGroupRange[1] - 1].columns),
+              (x) =>
+                x.meta_data.data_page_offset!.valueOf() +
+                x.meta_data.total_compressed_size!.valueOf() -
+                buffersCurrentOffset
+            )
+          : undefined,
+      })
+    ).pipe(
       new Transform({
         objectMode: true,
         transform(data: Buffer, _, callback) {
-          if (currentRowGroup < metadata.row_groups.length) {
+          if (currentRowGroup < rowGroupRange[1]) {
             buffers.push(data)
             buffersCurrentLengthSum += data.length
           }
@@ -174,7 +193,7 @@ export async function openParquetFile(
                 this.push(row)
               }
             } while (isRowGroupReady())
-            if (currentRowGroup === metadata.row_groups.length) {
+            if (currentRowGroup === rowGroupRange[1]) {
               reader.close().catch((err) => {
                 throw err
               })
@@ -191,6 +210,7 @@ export async function openParquetFile(
       })
     )
   } else {
+    if (options.rowGroupRange) throw new Error('only streamingParquet supports rowGroupRange')
     const reader = await newParquetReader(fileSystem, url)
     const passThrough = new PassThrough({ objectMode: true })
     const closePassThrough = () => passThrough.push(null)

@@ -31,7 +31,7 @@
 
 • `Const` **parquetThrift**: *any*
 
-Defined in: [src/parquet.ts:23](https://github.com/wholebuzz/fs/blob/master/src/parquet.ts#L23)
+Defined in: [src/parquet.ts:24](https://github.com/wholebuzz/fs/blob/master/src/parquet.ts#L24)
 
 ___
 
@@ -39,7 +39,7 @@ ___
 
 • `Const` **parquetUtil**: *any*
 
-Defined in: [src/parquet.ts:22](https://github.com/wholebuzz/fs/blob/master/src/parquet.ts#L22)
+Defined in: [src/parquet.ts:23](https://github.com/wholebuzz/fs/blob/master/src/parquet.ts#L23)
 
 ## Functions
 
@@ -56,7 +56,7 @@ Defined in: [src/parquet.ts:22](https://github.com/wholebuzz/fs/blob/master/src/
 
 **Returns:** *ParquetEnvelopeReader*
 
-Defined in: [src/parquet.ts:234](https://github.com/wholebuzz/fs/blob/master/src/parquet.ts#L234)
+Defined in: [src/parquet.ts:254](https://github.com/wholebuzz/fs/blob/master/src/parquet.ts#L254)
 
 ___
 
@@ -73,7 +73,7 @@ ___
 
 **Returns:** *Promise*<ParquetReader\>
 
-Defined in: [src/parquet.ts:226](https://github.com/wholebuzz/fs/blob/master/src/parquet.ts#L226)
+Defined in: [src/parquet.ts:246](https://github.com/wholebuzz/fs/blob/master/src/parquet.ts#L246)
 
 ___
 
@@ -91,7 +91,7 @@ ___
 
 **Returns:** *Promise*<ReadableStreamTree\>
 
-Defined in: [src/parquet.ts:79](https://github.com/wholebuzz/fs/blob/master/src/parquet.ts#L79)
+Defined in: [src/parquet.ts:82](https://github.com/wholebuzz/fs/blob/master/src/parquet.ts#L82)
 
 ___
 
@@ -109,7 +109,7 @@ ___
 
 **Returns:** *Promise*<ReadableStreamTree[]\>
 
-Defined in: [src/parquet.ts:64](https://github.com/wholebuzz/fs/blob/master/src/parquet.ts#L64)
+Defined in: [src/parquet.ts:67](https://github.com/wholebuzz/fs/blob/master/src/parquet.ts#L67)
 
 ___
 
@@ -126,7 +126,7 @@ ___
 
 **Returns:** *Promise*<Record<string, ReadableStreamTree[]\>\>
 
-Defined in: [src/parquet.ts:49](https://github.com/wholebuzz/fs/blob/master/src/parquet.ts#L49)
+Defined in: [src/parquet.ts:52](https://github.com/wholebuzz/fs/blob/master/src/parquet.ts#L52)
 
 ___
 
@@ -143,7 +143,7 @@ ___
 
 **Returns:** WritableStreamTree
 
-Defined in: [src/parquet.ts:246](https://github.com/wholebuzz/fs/blob/master/src/parquet.ts#L246)
+Defined in: [src/parquet.ts:266](https://github.com/wholebuzz/fs/blob/master/src/parquet.ts#L266)
 
 ___
 
@@ -161,4 +161,4 @@ ___
 
 **Returns:** *Promise*<unknown[]\>
 
-Defined in: [src/parquet.ts:41](https://github.com/wholebuzz/fs/blob/master/src/parquet.ts#L41)
+Defined in: [src/parquet.ts:44](https://github.com/wholebuzz/fs/blob/master/src/parquet.ts#L44)

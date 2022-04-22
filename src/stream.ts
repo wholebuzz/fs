@@ -191,7 +191,9 @@ export function shardWritables(
   shardFunction?: (x: object, modulus: number) => number
 ) {
   if (writable.length === 1) return writable[0]
-  if (!writable.length || !shards || !shardFunction) throw new Error('No shards')
+  if (!writable.length || !shards || !shardFunction) {
+    throw new Error(`No shards for writable of length ${writable.length}`)
+  }
   const waiting: Array<(() => void) | undefined> = new Array(writable.length).fill(undefined)
   for (let i = 0; i < writable.length; i++) {
     writable[i].node.stream.on('drain', () => {

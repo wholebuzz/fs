@@ -91,7 +91,7 @@ ___
 
 **Returns:** *boolean*
 
-Defined in: [src/util.ts:30](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L30)
+Defined in: [src/util.ts:31](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L31)
 
 ___
 
@@ -99,7 +99,7 @@ ___
 
 • `Optional` **shards**: *number*
 
-Defined in: [src/util.ts:29](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L29)
+Defined in: [src/util.ts:30](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L30)
 
 ___
 

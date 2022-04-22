@@ -30,7 +30,7 @@
 
 **Returns:** *void*
 
-Defined in: [src/util.ts:12](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L12)
+Defined in: [src/util.ts:13](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L13)
 
 ___
 
@@ -50,7 +50,7 @@ ___
 
 **Returns:** *void*
 
-Defined in: [src/util.ts:13](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L13)
+Defined in: [src/util.ts:14](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L14)
 
 ___
 
@@ -70,4 +70,4 @@ ___
 
 **Returns:** *void*
 
-Defined in: [src/util.ts:14](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L14)
+Defined in: [src/util.ts:15](https://github.com/wholebuzz/fs/blob/master/src/util.ts#L15)

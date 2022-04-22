@@ -9,6 +9,7 @@
 ### Properties
 
 - [columnList](parquet.openparquetfileoptions.md#columnlist)
+- [rowGroupRange](parquet.openparquetfileoptions.md#rowgrouprange)
 - [streamingParquet](parquet.openparquetfileoptions.md#streamingparquet)
 
 ## Properties
@@ -17,7 +18,15 @@
 
 • `Optional` **columnList**: *string*[] \| *string*[][]
 
-Defined in: [src/parquet.ts:26](https://github.com/wholebuzz/fs/blob/master/src/parquet.ts#L26)
+Defined in: [src/parquet.ts:27](https://github.com/wholebuzz/fs/blob/master/src/parquet.ts#L27)
+
+___
+
+### rowGroupRange
+
+• `Optional` **rowGroupRange**: [*number*, *number*]
+
+Defined in: [src/parquet.ts:28](https://github.com/wholebuzz/fs/blob/master/src/parquet.ts#L28)
 
 ___
 
@@ -25,4 +34,4 @@ ___
 
 • `Optional` **streamingParquet**: *boolean*
 
-Defined in: [src/parquet.ts:27](https://github.com/wholebuzz/fs/blob/master/src/parquet.ts#L27)
+Defined in: [src/parquet.ts:29](https://github.com/wholebuzz/fs/blob/master/src/parquet.ts#L29)

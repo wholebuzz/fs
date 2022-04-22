@@ -49,7 +49,7 @@
 
 **Returns:** *void*
 
-Defined in: [src/stream.ts:250](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L250)
+Defined in: [src/stream.ts:252](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L252)
 
 ___
 
@@ -67,7 +67,7 @@ Hashes a [[Readable]] stream.
 
 **Returns:** *Promise*<string \| ``null``\>
 
-Defined in: [src/stream.ts:229](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L229)
+Defined in: [src/stream.ts:231](https://github.com/wholebuzz/fs/blob/master/src/stream.ts#L231)
 
 ___
 
