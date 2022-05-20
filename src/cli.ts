@@ -1,11 +1,18 @@
 import StreamTree, { pumpWritable } from 'tree-stream'
 import yargs from 'yargs'
-import { AnyFileSystem, GoogleCloudFileSystem, LocalFileSystem, S3FileSystem } from './index'
+import { AnyFileSystem } from './fs'
+import { GoogleCloudFileSystem } from './gcp'
+import { HTTPFileSystem } from './http'
+import { LocalFileSystem } from './local'
+import { S3FileSystem } from './s3'
 
 async function main() {
+  const httpFileSystem = new HTTPFileSystem()
   const fs = new AnyFileSystem([
     { urlPrefix: 'gs://', fs: new GoogleCloudFileSystem() },
     { urlPrefix: 's3://', fs: new S3FileSystem() },
+    { urlPrefix: 'http://', fs: httpFileSystem },
+    { urlPrefix: 'https://', fs: httpFileSystem },
     { urlPrefix: '', fs: new LocalFileSystem() },
   ])
 

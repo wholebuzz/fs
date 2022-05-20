@@ -44,13 +44,11 @@ The atomic primitives are only available for Google Cloud Storage and local.
 ## Example
 
 ```typescript
-import {
-  AnyFileSystem,
-  GoogleCloudFileSystem,
-  HTTPFileSystem,
-  LocalFileSystem,
-  S3FileSystem
-} from '@wholebuzz/fs'
+import { AnyFileSystem } from '@wholebuzz/fs/lib/fs'
+import { GoogleCloudFileSystem } from '@wholebuzz/fs/lib/gcp'
+import { HTTPFileSystem } from '@wholebuzz/fs/lib/http'
+import { LocalFileSystem } from '@wholebuzz/fs/lib/local'
+import { S3FileSystem } from '@wholebuzz/fs/lib/s3'
 import { readJSON, writeJSON } from '@wholebuzz/fs/lib/json'
 
 const httpFileSystem = new HTTPFileSystem()
